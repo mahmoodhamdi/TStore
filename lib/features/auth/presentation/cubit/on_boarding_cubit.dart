@@ -20,12 +20,12 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
 
   goToNextPage(BuildContext context) {
     if (currentIndex != 2) {
-      ++currentIndex;
+      currentIndex++;
 
       pageController.jumpToPage(currentIndex);
       emit(OnBoardingUpdateIndicator());
     } else {
-      THelperFunctions.navigateToScreen(context, const LoginView());
+      THelperFunctions.navigateReplacementToScreen(context, const LoginView());
     }
   }
 

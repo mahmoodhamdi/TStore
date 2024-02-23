@@ -70,6 +70,13 @@ class THelperFunctions {
     );
   }
 
+  static void navigateReplacementToScreen(BuildContext context, Widget screen) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => screen),
+    );
+  }
+
   static String truncateText(String text, int maxLength) {
     if (text.length <= maxLength) {
       return text;
