@@ -6,12 +6,12 @@ import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/device/device_utility.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/features/auth/presentation/cubit/on_boarding_cubit.dart';
- 
+
 class OnBoardingNextButton extends StatelessWidget {
   const OnBoardingNextButton({
-    super.key, 
-   });
-   @override
+    super.key,
+  });
+  @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return Positioned(
@@ -22,11 +22,11 @@ class OnBoardingNextButton extends StatelessWidget {
             shape: const CircleBorder(),
             backgroundColor: dark ? TColors.primary : Colors.black,
           ),
-          onPressed:(() {
-        context.read<OnBoardingCubit>().goToNextPage(context);    
+          onPressed: (() {
+            context.read<OnBoardingCubit>().goToNextPage(context);
           }),
           child: const Icon(
-            Iconsax.arrow_right3,
+            Iconsax.arrow_right_3,
           ),
         ));
   }
