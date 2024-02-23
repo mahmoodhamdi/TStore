@@ -1,32 +1,28 @@
-import 'package:t_store/features/auth/data/repositories/on_boarding_repo.dart';
+// import 'package:flutter/src/widgets/page_view.dart';
+// import 'package:t_store/features/auth/data/repositories/on_boarding_repo.dart';
 
-class OnBoardingRepoImpl implements OnBoardingRepo {
-  @override
+// class OnBoardingRepoImpl implements OnBoardingRepo {
+//   int currentIndex = 0;
+//  final PageController pageController = PageController();
+//   @override
+//   Future<void> setOnBoardingStatus() async {
+//   }
+//   @override
+//   void dotNavigationClicked(int index) {
+//     currentIndex = index;
+//   }
 
-  
-  @override
-  void dotNavigation(int index) {
-    // TODO: implement dotNavigation
-  }
-  
-  @override
-  void goToNextPage(int index) {
-    // TODO: implement goToNextPage
-  }
-  
-  @override
-  Future<void> setOnBoardingStatus() {
-    // TODO: implement setOnBoardingStatus
-    throw UnimplementedError();
-  }
-  
-  @override
-  void skipPage() {
-    // TODO: implement skipPage
-  }
-  
-  @override
-  void updatePageIndicator(int index) {
-    // TODO: implement updatePageIndicator
-  }
-  }
+//   @override
+//   void goToNextPage(int index) {
+//   }
+
+//   @override
+//   void skipPage() {
+//   }
+
+//   @override
+//   void updatePageIndicator(int index) {
+//     currentIndex = index;
+//   }
+
+// }
