@@ -70,6 +70,10 @@ class THelperFunctions {
     );
   }
 
+  static void popScreen(BuildContext context) {
+    Navigator.pop(context);
+  }
+
   static void navigateReplacementToScreen(BuildContext context, Widget screen) {
     Navigator.pushReplacement(
       context,
