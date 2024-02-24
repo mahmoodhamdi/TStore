@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/features/auth/presentation/views/login_view.dart';
+import 'package:t_store/features/auth/presentation/views/login/login_view.dart';
 
 part 'on_boarding_state.dart';
 

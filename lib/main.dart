@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:t_store/core/utils/theme/theme.dart';
 import 'package:t_store/features/auth/presentation/cubit/on_boarding_cubit.dart';
-import 'package:t_store/features/auth/presentation/views/on_boarding_view.dart';
+import 'package:t_store/features/auth/presentation/views/on_boarding/on_boarding_view.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

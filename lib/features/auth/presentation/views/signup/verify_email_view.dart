@@ -6,7 +6,7 @@ import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/device/device_utility.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/features/auth/presentation/widgets/email_verified_successfully.dart';
-import 'package:t_store/features/auth/presentation/views/login_view.dart';
+import 'package:t_store/features/auth/presentation/views/login/login_view.dart';
 
 class VerifyEmailView extends StatelessWidget {
   const VerifyEmailView({super.key});

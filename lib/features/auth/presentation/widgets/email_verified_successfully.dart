@@ -4,7 +4,7 @@ import 'package:t_store/core/utils/constants/image_strings.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/core/widgets/success_view.dart';
-import 'package:t_store/features/auth/presentation/views/login_view.dart';
+import 'package:t_store/features/auth/presentation/views/login/login_view.dart';
 
 class EmailVerifiedSuccessfully extends StatelessWidget {
   const EmailVerifiedSuccessfully({
@@ -18,6 +18,7 @@ class EmailVerifiedSuccessfully extends StatelessWidget {
         image: TImages.staticSuccessIllustration,
         title: TTexts.yourAccountCreatedTitle,
         subTitle: TTexts.yourAccountCreatedSubTitle,
+        buttonText: TTexts.tContinue,
         onPressed: () {
           THelperFunctions.navigateReplacementToScreen(
               context, const LoginView());
