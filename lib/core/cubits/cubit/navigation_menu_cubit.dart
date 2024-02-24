@@ -1,9 +1,11 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:t_store/features/home/presentation/views/home_view.dart';
+import 'package:t_store/features/shop/presentation/views/home/home_view.dart';
 import 'package:t_store/features/person/presentation/views/profile_view.dart';
-import 'package:t_store/features/shop/presentation/views/store_view.dart';
+import 'package:t_store/features/shop/presentation/views/store/store_view.dart';
 import 'package:t_store/features/shop/presentation/views/wishlist_view.dart';
 
 part 'navigation_menu_state.dart';

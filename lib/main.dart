@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:t_store/core/cubits/cubit/navigation_menu_cubit.dart';
+import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/theme/theme.dart';
 import 'package:t_store/features/auth/presentation/cubit/on_boarding_cubit.dart';
 import 'package:t_store/features/auth/presentation/views/on_boarding/on_boarding_view.dart';
-import 'package:t_store/features/home/presentation/cubit/navigation_menu_cubit.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -29,11 +30,11 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'T Store',
+        title: TTexts.appName,
         themeMode: ThemeMode.system,
         theme: TAppTheme.lightTheme,
         darkTheme: TAppTheme.darkTheme,
+        debugShowCheckedModeBanner: false,
         home: const OnBoardingView(),
       ),
     );
