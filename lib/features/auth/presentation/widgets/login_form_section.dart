@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
+import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/features/auth/presentation/views/sign_up_view.dart';
 
 class LoginFormSection extends StatelessWidget {
   const LoginFormSection({
@@ -66,7 +68,9 @@ class LoginFormSection extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                THelperFunctions.navigateToScreen(context, const SignUpView());
+              },
               child: const Text(TTexts.createAccount),
             ),
           ),

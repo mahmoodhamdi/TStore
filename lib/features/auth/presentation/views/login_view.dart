@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
+import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/features/auth/presentation/widgets/divider_widget.dart';
 import 'package:t_store/features/auth/presentation/widgets/login_form_section.dart';
 import 'package:t_store/features/auth/presentation/widgets/login_header_section.dart';
@@ -18,7 +19,12 @@ class LoginView extends StatelessWidget {
           children: [
             LoginHeaderSection(),
             LoginFormSection(),
-            DividerWidget(),
+            DividerWidget(
+              text: TTexts.orSignInWith,
+            ),
+            SizedBox(
+              height: TSizes.spaceBtwSections,
+            ),
             SignInMethodsSection(),
           ],
         ),
