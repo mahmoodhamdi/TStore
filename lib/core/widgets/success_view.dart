@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/core/models/success_model.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
-import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/device/device_utility.dart';
 
 class SuccessView extends StatelessWidget {
@@ -44,7 +43,7 @@ class SuccessView extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                     onPressed: successModel.onPressed,
-                    child:  Text(successModel.buttonText)),
+                    child: Text(successModel.buttonText)),
               ),
             ],
           ),
