@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/features/auth/presentation/views/verify_email_view.dart';
+import 'package:t_store/features/auth/presentation/views/signup/verify_email_view.dart';
 import 'package:t_store/features/auth/presentation/widgets/divider_widget.dart';
 import 'package:t_store/features/auth/presentation/widgets/sign_in_methods_section.dart';
 import 'package:t_store/features/auth/presentation/widgets/sign_up_form_section.dart';

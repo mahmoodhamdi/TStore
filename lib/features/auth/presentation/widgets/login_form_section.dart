@@ -3,7 +3,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/features/auth/presentation/views/sign_up_view.dart';
+import 'package:t_store/features/auth/presentation/views/password_configuration/forget_password_view.dart';
+import 'package:t_store/features/auth/presentation/views/signup/sign_up_view.dart';
 
 class LoginFormSection extends StatelessWidget {
   const LoginFormSection({
@@ -47,7 +48,10 @@ class LoginFormSection extends StatelessWidget {
                 ],
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  THelperFunctions.navigateToScreen(
+                      context, const ForgetPasswordView());
+                },
                 child: const Text(TTexts.forgetPassword),
               ),
             ],
