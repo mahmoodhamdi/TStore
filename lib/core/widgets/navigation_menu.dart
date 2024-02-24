@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/features/home/presentation/cubit/navigation_menu_cubit.dart';
+import 'package:t_store/core/cubits/cubit/navigation_menu_cubit.dart';
 
 // lib/features/home/presentation/views/navigation_menu.dart
 class NavigationMenu extends StatelessWidget {
