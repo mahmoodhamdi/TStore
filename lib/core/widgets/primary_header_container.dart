@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/widgets/curved_widget.dart';
 import 'package:t_store/features/shop/data/models/circular_container_model.dart';
-import 'package:t_store/features/shop/presentation/widgets/circular_container.dart';
+import 'package:t_store/core/widgets/circular_container.dart';
 
 class PrimaryHeaderContainer extends StatelessWidget {
   const PrimaryHeaderContainer({
