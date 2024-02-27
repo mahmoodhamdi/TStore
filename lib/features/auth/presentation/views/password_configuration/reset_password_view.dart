@@ -26,6 +26,7 @@ class ResetPasswordView extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: TSizes.paddingWithAppBarHeight,
           child: Column(

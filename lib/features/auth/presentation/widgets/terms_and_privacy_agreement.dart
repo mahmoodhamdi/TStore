@@ -24,7 +24,7 @@ class TermsAndPrivacyAgreement extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          width: TSizes.spaceBtwItems,
+          width: TSizes.spaceBtwInputFields - 8,
         ),
         Text.rich(TextSpan(children: [
           const TextSpan(text: TTexts.iAgreeTo),

@@ -16,44 +16,45 @@ class SignUpView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Padding(
-        padding: const EdgeInsets.all(TSizes.defaultSpace),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              TTexts.signUpTitle,
-              style: Theme.of(context).textTheme.headlineMedium,
+            padding: const EdgeInsets.all(TSizes.defaultSpace),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  TTexts.signUpTitle,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                const SignUpFormSection(),
+                const SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        THelperFunctions.navigateToScreen(
+                            context, const VerifyEmailView());
+                      },
+                      child: const Text(TTexts.createAccount)),
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                DividerWidget(
+                  text: TTexts.orSignUpWith.capitalize!,
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                const SignInMethodsSection(),
+              ],
             ),
-            const SizedBox(
-              height: TSizes.spaceBtwSections,
-            ),
-            const SignUpFormSection(),
-            const SizedBox(
-              height: TSizes.spaceBtwSections,
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                  onPressed: () {
-                    THelperFunctions.navigateToScreen(
-                        context, const VerifyEmailView());
-                  },
-                  child: const Text(TTexts.createAccount)),
-            ),
-            const SizedBox(
-              height: TSizes.spaceBtwSections,
-            ),
-            DividerWidget(
-              text: TTexts.orSignUpWith.capitalize!,
-            ),
-            const SizedBox(
-              height: TSizes.spaceBtwSections,
-            ),
-            const SignInMethodsSection(),
-          ],
-        ),
-      )),
+          )),
     );
   }
 }
