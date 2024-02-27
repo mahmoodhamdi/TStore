@@ -1,10 +1,10 @@
 name: t_store
 description: "A new Flutter project."
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
+  sdk: ">=3.3.0 <4.0.0"
 dependencies:
   flutter:
     sdk: flutter
@@ -44,8 +44,10 @@ flutter:
     - assets/images/reviews/
     - assets/images/on_boarding_images/
     - assets/images/content/
+    - assets/icons/categories/
+    - assets/icons/brands/
+    - assets/icons/payment_methods/
     - assets/images/
-    - assets/icons/
     - assets/logos/
   fonts:
     - family: Coolvetica

@@ -7,6 +7,7 @@ class TTexts {
   static const String submit = "Submit";
   static const String appName = "T-Store";
   static const String tContinue = "Continue";
+  static const String viewAll = "View All";
 
   // -- OnBoarding Texts
   static const String onBoardingTitle1 = "Choose your product";
@@ -69,4 +70,73 @@ class TTexts {
   // -- Home
   static const String homeAppbarTitle = "Good day for shopping";
   static const String homeAppbarSubTitle = "Taimoor Sikander";
+  static const String searchContainer = "Search in Store";
+  static const String popularCategories = "Popular Categories";
+// -- Categories
+  static const String sport = "Sport";
+  static const String cloth = "Cloth";
+  static const String shoes = "Shoes";
+  static const String cosmetics = "Sweatshirts";
+  static const String animal = "Animal";
+  static const String toy ="Toy";
+  static const String furniture = "Furniture";
+  static const String accessories = "Accessories";
+  static const String electronics = "Electronics";
+  static const String jewellers = "Jewellers";
+//list of categories
+ static const List<String> categories = [
+    electronics,
+    cloth,
+    shoes,
+    cosmetics,
+    sport,
+    accessories,
+    furniture,
+    jewellers,
+    animal,
+    toy,
+  ];
+  static const String applePay = 'Apple Pay';
+  static const String googlePay = 'Google Pay';
+  static const String creditCard = 'Credit Card';
+  static const String masterCard = 'MasterCard';
+  static const String paypal = 'PayPal';
+  static const String visa = 'Visa';
+  static const String paystack = 'Paystack';
+  static const String paytm = 'Paytm';
+
+  static const List<String> paymentTitles = [
+    applePay,
+    googlePay,
+    creditCard,
+    masterCard,
+    paypal,
+    visa,
+    paystack,
+    paytm,
+  ];
+static const String nikeTitle = 'Nike';
+  static const String adidasTitle = 'Adidas';
+  static const String appleTitle = 'Apple';
+  static const String jordanTitle = 'Jordan';
+  static const String pumaTitle = 'Puma';
+  static const String zaraTitle = 'Zara';
+  static const String kenwoodTitle = 'Kenwood';
+  static const String hermanMillerTitle = 'Herman Miller';
+  static const String ikeaTitle = 'IKEA';
+  static const String acerTitle = 'Acer';
+
+  static const List<String> brandTitles = [
+    nikeTitle,
+    adidasTitle,
+    appleTitle,
+    jordanTitle,
+    pumaTitle,
+    zaraTitle,
+    kenwoodTitle,
+    hermanMillerTitle,
+    ikeaTitle,
+    acerTitle,
+  ];
+
 }
