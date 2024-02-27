@@ -8,9 +8,11 @@ class CircularContainerModel {
   final double? borderRadius;
   final double? padding;
   final Widget? child;
+  final EdgeInsetsGeometry?margin;
 
   CircularContainerModel(
       {this.width = 400,
+      this.margin,
       this.child,
       this.height = 400,
       this.color = TColors.primary,

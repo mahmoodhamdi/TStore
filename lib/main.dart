@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:t_store/core/cubits/cubit/navigation_menu_cubit.dart';
+import 'package:t_store/core/cubits/banner_carousel_slider_cubit_cubit/banner_carousel_slider_cubit.dart';
+import 'package:t_store/core/cubits/navigation_menu_cubit/navigation_menu_cubit.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/theme/theme.dart';
 import 'package:t_store/features/auth/presentation/cubit/on_boarding_cubit.dart';
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => OnBoardingCubit(),
         ),
+        BlocProvider(
+          create: (context) => BannerCarouselSliderCubit(),
+        )
       ],
       child: MaterialApp(
         title: TTexts.appName,
