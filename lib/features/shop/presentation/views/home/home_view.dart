@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/features/shop/presentation/widgets/home_header_section.dart';
+import 'package:t_store/features/shop/presentation/widgets/promo_banner_carousel_slider.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -12,7 +14,8 @@ class HomeView extends StatelessWidget {
         child: Column(
           children: [
             HomeHeaderSection(),
-            
+            SizedBox(height: TSizes.spaceBtwSections),
+            PromoBannerCarouselSlider()
           ],
         ),
       ),
