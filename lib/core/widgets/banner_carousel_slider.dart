@@ -7,7 +7,7 @@ import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/widgets/circular_container.dart';
 import 'package:t_store/core/widgets/rounded_image.dart';
-import 'package:t_store/features/shop/data/models/circular_container_model.dart';
+import 'package:t_store/core/models/circular_container_model.dart';
 
 class BannerCarouselSlider extends StatelessWidget {
   const BannerCarouselSlider({

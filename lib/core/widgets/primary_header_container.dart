@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/widgets/curved_widget.dart';
-import 'package:t_store/features/shop/data/models/circular_container_model.dart';
+import 'package:t_store/core/models/circular_container_model.dart';
 import 'package:t_store/core/widgets/circular_container.dart';
 
 class PrimaryHeaderContainer extends StatelessWidget {
@@ -27,7 +27,6 @@ final Widget child;
                   circularContainerModel: CircularContainerModel(
                     color: TColors.textWhite.withOpacity(0.1),
                     borderRadius: 400,
-                    padding: 0,
                     child: Container(),
                   ),
                 ),
@@ -39,7 +38,6 @@ final Widget child;
                   circularContainerModel: CircularContainerModel(
                     color: TColors.textWhite.withOpacity(0.1),
                     borderRadius: 400,
-                    padding: 0,
                   ),
                 ),
               ),
