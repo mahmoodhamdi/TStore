@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/features/shop/data/models/circular_container_model.dart';
+import 'package:t_store/core/models/circular_container_model.dart';
 
 class CircularContainer extends StatelessWidget {
   const CircularContainer({
@@ -18,7 +18,7 @@ class CircularContainer extends StatelessWidget {
         borderRadius:
             BorderRadius.circular(circularContainerModel.borderRadius!),
       ),
-      padding: EdgeInsets.all(circularContainerModel.padding!),
+      padding: circularContainerModel.padding,
       child: circularContainerModel.child,
     );
   }
