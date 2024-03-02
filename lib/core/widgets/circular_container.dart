@@ -14,10 +14,12 @@ class CircularContainer extends StatelessWidget {
       width: circularContainerModel.width,
       margin: (circularContainerModel.margin) ?? EdgeInsets.zero,
       decoration: BoxDecoration(
-        color: circularContainerModel.color,
-        borderRadius:
-            BorderRadius.circular(circularContainerModel.borderRadius!),
-      ),
+          color: circularContainerModel.color,
+          borderRadius:
+              BorderRadius.circular(circularContainerModel.borderRadius!),
+          border: circularContainerModel.showBorder
+              ? Border.all(color: circularContainerModel.borderColor)
+              : null),
       padding: circularContainerModel.padding,
       child: circularContainerModel.child,
     );

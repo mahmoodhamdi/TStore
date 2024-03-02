@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/core/models/app_bar_model.dart';
-import 'package:t_store/core/utils/constants/sizes.dart';
+import 'package:t_store/core/utils/device/device_utility.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key, required this.appBarModel});
@@ -9,7 +9,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: TSizes.md),
+      padding: appBarModel.padding,
       child: AppBar(
         automaticallyImplyLeading: false,
         leading: appBarModel.hasArrowBack!
@@ -35,5 +35,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => Size.fromHeight(TDeviceUtils.getAppBarHeight());
 }

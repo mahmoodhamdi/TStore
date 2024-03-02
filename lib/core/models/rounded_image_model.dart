@@ -13,8 +13,10 @@ class RoundedImageModel {
   final bool isNetworkImage;
   final void Function()? onTap;
   final double borderRadius;
+  final Color? overlayColor;
 
   RoundedImageModel({
+     this.overlayColor,
     required this.image,
     this.height,
     this.width,

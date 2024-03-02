@@ -15,7 +15,7 @@ class SearchContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
+      padding: searchContainerModel.padding,
       child: GestureDetector(
         onTap: searchContainerModel.onPressed,
         child: Container(
