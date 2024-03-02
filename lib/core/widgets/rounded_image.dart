@@ -30,10 +30,10 @@ class RoundedImage extends StatelessWidget {
                   : AssetImage(
                       roundedImageModel.image,
                     ) as ImageProvider,
+              color: roundedImageModel.overlayColor,
               fit: roundedImageModel.fit,
             )),
       ),
     );
   }
 }
-

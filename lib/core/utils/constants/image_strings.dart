@@ -242,7 +242,12 @@ class TImages {
   static const String productImage77 =
       "assets/images/products/slipper-product.png";
 //list of product images
-  static List<String> productsImages = [
+  static const List<String> topProducts = [
+    productImage1,
+    productImage2,
+    productImage3,
+  ];
+  static const List<String> productsImages = [
     productImage1,
     productImage2,
     productImage3,
