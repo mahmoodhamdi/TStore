@@ -64,7 +64,10 @@ class LoginFormSection extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
-                THelperFunctions.navigateToScreen(context, const NavigationMenu());
+                THelperFunctions.navigateToScreen(
+                    context,
+                    const NavigationMenu(
+                     ));
               },
               child: const Text(TTexts.signIn),
             ),
