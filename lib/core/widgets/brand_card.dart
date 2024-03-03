@@ -20,45 +20,49 @@ class BrandCard extends StatelessWidget {
             showBorder: brandCardModel.showBorder,
             color: Colors.transparent,
             padding: const EdgeInsets.all(TSizes.sm),
-            child: Flexible(
-              child: Row(
-                children: [
-                  Image(
-                    height: 50,
-                    width: 50,
-                    image: AssetImage(brandCardModel.image),
-                    color: dark ? TColors.white : TColors.black,
-                  ),
-                  const SizedBox(
-                    width: TSizes.spaceBtwItems / 2,
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
+              children: [
+                Flexible(
+                  child: Row(
                     children: [
-                      Row(
+                      Image(
+                        height: 50,
+                        width: 50,
+                        image: AssetImage(brandCardModel.image),
+                        color: dark ? TColors.white : TColors.black,
+                      ),
+                      const SizedBox(
+                        width: TSizes.spaceBtwItems / 2,
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Row(
+                            children: [
+                              Text(
+                                brandCardModel.brandName,
+                                style: Theme.of(context).textTheme.titleLarge,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              const Icon(
+                                Iconsax.verify5,
+                                size: TSizes.iconXs,
+                                color: TColors.primary,
+                              )
+                            ],
+                          ),
                           Text(
-                            brandCardModel.brandName,
-                            style: Theme.of(context).textTheme.titleLarge,
+                            "${brandCardModel.productCount} Products",
+                            style: Theme.of(context).textTheme.labelMedium,
                             overflow: TextOverflow.ellipsis,
                           ),
-                          const Icon(
-                            Iconsax.verify5,
-                            size: TSizes.iconXs,
-                            color: TColors.primary,
-                          )
                         ],
-                      ),
-                      Text(
-                        "${brandCardModel.productCount} Products",
-                        style: Theme.of(context).textTheme.labelMedium,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                      )
                     ],
-                  )
-                ],
-              ),
+                  ),
+                ),
+              ],
             )
             // ListTile(
             //   title: FittedBox(

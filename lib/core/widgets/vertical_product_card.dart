@@ -33,6 +33,7 @@ class VerticalProductCard extends StatelessWidget {
             ),
             color: dark ? TColors.darkerGrey : TColors.white),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CircularContainer(
               circularContainerModel: CircularContainerModel(
@@ -43,43 +44,48 @@ class VerticalProductCard extends StatelessWidget {
                     children: [
                       RoundedImage(
                         roundedImageModel: RoundedImageModel(
+                            backgroundColor:
+                                dark ? TColors.dark : TColors.light,
                             image: TImages.productImage1,
                             onTap: () {},
                             applyImageRadius: true),
                       ),
-                      Positioned(
-                        top: 12,
-                        child: CircularContainer(
-                            circularContainerModel: CircularContainerModel(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: TSizes.sm, vertical: TSizes.xs),
-                          borderRadius: TSizes.sm,
-                          color: TColors.secondary.withOpacity(.8),
-                          child: Text(
-                            "25%",
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelLarge!
-                                .apply(color: TColors.black),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CircularContainer(
+                              circularContainerModel: CircularContainerModel(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: TSizes.sm, vertical: TSizes.xs),
+                            borderRadius: TSizes.sm,
+                            color: TColors.secondary.withOpacity(.8),
+                            child: Text(
+                              "25%",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge!
+                                  .apply(color: TColors.black),
+                            ),
+                          )),
+                          CircularIcon(
+                            circularIconModel: CircularIconModel(
+                              height: TSizes.iconLg * 1.2,
+                              width: TSizes.iconLg * 1.2,
+                              iconSize: TSizes.iconMd,
+                              icon: Iconsax.heart5,
+                              color: Colors.red,
+                              backgroundColor:
+                                  dark ? TColors.darkerGrey : TColors.white,
+                              onPressed: () {},
+                            ),
                           ),
-                        )),
-                      ),
-                      Positioned(
-                        top: 0,
-                        right: 0,
-                        child: CircularIcon(
-                          circularIconModel: CircularIconModel(
-                            icon: Iconsax.heart5,
-                            color: Colors.red,
-                            onPressed: () {},
-                          ),
-                        ),
+                        ],
                       ),
                     ],
                   )),
             ),
             Padding(
-                padding: const EdgeInsets.all(TSizes.sm),
+                padding: const EdgeInsets.only(left: TSizes.sm),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
