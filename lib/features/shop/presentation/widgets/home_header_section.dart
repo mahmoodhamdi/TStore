@@ -49,6 +49,7 @@ class HomeHeaderSection extends StatelessWidget {
                   ),
                   const SizedBox(height: TSizes.spaceBtwSections),
                   const HomeCategories(),
+                  const SizedBox(height: TSizes.spaceBtwSections),
                 ],
               ))
         ],
