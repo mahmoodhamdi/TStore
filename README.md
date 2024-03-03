@@ -1,7 +1,7 @@
 # t_store [![Development Time](https://wakatime.com/badge/user/018c9017-daf8-45c1-be71-8b16fd238022/project/018dce88-f188-421c-bcff-7e46f8f2e7ed.svg)](https://wakatime.com/badge/user/018c9017-daf8-45c1-be71-8b16fd238022/project/018dce88-f188-421c-bcff-7e46f8f2e7ed)
 
 ## Description
-Unleash the power of the Professional Flutter eCommerce App with Firebase, designed to revolutionize your eCommerce journey. **(Project in Progress)**
+ A cutting-edge Flutter app with Firebase integration. Designed for developers, TStore delivers modern design, smooth user experience, and powerful functionality for crafting efficient eCommerce solutions. **(Project in Progress)**
 
 ## Features
 Supercharge your coding journey with:
@@ -18,29 +18,46 @@ Supercharge your coding journey with:
 - **Comprehensive Commerce Flow**: Cover every aspect of the e-commerce journey seamlessly, from Cart to Checkout, Addresses, Payment Types, and Orders.
 - **Categories and Subcategories Organization**: Efficiently organize products with a robust category and subcategory system.
 - **Error Handling and Logging**: Ensure a smooth user experience with robust error handling and logging features.
+- **Architecture**: Model-View-ViewModel (MVVM) for efficient code organization and separation of concerns.
+- **State Management**: Utilize Cubit state management for effective management of application state.
 
 ## Screenshots
 
+### Onboarding
 ![Onboarding](assets/screenshots/Onboarding.png)
-![Splash-Screen](assets/screenshots/Splash-Screen.png)
-![Home-Screen-New](assets/screenshots/Home-Screen-New.png)
-![Dark-mode-all-screens](assets/screenshots/Dark-mode-all-screens.png)
-![Light-mode-all-screens](assets/screenshots/Light-mode-all-screens-image.png)
-![product-detail](assets/screenshots/product-detail.png)
-![store](assets/screenshots/store.png)
-![Forget-Reset](assets/screenshots/Forget-Reset.png)
-![Brands](assets/screenshots/Brands.png)
-![subcategories](assets/screenshots/subcategories.png)
-![Profile](assets/screenshots/Profile.png)
-![Settings](assets/screenshots/Settings.png)
-![Orders](assets/screenshots/Orders.png)
-![Screenshot_1709445907](assets/screenshots/Screenshot_1709445907.png)
-![Verify-Email-Success](assets/screenshots/Verify-Email-Success.png)
-![CHECKOUT](assets/screenshots/CHECKOUT.png)
-![Register](assets/screenshots/Register.png)
-![Login](assets/screenshots/Login.png)
-![Cart](assets/screenshots/Cart.png)
-![Wishlist](assets/screenshots/Wishlist.png)
+
+### Authentication
+- **Register** ![Register](assets/screenshots/Register.png)
+- **Login** ![Login](assets/screenshots/Login.png)
+- **Forget Password/Reset Password** ![Forget-Reset](assets/screenshots/Forget-Reset.png)
+- **Email Verification Success** ![Verify-Email-Success](assets/screenshots/Verify-Email-Success.png)
+
+### Splash Screen
+- **Splash Screen** ![Splash-Screen](assets/screenshots/Splash-Screen.png)
+
+### Theme Modes
+- **Dark Mode on All Screens** ![Dark-mode-all-screens](assets/screenshots/Dark-mode-all-screens.png)
+- **Light Mode on All Screens** ![Light-mode-all-screens](assets/screenshots/Light-mode-all-screens-image.png)
+
+### Product Showcase
+- **Product Detail** ![product-detail](assets/screenshots/product-detail.png)
+- **Store** ![store](assets/screenshots/store.png)
+- **Brands** ![Brands](assets/screenshots/Brands.png)
+- **Subcategories** ![subcategories](assets/screenshots/subcategories.png)
+
+### User Management
+- **User Profile** ![Profile](assets/screenshots/Profile.png)
+- **Settings** ![Settings](assets/screenshots/Settings.png)
+
+### Order Management
+- **Orders** ![Orders](assets/screenshots/Orders.png)
+
+### Transaction
+- **Checkout** ![CHECKOUT](assets/screenshots/CHECKOUT.png)
+
+### Cart & Wishlist
+- **Shopping Cart** ![Cart](assets/screenshots/Cart.png)
+- **Wishlist** ![Wishlist](assets/screenshots/Wishlist.png)
 
 ## Conclusion
 
