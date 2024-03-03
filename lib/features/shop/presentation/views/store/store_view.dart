@@ -41,17 +41,13 @@ class StoreView extends StatelessWidget {
       child: Scaffold(
         appBar: CustomAppBar(
           appBarModel: AppBarModel(
-            title: Text(
-              "Store",
-              style: Theme.of(context).textTheme.headlineSmall!.apply(
-                    color: TColors.white,
-                  ),
-            ),
+            title:
+                Text("Store", style: Theme.of(context).textTheme.headlineSmall),
             actions: [
               CartCounterIcon(
                 cartCounterIconModel: CartCounterIconModel(
-                  color: TColors.white,
                   onPressed: () {},
+                  color: dark ? TColors.white : TColors.dark,
                 ),
               ),
             ],
@@ -68,50 +64,51 @@ class StoreView extends StatelessWidget {
                     backgroundColor: dark ? TColors.black : TColors.white,
                     flexibleSpace: Padding(
                       padding: const EdgeInsets.all(TSizes.defaultSpace),
-                      child: ListView(
-                        shrinkWrap: true,
+                      child: SingleChildScrollView(
                         physics: const NeverScrollableScrollPhysics(),
-                        children: [
-                          const SizedBox(
-                            height: TSizes.spaceBtwItems,
-                          ),
-                          SearchContainer(
-                            searchContainerModel: SearchContainerModel(
-                              padding: EdgeInsets.zero,
-                              showBackground: false,
-                              showBorder: true,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: TSizes.spaceBtwItems,
                             ),
-                          ),
-                          const SizedBox(
-                            height: TSizes.spaceBtwSections,
-                          ),
-                          SectionHeading(
-                              sectionHeadingModel: SectionHeadingModel(
-                            title: "Featured Brands",
-                            actionButtonOnPressed: () {},
-                            showActionButton: true,
-                          )),
-                          const SizedBox(
-                            height: TSizes.spaceBtwItems / 1.5,
-                          ),
-                          GridLayout(
-                              gridLayoutModel: GridLayoutModel(
-                            itemCount: 4,
-                            itemBuilder: (context, index) {
-                              return BrandCard(
-                                brandCardModel: BrandCardModel(
-                                  isVerified: true,
-                                  image: brandIcons[index],
-                                  brandName: brandTitles[index],
-                                  showBorder: false,
-                                  onTap: () {},
-                                  productCount: 5,
-                                ),
-                              );
-                            },
-                            mainAxisExtent: 80,
-                          )),
-                        ],
+                            SearchContainer(
+                              searchContainerModel: SearchContainerModel(
+                                padding: EdgeInsets.zero,
+                                showBackground: false,
+                                showBorder: true,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: TSizes.spaceBtwSections,
+                            ),
+                            SectionHeading(
+                                sectionHeadingModel: SectionHeadingModel(
+                              title: "Featured Brands",
+                              actionButtonOnPressed: () {},
+                              showActionButton: true,
+                            )),
+                            const SizedBox(
+                              height: TSizes.spaceBtwItems / 1.5,
+                            ),
+                            GridLayout(
+                                gridLayoutModel: GridLayoutModel(
+                              itemCount: 4,
+                              itemBuilder: (context, index) {
+                                return BrandCard(
+                                  brandCardModel: BrandCardModel(
+                                    isVerified: true,
+                                    image: brandIcons[index],
+                                    brandName: brandTitles[index],
+                                    showBorder: false,
+                                    onTap: () {},
+                                    productCount: 5,
+                                  ),
+                                );
+                              },
+                              mainAxisExtent: 80,
+                            )),
+                          ],
+                        ),
                       ),
                     ),
                     bottom: CustomTabBar(
