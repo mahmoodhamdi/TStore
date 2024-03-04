@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/models/success_model.dart';
+import 'package:t_store/core/common/models/success_model.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/device/device_utility.dart';
 

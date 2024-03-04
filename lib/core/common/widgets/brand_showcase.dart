@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/models/brand_card_model.dart';
-import 'package:t_store/core/models/brand_showcase_model.dart';
-import 'package:t_store/core/models/circular_container_model.dart';
+import 'package:t_store/core/common/models/brand_card_model.dart';
+import 'package:t_store/core/common/models/brand_showcase_model.dart';
+import 'package:t_store/core/common/models/circular_container_model.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/core/widgets/brand_card.dart';
-import 'package:t_store/core/widgets/circular_container.dart';
+import 'package:t_store/core/common/widgets/brand_card.dart';
+import 'package:t_store/core/common/widgets/circular_container.dart';
 
 class BrandShowcase extends StatelessWidget {
   const BrandShowcase(

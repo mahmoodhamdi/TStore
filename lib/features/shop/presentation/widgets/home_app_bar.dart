@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/models/app_bar_model.dart';
-import 'package:t_store/core/models/cart_counter_icon_model.dart';
+import 'package:t_store/core/common/models/app_bar_model.dart';
+import 'package:t_store/core/common/models/cart_counter_icon_model.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
-import 'package:t_store/core/widgets/app_bar.dart';
-import 'package:t_store/core/widgets/cart_counter_icon.dart';
+import 'package:t_store/core/common/widgets/app_bar.dart';
+import 'package:t_store/core/common/widgets/cart_counter_icon.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({

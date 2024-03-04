@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/models/category_tab_model.dart';
-import 'package:t_store/core/models/grid_layout_model.dart';
-import 'package:t_store/core/models/section_heading_model.dart';
+import 'package:t_store/core/common/models/category_tab_model.dart';
+import 'package:t_store/core/common/models/grid_layout_model.dart';
+import 'package:t_store/core/common/models/section_heading_model.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
-import 'package:t_store/core/widgets/brand_showcase.dart';
-import 'package:t_store/core/widgets/section_heading.dart';
-import 'package:t_store/core/widgets/vertical_product_card.dart';
+import 'package:t_store/core/common/widgets/brand_showcase.dart';
+import 'package:t_store/core/common/widgets/section_heading.dart';
+import 'package:t_store/core/common/widgets/vertical_product_card.dart';
 import 'package:t_store/features/auth/presentation/widgets/grid_layout.dart';
 
 class CategoryTab extends StatelessWidget {
