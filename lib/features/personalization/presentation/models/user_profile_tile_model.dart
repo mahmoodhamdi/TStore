@@ -5,7 +5,9 @@ class UserProfileTileModel {
   final String subtitle;
   final IconData trailing;
   final String leading;
+  final void Function()? onTap;
   const UserProfileTileModel({
+    this.onTap,
     required this.title,
     required this.subtitle,
     required this.trailing,

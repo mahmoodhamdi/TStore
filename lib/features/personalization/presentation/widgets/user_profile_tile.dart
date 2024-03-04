@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:t_store/core/common/models/rounded_image_model.dart';
-import 'package:t_store/core/common/models/user_profile_tile_model.dart';
+import 'package:t_store/features/personalization/presentation/models/user_profile_tile_model.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/common/widgets/rounded_image.dart';
 
@@ -32,7 +32,7 @@ class UserProfileTile extends StatelessWidget {
               ),
         ),
         trailing: IconButton(
-          onPressed: null,
+          onPressed: userProfileTileModel.onTap,
           icon: Icon(
             userProfileTileModel.trailing,
             color: TColors.white,
