@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/models/horizontal_small_list_view_item_model.dart';
-import 'package:t_store/core/widgets/horizontal_small_list_view_item.dart';
+import 'package:t_store/core/common/models/horizontal_small_list_view_item_model.dart';
+import 'package:t_store/core/common/widgets/horizontal_small_list_view_item.dart';
 
 class HorizontalSmallListView extends StatelessWidget {
   const HorizontalSmallListView({

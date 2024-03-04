@@ -1,4 +1,4 @@
-import 'package:t_store/core/models/brand_card_model.dart';
+import 'package:t_store/core/common/models/brand_card_model.dart';
 
 class BrandShowcaseModel {
   final BrandCardModel brandCardModel;

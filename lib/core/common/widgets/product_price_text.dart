@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/models/product_price_text_model.dart';
+import 'package:t_store/core/common/models/product_price_text_model.dart';
 
 class ProductPriceText extends StatelessWidget {
   const ProductPriceText({

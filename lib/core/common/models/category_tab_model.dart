@@ -1,4 +1,4 @@
-import 'package:t_store/core/models/brand_showcase_model.dart';
+import 'package:t_store/core/common/models/brand_showcase_model.dart';
 
 class CategoryTabModel {
  final BrandShowcaseModel brandShowcaseModel;

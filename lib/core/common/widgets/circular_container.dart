@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/models/circular_container_model.dart';
+import 'package:t_store/core/common/models/circular_container_model.dart';
 
 class CircularContainer extends StatelessWidget {
   const CircularContainer({

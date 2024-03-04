@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:t_store/core/models/circular_container_model.dart';
-import 'package:t_store/core/models/circular_icon_model.dart';
-import 'package:t_store/core/models/product_price_text_model.dart';
-import 'package:t_store/core/models/product_title_text_model.dart';
-import 'package:t_store/core/models/rounded_image_model.dart';
+import 'package:t_store/core/common/models/circular_container_model.dart';
+import 'package:t_store/core/common/models/circular_icon_model.dart';
+import 'package:t_store/core/common/models/product_price_text_model.dart';
+import 'package:t_store/core/common/models/product_title_text_model.dart';
+import 'package:t_store/core/common/models/rounded_image_model.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/image_strings.dart';
 import 'package:t_store/core/utils/constants/shadow_styles.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/core/widgets/circular_container.dart';
-import 'package:t_store/core/widgets/circular_icon.dart';
-import 'package:t_store/core/widgets/product_price_text.dart';
-import 'package:t_store/core/widgets/product_title_text.dart';
-import 'package:t_store/core/widgets/rounded_image.dart';
+import 'package:t_store/core/common/widgets/circular_container.dart';
+import 'package:t_store/core/common/widgets/circular_icon.dart';
+import 'package:t_store/core/common/widgets/product_price_text.dart';
+import 'package:t_store/core/common/widgets/product_title_text.dart';
+import 'package:t_store/core/common/widgets/rounded_image.dart';
 
 class VerticalProductCard extends StatelessWidget {
   const VerticalProductCard({super.key});

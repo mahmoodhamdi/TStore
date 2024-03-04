@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:t_store/core/models/brand_card_model.dart';
-import 'package:t_store/core/models/circular_container_model.dart';
+import 'package:t_store/core/common/models/brand_card_model.dart';
+import 'package:t_store/core/common/models/circular_container_model.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/core/widgets/circular_container.dart';
+import 'package:t_store/core/common/widgets/circular_container.dart';
 
 class BrandCard extends StatelessWidget {
   const BrandCard({super.key, required this.brandCardModel});

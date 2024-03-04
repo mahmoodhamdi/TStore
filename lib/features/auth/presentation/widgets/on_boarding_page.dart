@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/features/auth/data/models/on_boarding_model.dart';
+import 'package:t_store/features/auth/presentation/models/on_boarding_model.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({
