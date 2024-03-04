@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/core/common/models/app_bar_model.dart';
-import 'package:t_store/core/common/models/user_profile_tile_model.dart';
 import 'package:t_store/core/common/widgets/app_bar.dart';
-import 'package:t_store/core/common/widgets/user_profile_tile.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/image_strings.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
+import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/features/personalization/presentation/models/user_profile_tile_model.dart';
+import 'package:t_store/features/personalization/presentation/views/profile_view.dart';
+import 'package:t_store/features/personalization/presentation/widgets/user_profile_tile.dart';
 
 class SettingsViewHeaderSection extends StatelessWidget {
   const SettingsViewHeaderSection({
@@ -28,10 +30,12 @@ class SettingsViewHeaderSection extends StatelessWidget {
           )),
         ),
         const SizedBox(height: TSizes.spaceBtwSections),
-        const UserProfileTile(
+        UserProfileTile(
           userProfileTileModel: UserProfileTileModel(
               title: "Mahmoud Hamdy",
               subtitle: "hmdy7486@gmail.com",
+              onTap: () => THelperFunctions.navigateToScreen(
+                  context, const ProfileView()),
               trailing: Iconsax.edit,
               leading: TImages.user),
         ),
