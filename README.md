@@ -1,5 +1,5 @@
-# t_store [![Development Time](https://wakatime.com/badge/user/018c9017-daf8-45c1-be71-8b16fd238022/project/018dce88-f188-421c-bcff-7e46f8f2e7ed.svg)](https://wakatime.com/badge/user/018c9017-daf8-45c1-be71-8b16fd238022/project/018dce88-f188-421c-bcff-7e46f8f2e7ed)
-
+# t_store
+[![wakatime](https://wakatime.com/badge/user/018c9017-daf8-45c1-be71-8b16fd238022/project/018dce88-f188-421c-bcff-7e46f8f2e7ed.svg)](https://wakatime.com/@mahmoud_hamdy/projects/gcnjzeqylb)
 
 ## Description
 A cutting-edge Flutter app with Firebase integration, TStore is designed to deliver a modern design, smooth user experience, and powerful functionality for crafting efficient eCommerce solutions. **(Project in Progress)**
