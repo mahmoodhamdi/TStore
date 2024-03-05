@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:t_store/core/common/models/brand_title_with_verification_model.dart';
 import 'package:t_store/core/common/models/circular_container_model.dart';
 import 'package:t_store/core/common/models/circular_icon_model.dart';
 import 'package:t_store/core/common/models/product_price_text_model.dart';
 import 'package:t_store/core/common/models/product_title_text_model.dart';
 import 'package:t_store/core/common/models/rounded_image_model.dart';
-import 'package:t_store/core/utils/constants/colors.dart';
-import 'package:t_store/core/utils/constants/image_strings.dart';
-import 'package:t_store/core/utils/constants/shadow_styles.dart';
-import 'package:t_store/core/utils/constants/sizes.dart';
-import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/core/common/widgets/brand_title_with_verification.dart';
 import 'package:t_store/core/common/widgets/circular_container.dart';
 import 'package:t_store/core/common/widgets/circular_icon.dart';
 import 'package:t_store/core/common/widgets/product_price_text.dart';
 import 'package:t_store/core/common/widgets/product_title_text.dart';
 import 'package:t_store/core/common/widgets/rounded_image.dart';
+import 'package:t_store/core/common/widgets/sale_tag.dart';
+import 'package:t_store/core/utils/constants/colors.dart';
+import 'package:t_store/core/utils/constants/enums.dart';
+import 'package:t_store/core/utils/constants/image_strings.dart';
+import 'package:t_store/core/utils/constants/shadow_styles.dart';
+import 'package:t_store/core/utils/constants/sizes.dart';
+import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/features/shop/presentation/views/product_details_view.dart';
 
 class VerticalProductCard extends StatelessWidget {
   const VerticalProductCard({super.key});
@@ -22,7 +27,9 @@ class VerticalProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        THelperFunctions.navigateToScreen(context, const ProductDetailsView());
+      },
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(1),
@@ -53,20 +60,7 @@ class VerticalProductCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          CircularContainer(
-                              circularContainerModel: CircularContainerModel(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: TSizes.sm, vertical: TSizes.xs),
-                            borderRadius: TSizes.sm,
-                            color: TColors.secondary.withOpacity(.8),
-                            child: Text(
-                              "25%",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelLarge!
-                                  .apply(color: TColors.black),
-                            ),
-                          )),
+                          const SaleTag(),
                           CircularIcon(
                             circularIconModel: CircularIconModel(
                               height: TSizes.iconLg * 1.2,
@@ -96,21 +90,11 @@ class VerticalProductCard extends StatelessWidget {
                       const SizedBox(
                         height: TSizes.spaceBtwItems / 2,
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            "Nike",
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
-                          const SizedBox(
-                            width: TSizes.xs,
-                          ),
-                          const Icon(Iconsax.verify5,
-                              color: TColors.primary, size: TSizes.iconXs),
-                        ],
-                      ),
+                      const BrandTitleWithVerification(
+                          brandTitleWithVerificationModel:
+                              BrandTitleWithVerificationModel(
+                                  brandName: "Nike",
+                                  textSizes: TextSizes.medium)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
