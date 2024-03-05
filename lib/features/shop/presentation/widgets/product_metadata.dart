@@ -72,7 +72,7 @@ class ProductMetadata extends StatelessWidget {
         children: [
           RoundedImage(
             roundedImageModel: RoundedImageModel(
-              image: TImages.clothIcon,
+              image: TImages.nikeLogo,
               width: 32,
               height: 32,
               backgroundColor: dark ? TColors.black : TColors.white,
