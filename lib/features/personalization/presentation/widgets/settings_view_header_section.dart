@@ -39,7 +39,7 @@ class SettingsViewHeaderSection extends StatelessWidget {
               trailing: Iconsax.edit,
               leading: TImages.user),
         ),
-        const SizedBox(height: TSizes.spaceBtwSections),
+        const SizedBox(height: TSizes.spaceBtwSections * 1.2),
       ],
     );
   }

@@ -8,6 +8,7 @@ class SettingsMenuTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: const EdgeInsets.all(0),
       title: Text(
         settingsMenuTileModel.title,
         style: Theme.of(context).textTheme.titleMedium,
