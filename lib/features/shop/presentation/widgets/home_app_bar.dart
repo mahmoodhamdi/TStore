@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/core/common/models/app_bar_model.dart';
 import 'package:t_store/core/common/models/cart_counter_icon_model.dart';
-import 'package:t_store/core/utils/constants/colors.dart';
-import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/common/widgets/app_bar.dart';
 import 'package:t_store/core/common/widgets/cart_counter_icon.dart';
+import 'package:t_store/core/utils/constants/colors.dart';
+import 'package:t_store/core/utils/constants/text_strings.dart';
+import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/features/shop/presentation/views/cart_view.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({
@@ -36,7 +38,9 @@ class HomeAppBar extends StatelessWidget {
           CartCounterIcon(
             cartCounterIconModel: CartCounterIconModel(
               color: TColors.white,
-              onPressed: () {},
+              onPressed: () {
+                THelperFunctions.navigateToScreen(context, const CartView());
+              },
             ),
           ),
         ],
