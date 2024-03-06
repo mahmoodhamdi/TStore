@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:readmore/readmore.dart';
 import 'package:t_store/core/common/models/section_heading_model.dart';
+import 'package:t_store/core/common/widgets/read_more.dart';
 import 'package:t_store/core/common/widgets/section_heading.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
+import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/features/shop/presentation/views/product_reviews_view.dart';
 
 class ProductDescriptionAndReviewsSection extends StatelessWidget {
   const ProductDescriptionAndReviewsSection({
@@ -19,15 +21,9 @@ class ProductDescriptionAndReviewsSection extends StatelessWidget {
         const SizedBox(
           height: TSizes.spaceBtwItems,
         ),
-        const ReadMoreText(
-          //long product description
-          "This Is The Description Of The Product This Is The Description Of The Product This Is The Description Of The Product This Is The Description Of The Product For Blue Nike Sleeve Vest. There Are More Things Can Be Added",
-          trimLines: 2,
-          trimMode: TrimMode.Line,
-          trimCollapsedText: "Show More",
-          trimExpandedText: "Show Less",
-          moreStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 14),
-          lessStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 14),
+        const ReadMore(
+          text:
+              "mahmoud hamdy fathy elashwah flutter developer at myself and i major to make backword by etoo in pes 6 ",
         ),
         const SizedBox(height: TSizes.spaceBtwItems / 2),
         const Divider(),
@@ -41,7 +37,10 @@ class ProductDescriptionAndReviewsSection extends StatelessWidget {
               showActionButton: false,
             )),
             TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  THelperFunctions.navigateToScreen(
+                      context, const ProductReviewsView());
+                },
                 child: const Icon(
                   Iconsax.arrow_right_3,
                   size: 18,
