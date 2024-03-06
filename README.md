@@ -46,7 +46,7 @@ A cutting-edge Flutter app with Firebase integration, TStore is designed to deli
 - [x] Product Details - Images & Text
 - [x] Product Details II - Attributes & Variations
 - [x] Ratings & Reviews
-- [ ] Addresses
+- [x] Addresses
 - [ ] Cart
 - [ ] Checkout
 - [ ] Orders Screen
