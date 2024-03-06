@@ -8,11 +8,6 @@ import 'package:t_store/core/common/models/grid_layout_model.dart';
 import 'package:t_store/core/common/models/search_container_model.dart';
 import 'package:t_store/core/common/models/section_heading_model.dart';
 import 'package:t_store/core/common/models/tab_bar_model.dart';
-import 'package:t_store/core/utils/constants/colors.dart';
-import 'package:t_store/core/utils/constants/image_strings.dart';
-import 'package:t_store/core/utils/constants/sizes.dart';
-import 'package:t_store/core/utils/constants/text_strings.dart';
-import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/core/common/widgets/app_bar.dart';
 import 'package:t_store/core/common/widgets/brand_card.dart';
 import 'package:t_store/core/common/widgets/cart_counter_icon.dart';
@@ -20,7 +15,13 @@ import 'package:t_store/core/common/widgets/category_tab.dart';
 import 'package:t_store/core/common/widgets/search_container.dart';
 import 'package:t_store/core/common/widgets/section_heading.dart';
 import 'package:t_store/core/common/widgets/tab_bar.dart';
+import 'package:t_store/core/utils/constants/colors.dart';
+import 'package:t_store/core/utils/constants/image_strings.dart';
+import 'package:t_store/core/utils/constants/sizes.dart';
+import 'package:t_store/core/utils/constants/text_strings.dart';
+import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/features/auth/presentation/widgets/grid_layout.dart';
+import 'package:t_store/features/shop/presentation/views/cart_view.dart';
 
 class StoreView extends StatelessWidget {
   const StoreView({super.key});
@@ -46,7 +47,10 @@ class StoreView extends StatelessWidget {
             actions: [
               CartCounterIcon(
                 cartCounterIconModel: CartCounterIconModel(
-                  onPressed: () {},
+                  onPressed: () {
+                    THelperFunctions.navigateToScreen(
+                        context, const CartView());
+                  },
                   color: dark ? TColors.white : TColors.dark,
                 ),
               ),
