@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/core/common/models/app_bar_model.dart';
-import 'package:t_store/core/common/models/product_price_text_model.dart';
 import 'package:t_store/core/common/widgets/app_bar.dart';
-import 'package:t_store/core/common/widgets/product_price_text.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
-import 'package:t_store/features/shop/presentation/widgets/cart_item.dart';
-import 'package:t_store/features/shop/presentation/widgets/product_quantity_with_add_and_remove_buttons.dart';
+import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/features/shop/presentation/views/checkout_view.dart';
+import 'package:t_store/features/shop/presentation/widgets/cart_items_list.dart';
 
 class CartView extends StatelessWidget {
   const CartView({
@@ -17,7 +16,9 @@ class CartView extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(TSizes.defaultSpace),
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            THelperFunctions.navigateToScreen(context, const CheckoutView());
+          },
           child: const Text("Checkout \$175"),
         ),
       ),
@@ -27,40 +28,9 @@ class CartView extends StatelessWidget {
           hasArrowBack: true,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(TSizes.defaultSpace),
-        child: ListView.separated(
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  const CartItem(),
-                  const SizedBox(
-                    height: TSizes.spaceBtwItems,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Row(
-                        children: [
-                          SizedBox(
-                            width: 70,
-                          ),
-                          ProductQuantityWithAddAndRemoveButtons(),
-                        ],
-                      ),
-                      ProductPriceText(
-                          productPriceTextModel: ProductPriceTextModel(
-                              price: "175", smallSize: true)),
-                    ],
-                  )
-                ],
-              );
-            },
-            separatorBuilder: (context, index) => const SizedBox(
-                  height: TSizes.spaceBtwSections,
-                ),
-            itemCount: 10),
+      body: const Padding(
+        padding: EdgeInsets.all(TSizes.defaultSpace),
+        child: CartItemsList(),
       ),
     );
   }
