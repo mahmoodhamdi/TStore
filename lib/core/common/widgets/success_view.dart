@@ -14,7 +14,7 @@ class SuccessView extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: TSizes.paddingWithAppBarHeight,
+          padding: TSizes.paddingWithAppBarHeight * 2,
           child: Column(
             children: [
               Image(
