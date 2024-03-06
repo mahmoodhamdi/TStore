@@ -21,9 +21,6 @@ class AppSettingsSection extends StatelessWidget {
             showActionButton: false,
           ),
         ),
-        const SizedBox(
-          height: TSizes.spaceBtwItems / 2,
-        ),
         SettingsMenuTileList(settingsMenuTiles: appSettingsTiles),
         const SizedBox(
           height: TSizes.spaceBtwSections,
