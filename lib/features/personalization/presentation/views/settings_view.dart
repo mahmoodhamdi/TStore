@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/core/common/widgets/primary_header_container.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
+import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/features/personalization/presentation/models/settings_menu_tile_model.dart';
+import 'package:t_store/features/personalization/presentation/views/user_addresses_view.dart';
 import 'package:t_store/features/personalization/presentation/widgets/account_settings_section.dart';
 import 'package:t_store/features/personalization/presentation/widgets/app_settings_section.dart';
 import 'package:t_store/features/personalization/presentation/widgets/settings_view_header_section.dart';
@@ -52,7 +54,10 @@ class SettingsView extends StatelessWidget {
     ];
     final List<SettingsMenuTileModel> accountSettingsTiles = [
       SettingsMenuTileModel(
-        onTap: () {},
+        onTap: () {
+          //navigateToScreen UserAddressesView
+          THelperFunctions.navigateToScreen(context, const UserAddressesView());
+        },
         title: "My Addresses",
         subtitle: "Set Shopping Delivery Address",
         leading: Iconsax.safe_home,
