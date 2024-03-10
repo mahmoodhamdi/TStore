@@ -3,6 +3,7 @@ import 'package:t_store/core/common/models/horizontal_small_list_view_item_model
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/features/shop/presentation/views/sub_category_view.dart';
 
 class HorizontalSmallListViewItem extends StatelessWidget {
   const HorizontalSmallListViewItem({
@@ -16,7 +17,8 @@ class HorizontalSmallListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: () => item.onTap,
+      onTap: () =>
+          THelperFunctions.navigateToScreen(context, const SubCategoryView()),
       child: Padding(
         padding: const EdgeInsets.only(right: TSizes.defaultSpace),
         child: Column(

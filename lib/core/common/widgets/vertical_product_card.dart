@@ -6,6 +6,7 @@ import 'package:t_store/core/common/models/circular_icon_model.dart';
 import 'package:t_store/core/common/models/product_price_text_model.dart';
 import 'package:t_store/core/common/models/product_title_text_model.dart';
 import 'package:t_store/core/common/models/rounded_image_model.dart';
+import 'package:t_store/core/common/widgets/add_to_cart_container.dart';
 import 'package:t_store/core/common/widgets/brand_title_with_verification.dart';
 import 'package:t_store/core/common/widgets/circular_container.dart';
 import 'package:t_store/core/common/widgets/circular_icon.dart';
@@ -105,27 +106,7 @@ class VerticalProductCard extends StatelessWidget {
                               maxLines: 1,
                             ),
                           ),
-                          Container(
-                            decoration: const BoxDecoration(
-                              color: TColors.dark,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(TSizes.cardRadiusMd),
-                                bottomRight:
-                                    Radius.circular(TSizes.productImageRadius),
-                              ),
-                            ),
-                            child: SizedBox(
-                              width: TSizes.iconLg * 1.2,
-                              height: TSizes.iconLg * 1.2,
-                              child: Center(
-                                child: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(Iconsax.add),
-                                  color: TColors.white,
-                                ),
-                              ),
-                            ),
-                          )
+                          const AddToCartContainer()
                         ],
                       ),
                     ]))
