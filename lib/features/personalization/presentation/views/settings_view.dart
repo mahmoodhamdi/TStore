@@ -8,6 +8,7 @@ import 'package:t_store/features/personalization/presentation/views/user_address
 import 'package:t_store/features/personalization/presentation/widgets/account_settings_section.dart';
 import 'package:t_store/features/personalization/presentation/widgets/app_settings_section.dart';
 import 'package:t_store/features/personalization/presentation/widgets/settings_view_header_section.dart';
+import 'package:t_store/features/shop/presentation/views/orders_view.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -69,7 +70,10 @@ class SettingsView extends StatelessWidget {
         leading: Iconsax.shopping_cart,
       ),
       SettingsMenuTileModel(
-        onTap: () {},
+        onTap: () {
+          //navigateToScreen UserAddressesView
+          THelperFunctions.navigateToScreen(context, const OrdersView());
+        },
         title: "My Orders",
         subtitle: "In-Progress And Completed Orders",
         leading: Iconsax.bag,
