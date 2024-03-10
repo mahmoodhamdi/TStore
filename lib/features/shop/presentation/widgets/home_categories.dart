@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/core/common/models/horizontal_small_list_view_item_model.dart';
+import 'package:t_store/core/common/widgets/horizontal_small_list_view.dart';
 import 'package:t_store/core/utils/constants/image_strings.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
-import 'package:t_store/core/common/widgets/horizontal_small_list_view.dart';
+import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/features/shop/presentation/views/sub_category_view.dart';
 
 class HomeCategories extends StatelessWidget {
   const HomeCategories({
@@ -17,6 +19,7 @@ class HomeCategories extends StatelessWidget {
     final List<HorizontalSmallListViewItemModel> items = List.generate(
         categoriesTitles.length,
         (index) => HorizontalSmallListViewItemModel(
+          
               title: categoriesTitles[index],
               image: categoriesImages[index],
             ));
