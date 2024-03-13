@@ -8,14 +8,12 @@ import 'package:t_store/core/common/widgets/rounded_image.dart';
 import 'package:t_store/core/common/widgets/section_heading.dart';
 import 'package:t_store/core/utils/constants/image_strings.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
-import 'package:t_store/core/utils/helpers/helper_functions.dart';
 
 class SubCategoryView extends StatelessWidget {
   const SubCategoryView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: CustomAppBar(
         appBarModel:

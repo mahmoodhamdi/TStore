@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:t_store/core/common/models/section_heading_model.dart';
 import 'package:t_store/core/common/widgets/section_heading.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
-import 'package:t_store/core/utils/helpers/helper_functions.dart';
 
 class BillingAddressSection extends StatelessWidget {
   const BillingAddressSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
