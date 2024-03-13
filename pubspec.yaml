@@ -30,6 +30,7 @@ dependencies:
   get_it: ^7.6.7
   dartz: ^0.10.1
   cached_network_image: ^3.3.1
+  firebase_core: ^2.27.1
 
 dev_dependencies:
   flutter_test:

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "304668783025",
+    "project_id": "mahmoud-tstore",
+    "storage_bucket": "mahmoud-tstore.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:304668783025:android:5a263b5f78247108e08d90",
+        "android_client_info": {
+          "package_name": "com.example.t_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "304668783025-mj7o9838annjk3pbdtctg7q02ap32ebi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKR3oHvYO3lM79EVbONpy2Aa1rgKZPJaI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "304668783025-mj7o9838annjk3pbdtctg7q02ap32ebi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "304668783025-49u5iper3c2rp65f66h2ckukta3kg7f5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tStore"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
