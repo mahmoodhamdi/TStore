@@ -21,6 +21,7 @@ import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/features/auth/presentation/widgets/grid_layout.dart';
+import 'package:t_store/features/shop/presentation/views/all_brands_view.dart';
 import 'package:t_store/features/shop/presentation/views/cart_view.dart';
 
 class StoreView extends StatelessWidget {
@@ -88,7 +89,10 @@ class StoreView extends StatelessWidget {
                             SectionHeading(
                                 sectionHeadingModel: SectionHeadingModel(
                               title: "Featured Brands",
-                              actionButtonOnPressed: () {},
+                              actionButtonOnPressed: () {
+                                THelperFunctions.navigateToScreen(
+                                    context, const AllBrandsView());
+                              },
                               showActionButton: true,
                             )),
                             const SizedBox(
