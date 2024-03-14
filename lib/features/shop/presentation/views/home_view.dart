@@ -9,6 +9,7 @@ import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/features/auth/presentation/widgets/grid_layout.dart';
 import 'package:t_store/features/shop/presentation/views/all_products_view.dart';
 import 'package:t_store/features/shop/presentation/widgets/home_header_section.dart';
+import 'package:t_store/features/shop/presentation/widgets/popular_products.dart';
 import 'package:t_store/features/shop/presentation/widgets/promo_banner_carousel_slider.dart';
 
 class HomeView extends StatelessWidget {
@@ -16,40 +17,19 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const HomeHeaderSection(),
-            const SizedBox(height: TSizes.spaceBtwSections),
-            const PromoBannerCarouselSlider(),
-            const SizedBox(height: TSizes.spaceBtwSections),
-            SectionHeading(
-              sectionHeadingModel: SectionHeadingModel(
-                title: "Popular Pro",
-                showActionButton: true,
-                textColor: TColors.primary,
-                actionButtonOnPressed: () {
-                  THelperFunctions.navigateToScreen(
-                    context,
-                    const AllProductsView(),
-                  );
-                },
-                actionButtonTitle: "View All",
-              ),
-            ),
-            const SizedBox(height: TSizes.spaceBtwItems),
-            GridLayout(
-                gridLayoutModel: GridLayoutModel(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return const VerticalProductCard();
-              },
-              mainAxisExtent: 288,
-            )),
+            HomeHeaderSection(),
+            SizedBox(height: TSizes.spaceBtwSections),
+            PromoBannerCarouselSlider(),
+            SizedBox(height: TSizes.spaceBtwSections),
+            PopularProducts(),
           ],
         ),
       ),
     );
   }
 }
+

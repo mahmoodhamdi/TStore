@@ -17,7 +17,7 @@ dependencies:
   url_launcher: ^6.2.5
   intl: ^0.19.0
   http: ^1.2.1
-  firebase_storage: ^11.6.0
+  firebase_storage: ^11.6.10
   flutter_native_splash: ^2.3.10
   smooth_page_indicator: ^1.1.0
   iconsax: ^0.0.8
