@@ -3,6 +3,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/features/auth/presentation/views/login/login_view.dart';
 
@@ -25,6 +26,9 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
       pageController.jumpToPage(currentIndex);
       emit(OnBoardingUpdateIndicator());
     } else {
+      final deviceStorage = GetStorage();
+      deviceStorage.write('isFirstTime', false);
+      emit(OnBoardingUpdateIndicator());
       THelperFunctions.navigateReplacementToScreen(context, const LoginView());
     }
   }
