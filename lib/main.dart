@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 // ignore_for_file: unused_local_variable
 
 import 'package:firebase_core/firebase_core.dart';
+=======
+>>>>>>> a7689cc
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -13,9 +16,9 @@ import 'package:t_store/core/utils/theme/theme.dart';
 import 'package:t_store/features/auth/data/repositories/authentication_repository.dart';
 import 'package:t_store/features/auth/presentation/cubit/on_boarding_cubit.dart';
 import 'package:t_store/features/auth/presentation/views/on_boarding/on_boarding_view.dart';
-import 'package:t_store/firebase_options.dart';
 
 void main() async {
+<<<<<<< HEAD
   // widgets binding
   final WidgetsBinding widgetsBinding =
       WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +30,17 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   ).then((value) => Get.put(AuthenticationRepository()));
+=======
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+//firebase initialization
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+
+  // setupServiceLocator();
+
+>>>>>>> a7689cc
   runApp(const MyApp());
 }
 
