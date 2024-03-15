@@ -1,17 +1,27 @@
+import 'dart:async';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:t_store/core/cubits/banner_carousel_slider_cubit_cubit/banner_carousel_slider_cubit.dart';
 import 'package:t_store/core/cubits/navigation_menu_cubit/navigation_menu_cubit.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
+import 'package:t_store/core/utils/service_locator/service_locator.dart';
 import 'package:t_store/core/utils/theme/theme.dart';
+import 'package:t_store/features/auth/data/repositories/auth_repo_impl.dart';
+import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:t_store/features/auth/presentation/cubit/on_boarding_cubit.dart';
 import 'package:t_store/features/auth/presentation/views/on_boarding/on_boarding_view.dart';
+import 'package:t_store/firebase_options.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  setupServiceLocator();
   runApp(const MyApp());
 }
 
@@ -22,6 +32,9 @@ class MyApp extends StatelessWidget {
     FlutterNativeSplash.remove();
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => AuthCubit(getIt.get<AuthRepoImpl>()),
+        ),
         BlocProvider(
           create: (context) => NavigationMenuCubit(),
         ),

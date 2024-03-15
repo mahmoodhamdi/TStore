@@ -1,21 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
+import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/core/utils/validators/validation.dart';
+import 'package:t_store/features/auth/data/models/auth_register_model.dart';
+import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:t_store/features/auth/presentation/views/signup/verify_email_view.dart';
 
 import 'terms_and_privacy_agreement.dart';
 
-class SignUpFormSection extends StatelessWidget {
+class SignUpFormSection extends StatefulWidget {
   const SignUpFormSection({super.key});
+
+  @override
+  State<SignUpFormSection> createState() => _SignUpFormSectionState();
+}
+
+class _SignUpFormSectionState extends State<SignUpFormSection> {
+  final _formKey = GlobalKey<FormState>();
+  late TextEditingController _firstNameController;
+  late TextEditingController _lastNameController;
+  late TextEditingController _usernameController;
+  late TextEditingController _emailController;
+  late TextEditingController _phoneNoController;
+  late TextEditingController _passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+    _firstNameController = TextEditingController();
+    _lastNameController = TextEditingController();
+    _usernameController = TextEditingController();
+    _emailController = TextEditingController();
+    _phoneNoController = TextEditingController();
+    _passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _usernameController.dispose();
+    _emailController.dispose();
+    _phoneNoController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
         children: [
           Row(
             children: [
               Expanded(
                 child: TextFormField(
+                  validator: (value) =>
+                      TValidator.validateEmpty(value, fieldName: "First Name"),
+                  controller: _firstNameController,
                   expands: false,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Iconsax.user),
@@ -27,6 +73,11 @@ class SignUpFormSection extends StatelessWidget {
               ),
               Expanded(
                 child: TextFormField(
+                  validator: (value) => TValidator.validateEmpty(
+                    value,
+                    fieldName: "Last Name",
+                  ),
+                  controller: _lastNameController,
                   expands: false,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Iconsax.user),
@@ -39,6 +90,11 @@ class SignUpFormSection extends StatelessWidget {
             height: TSizes.spaceBtwInputFields,
           ),
           TextFormField(
+            validator: (value) => TValidator.validateEmpty(
+              value,
+              fieldName: "Username",
+            ),
+            controller: _usernameController,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.user_edit),
                 labelText: TTexts.username),
@@ -47,6 +103,10 @@ class SignUpFormSection extends StatelessWidget {
             height: TSizes.spaceBtwInputFields,
           ),
           TextFormField(
+            validator: (value) => TValidator.validateEmail(
+              value,
+            ),
+            controller: _emailController,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.direct), labelText: TTexts.email),
           ),
@@ -54,6 +114,8 @@ class SignUpFormSection extends StatelessWidget {
             height: TSizes.spaceBtwInputFields,
           ),
           TextFormField(
+            validator: (value) => TValidator.validatePhoneNumber(value),
+            controller: _phoneNoController,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.call), labelText: TTexts.phoneNo),
           ),
@@ -61,6 +123,8 @@ class SignUpFormSection extends StatelessWidget {
             height: TSizes.spaceBtwInputFields,
           ),
           TextFormField(
+            validator: (value) => TValidator.validatePassword(value),
+            controller: _passwordController,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.password_check),
                 suffixIcon: Icon(Iconsax.eye_slash),
@@ -69,7 +133,36 @@ class SignUpFormSection extends StatelessWidget {
           const SizedBox(
             height: TSizes.spaceBtwInputFields,
           ),
-          const TermsAndPrivacyAgreement()
+          const TermsAndPrivacyAgreement(),
+          const SizedBox(
+            height: TSizes.spaceBtwSections,
+          ),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+                onPressed: () async {
+                  if (_formKey.currentState!.validate()) {
+                    await context.read<AuthCubit>().signUpWithEmail(
+                            authRegisterModel: AuthRegisterModel(
+                          firstName: _firstNameController.text,
+                          lastName: _lastNameController.text,
+                          username: _usernameController.text,
+                          email: _emailController.text,
+                          phoneNo: _phoneNoController.text,
+                          password: _passwordController.text,
+                        ));
+
+                    if (context.mounted) {
+                      THelperFunctions.navigateReplacementToScreen(
+                          context,
+                          VerifyEmailView(
+                            email: _emailController.text,
+                          ));
+                    }
+                  }
+                },
+                child: const Text(TTexts.createAccount)),
+          ),
         ],
       ),
     );
