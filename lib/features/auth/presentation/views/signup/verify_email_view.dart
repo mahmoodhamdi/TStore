@@ -9,8 +9,8 @@ import 'package:t_store/features/auth/presentation/views/login/login_view.dart';
 import 'package:t_store/features/auth/presentation/widgets/email_verified_successfully.dart';
 
 class VerifyEmailView extends StatelessWidget {
-  const VerifyEmailView({super.key});
-
+  const VerifyEmailView({super.key, required this.email});
+  final String email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +47,7 @@ class VerifyEmailView extends StatelessWidget {
                 height: TSizes.spaceBtwItems,
               ),
               Text(
-                TTexts.confirmEmail,
+                email,
                 style: Theme.of(context).textTheme.labelLarge,
                 textAlign: TextAlign.center,
               ),
