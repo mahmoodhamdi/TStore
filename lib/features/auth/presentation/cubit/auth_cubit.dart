@@ -2,6 +2,7 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:t_store/features/auth/data/models/auth_login_with_email_model.dart';
 import 'package:t_store/features/auth/data/models/auth_register_model.dart';
 import 'package:t_store/features/auth/data/repositories/auth_repo.dart';
@@ -10,18 +11,52 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepo _authRepo;
-
+  bool obscureText = true;
   AuthCubit(this._authRepo) : super(AuthInitial());
 
-  Future<void> signUpWithEmail({required AuthRegisterModel authRegisterModel}) async {
+  User? get currentUser => _authRepo.currentUser;
+
+  void togglePasswordVisibility() {
+    obscureText = !obscureText;
+  }
+
+  Future<void> signUpWithEmail(
+      {required AuthRegisterModel authRegisterModel}) async {
     try {
-    
       emit(AuthSigningUpWithEmail());
       await _authRepo.signUpWithEmail(authRegisterModel: authRegisterModel);
-         emit(AuthSignedUpWithEmail());
-
+      emit(AuthSignedUpWithEmail(authRegisterModel: authRegisterModel));
     } catch (e) {
       emit(AuthError(message: e.toString()));
+    }
+  }
+
+  Future<void> sendVerificationEmail() async {
+    try {
+      emit(AuthSendingVerifyingEmail());
+      await _authRepo.sendVerificationEmail();
+      emit(AuthVerifyingEmailSent());
+    } catch (e) {
+      emit(AuthError(message: e.toString()));
+    }
+  }
+
+  bool isVerified() {
+    try {
+      emit(AuthVerifiedEmail());
+      if (_authRepo.isVerified()) {
+        emit(AuthVerifiedEmail());
+        return true;
+      } else {
+        emit(AuthUnverifiedEmail());
+        return false;
+      }
+    } on FirebaseAuthException catch (e) {
+      emit(AuthError(message: e.toString()));
+      return false;
+    } catch (e) {
+      emit(AuthError(message: e.toString()));
+      return false;
     }
   }
 
@@ -81,6 +116,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthLoggingOut());
       await _authRepo.logout();
+
       emit(AuthLoggedOut());
     } catch (e) {
       emit(AuthError(message: e.toString()));

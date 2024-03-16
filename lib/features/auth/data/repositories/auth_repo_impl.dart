@@ -9,20 +9,28 @@ class AuthRepoImpl implements AuthRepo {
   final FirebaseAuth _firebaseAuth;
 
   AuthRepoImpl() : _firebaseAuth = FirebaseAuth.instance;
-
+  @override
+  User? get currentUser => _firebaseAuth.currentUser;
+   
   @override
   Future<void> signUpWithEmail(
       {required AuthRegisterModel authRegisterModel}) async {
     try {
       // Your sign up with email logic here
-
       await _firebaseAuth.createUserWithEmailAndPassword(
         email: authRegisterModel.email,
         password: authRegisterModel.password,
       );
-      
-      await sendVerificationEmail(_firebaseAuth.currentUser);
+
+      // Call sendVerificationEmail from the _authRepo instance
+      await sendVerificationEmail();
+
+      if (kDebugMode) {
+        print(currentUser);
+      }
     } on FirebaseAuthException catch (e) {
+      // Handle sign up with email exceptions
+      await currentUser?.sendEmailVerification();
       if (kDebugMode) {
         print("Sign up with email failed: $e");
       }
@@ -35,13 +43,15 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<void> sendVerificationEmail(
-    User? user,
-  ) async {
+  bool isVerified() {
+    return currentUser?.emailVerified ?? false;
+  }
+
+  @override
+  Future<void> sendVerificationEmail() async {
     try {
-      if (user != null) {
-        await user.sendEmailVerification();
-      }
+      // Your send verification email logic here
+      await currentUser?.sendEmailVerification();
     } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code);
     } catch (e) {

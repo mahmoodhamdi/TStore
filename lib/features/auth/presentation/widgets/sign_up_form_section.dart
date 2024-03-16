@@ -3,11 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
-import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/core/utils/validators/validation.dart';
 import 'package:t_store/features/auth/data/models/auth_register_model.dart';
 import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:t_store/features/auth/presentation/views/signup/verify_email_view.dart';
 
 import 'terms_and_privacy_agreement.dart';
 
@@ -107,6 +105,7 @@ class _SignUpFormSectionState extends State<SignUpFormSection> {
               value,
             ),
             controller: _emailController,
+            keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.direct), labelText: TTexts.email),
           ),
@@ -116,6 +115,7 @@ class _SignUpFormSectionState extends State<SignUpFormSection> {
           TextFormField(
             validator: (value) => TValidator.validatePhoneNumber(value),
             controller: _phoneNoController,
+            keyboardType: TextInputType.phone,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.call), labelText: TTexts.phoneNo),
           ),
@@ -125,9 +125,18 @@ class _SignUpFormSectionState extends State<SignUpFormSection> {
           TextFormField(
             validator: (value) => TValidator.validatePassword(value),
             controller: _passwordController,
-            decoration: const InputDecoration(
-                prefixIcon: Icon(Iconsax.password_check),
-                suffixIcon: Icon(Iconsax.eye_slash),
+            obscureText: context.read<AuthCubit>().obscureText,
+            decoration: InputDecoration(
+                prefixIcon: const Icon(Iconsax.password_check),
+                suffixIcon: IconButton(
+                    icon: context.read<AuthCubit>().obscureText
+                        ? const Icon(Iconsax.eye_slash)
+                        : const Icon(Iconsax.eye),
+                    onPressed: () {
+                      setState(() {
+                        context.read<AuthCubit>().togglePasswordVisibility();
+                      });
+                    }),
                 labelText: TTexts.password),
           ),
           const SizedBox(
@@ -143,22 +152,13 @@ class _SignUpFormSectionState extends State<SignUpFormSection> {
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     await context.read<AuthCubit>().signUpWithEmail(
-                            authRegisterModel: AuthRegisterModel(
-                          firstName: _firstNameController.text,
-                          lastName: _lastNameController.text,
-                          username: _usernameController.text,
-                          email: _emailController.text,
-                          phoneNo: _phoneNoController.text,
-                          password: _passwordController.text,
-                        ));
-
-                    if (context.mounted) {
-                      THelperFunctions.navigateReplacementToScreen(
-                          context,
-                          VerifyEmailView(
+                        authRegisterModel: AuthRegisterModel(
+                            firstName: _firstNameController.text,
+                            lastName: _lastNameController.text,
+                            username: _usernameController.text,
                             email: _emailController.text,
-                          ));
-                    }
+                            phoneNo: _phoneNoController.text,
+                            password: _passwordController.text));
                   }
                 },
                 child: const Text(TTexts.createAccount)),

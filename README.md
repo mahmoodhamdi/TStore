@@ -20,7 +20,6 @@ A cutting-edge Flutter app with Firebase integration, TStore is designed to deli
 - [ ] 💻 **Backend with Firebase**  
       Uses Firestore for data and Cloud Storage for files.
 
-
 ## Detailed Features
 
 ### Professional App Configurations
@@ -62,13 +61,14 @@ A cutting-edge Flutter app with Firebase integration, TStore is designed to deli
 ### FIREBASE AUTHENTICATION
 
 - [x] Firebase Setup
-- [x] OnBoarding Single Time Appearance (Local Storage)
+- [ ] OnBoarding Single Time Appearance (Local Storage)
 - [x] Register User
-- [ ] Email Verification
+- [x] Email Verification
 - [ ] Login using Email & Password
 - [ ] GOOGLE SIGN-IN
 - [ ] FACEBOOK SIGN-IN
 - [ ] Forget Password & Reset Password
+- [x] Logout User
 
 ### APP BACKEND
 
@@ -83,6 +83,7 @@ A cutting-edge Flutter app with Firebase integration, TStore is designed to deli
 ## Screenshots
 
 ### Onboarding and Authentication
+
 - Onboarding ![Onboarding](assets/screenshots/Onboarding.png)
 - Register ![Register](assets/screenshots/Register.png)
 - Login ![Login](assets/screenshots/Login.png)

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:t_store/core/common/widgets/navigation_menu.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/core/common/widgets/navigation_menu.dart';
+import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:t_store/features/auth/presentation/views/password_configuration/forget_password_view.dart';
 import 'package:t_store/features/auth/presentation/views/signup/sign_up_view.dart';
 
@@ -28,9 +30,16 @@ class LoginFormSection extends StatelessWidget {
             height: TSizes.spaceBtwInputFields,
           ),
           TextFormField(
-            decoration: const InputDecoration(
-                prefixIcon: Icon(Iconsax.password_check),
-                suffixIcon: Icon(Iconsax.eye_slash),
+            obscureText: context.read<AuthCubit>().obscureText,
+            decoration: InputDecoration(
+                prefixIcon: const Icon(Iconsax.password_check),
+                suffixIcon: IconButton(
+                    icon: context.read<AuthCubit>().obscureText
+                        ? const Icon(Iconsax.eye_slash)
+                        : const Icon(Iconsax.eye),
+                    onPressed: () {
+                      context.read<AuthCubit>().togglePasswordVisibility();
+                    }),
                 labelText: TTexts.password),
           ),
           const SizedBox(
@@ -65,9 +74,7 @@ class LoginFormSection extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 THelperFunctions.navigateToScreen(
-                    context,
-                    const NavigationMenu(
-                     ));
+                    context, const NavigationMenu());
               },
               child: const Text(TTexts.signIn),
             ),
