@@ -56,9 +56,9 @@ class TTexts {
       "Your Account Security is Our Priority! We've Sent You a Secure Link to Safely Change Your Password and Keep Your Account Protected.";
   static const String confirmEmailTitle = "Verify your email address!";
   static const String confirmEmail = "hmdy7486@gmail.com";
-  static const String confirmEmailSubTitle =
-      "Congratulations! Your Account Awaits: Verify Your Email to Start Shopping and Experience a World of Unrivaled Deals and Personalized Offers.";
-  static const String emailNotReceivedMessage =
+ static const String confirmEmailSubTitle =
+      "Please check your email and verify your account to complete the registration process.";
+ static const String emailNotReceivedMessage =
       "Didn’t get the email? Check your junk/spam or resend it.";
   static const String yourAccountCreatedTitle =
       "Your account successfully created!";

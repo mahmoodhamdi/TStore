@@ -9,9 +9,34 @@ abstract class AuthState extends Equatable {
 
 class AuthInitial extends AuthState {}
 
+class AuthPasswordVisibilityToggled extends AuthState {
+  @override
+  List<Object> get props => [];
+}
+
 class AuthSigningUpWithEmail extends AuthState {}
 
-class AuthSignedUpWithEmail extends AuthState {}
+class AuthVerifyingEmail extends AuthState {}
+
+class AuthVerifiedEmail extends AuthState {}
+
+class AuthSendingVerifyingEmail extends AuthState {}
+
+class AuthUnverifiedEmail extends AuthState {}
+
+class AuthVerifyingEmailSent extends AuthState {}
+
+class AuthEmailNotVerified extends AuthState {
+  final String email;
+
+  const AuthEmailNotVerified({required this.email});
+}
+
+class AuthSignedUpWithEmail extends AuthState {
+  final AuthRegisterModel authRegisterModel;
+
+  const AuthSignedUpWithEmail({required this.authRegisterModel});
+}
 
 class AuthSigningUpWithGoogle extends AuthState {}
 
