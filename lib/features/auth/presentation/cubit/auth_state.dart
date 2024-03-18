@@ -13,6 +13,7 @@ class AuthPasswordVisibilityToggled extends AuthState {
   @override
   List<Object> get props => [];
 }
+class AuthNotConnected extends AuthState {}
 
 class AuthSigningUpWithEmail extends AuthState {}
 

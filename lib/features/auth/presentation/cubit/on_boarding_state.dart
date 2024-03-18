@@ -1,4 +1,4 @@
-part of 'on_boarding_cubit.dart';
+part of '../models/on_boarding_cubit.dart';
 
 sealed class OnBoardingState extends Equatable {
   const OnBoardingState();

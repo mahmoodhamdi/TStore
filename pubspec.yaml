@@ -10,7 +10,6 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.6
   dio: ^5.4.1
-  get: ^4.6.6
   logger: ^2.0.2+1
   get_storage: ^2.1.1
   connectivity_plus: ^5.0.2

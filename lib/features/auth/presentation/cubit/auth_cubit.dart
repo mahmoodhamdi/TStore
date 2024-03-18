@@ -3,9 +3,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:t_store/features/auth/data/models/auth_login_with_email_model.dart';
-import 'package:t_store/features/auth/data/models/auth_register_model.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:t_store/core/utils/exceptions/firebase_auth_exceptions.dart';
+import 'package:t_store/core/utils/exceptions/platform_exceptions.dart';
+import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/features/auth/data/repositories/auth_repo.dart';
+import 'package:t_store/features/auth/presentation/models/auth_login_with_email_model.dart';
+import 'package:t_store/features/auth/presentation/models/auth_register_model.dart';
 
 part 'auth_state.dart';
 
@@ -14,7 +19,14 @@ class AuthCubit extends Cubit<AuthState> {
   bool obscureText = true;
   AuthCubit(this._authRepo) : super(AuthInitial());
 
-  User? get currentUser => _authRepo.currentUser;
+  Future<bool> checkConnection(BuildContext context) async {
+    bool connected = await THelperFunctions.isConnected();
+    if (!connected) {
+      emit(AuthNotConnected());
+      return false;
+    }
+    return true;
+  }
 
   void togglePasswordVisibility() {
     obscureText = !obscureText;
@@ -26,6 +38,13 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSigningUpWithEmail());
       await _authRepo.signUpWithEmail(authRegisterModel: authRegisterModel);
       emit(AuthSignedUpWithEmail(authRegisterModel: authRegisterModel));
+    } on FirebaseAuthException catch (e) {
+      emit(AuthError(message: e.code));
+      throw TFirebaseAuthException(e.code);
+    } on PlatformException catch (e) {
+      emit(AuthError(message: e.code));
+
+      throw TPlatformException(e.code);
     } catch (e) {
       emit(AuthError(message: e.toString()));
     }
@@ -36,27 +55,32 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSendingVerifyingEmail());
       await _authRepo.sendVerificationEmail();
       emit(AuthVerifyingEmailSent());
+    } on FirebaseAuthException catch (e) {
+      emit(AuthError(message: e.code));
+      throw TFirebaseAuthException(e.code);
+    } on PlatformException catch (e) {
+      emit(AuthError(message: e.code));
+
+      throw TPlatformException(e.code);
     } catch (e) {
       emit(AuthError(message: e.toString()));
     }
   }
 
-  bool isVerified() {
+  void isVerified() async {
     try {
-      emit(AuthVerifiedEmail());
-      if (_authRepo.isVerified()) {
+      bool verified = await _authRepo.isVerified();
+      if (verified) {
         emit(AuthVerifiedEmail());
-        return true;
       } else {
         emit(AuthUnverifiedEmail());
-        return false;
       }
-    } on FirebaseAuthException catch (e) {
-      emit(AuthError(message: e.toString()));
-      return false;
+    } on TFirebaseAuthException catch (e) {
+      emit(AuthError(message: e.code));
+    } on TPlatformException catch (e) {
+      emit(AuthError(message: e.code));
     } catch (e) {
       emit(AuthError(message: e.toString()));
-      return false;
     }
   }
 
@@ -77,6 +101,13 @@ class AuthCubit extends Cubit<AuthState> {
       await _authRepo.loginWithEmail(
           authLoginWithEmailModel: authLoginWithEmailModel);
       emit(AuthLoggedInWithEmail());
+    } on FirebaseAuthException catch (e) {
+      emit(AuthError(message: e.code));
+      throw TFirebaseAuthException(e.code);
+    } on PlatformException catch (e) {
+      emit(AuthError(message: e.code));
+
+      throw TPlatformException(e.code);
     } catch (e) {
       emit(AuthError(message: e.toString()));
     }
@@ -87,6 +118,15 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSigningInWithGoogle());
       await _authRepo.signInWithGoogle();
       emit(AuthSignedInWithGoogle());
+    } on PlatformException catch (e) {
+      emit(AuthError(message: e.code));
+
+      throw TPlatformException(e.code);
+    } on FirebaseAuthException catch (e) {
+      emit(AuthError(message: e.code));
+      throw TFirebaseAuthException(e.code);
+    } on FirebaseException catch (e) {
+      emit(AuthError(message: e.code));
     } catch (e) {
       emit(AuthError(message: e.toString()));
     }
@@ -97,6 +137,13 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSigningInWithFacebook());
       await _authRepo.signInWithFacebook();
       emit(AuthSignedInWithFacebook());
+    } on FirebaseAuthException catch (e) {
+      emit(AuthError(message: e.code));
+      throw TFirebaseAuthException(e.code);
+    } on PlatformException catch (e) {
+      emit(AuthError(message: e.code));
+
+      throw TPlatformException(e.code);
     } catch (e) {
       emit(AuthError(message: e.toString()));
     }
@@ -118,6 +165,13 @@ class AuthCubit extends Cubit<AuthState> {
       await _authRepo.logout();
 
       emit(AuthLoggedOut());
+    } on FirebaseAuthException catch (e) {
+      emit(AuthError(message: e.code));
+      throw TFirebaseAuthException(e.code);
+    } on PlatformException catch (e) {
+      emit(AuthError(message: e.code));
+
+      throw TPlatformException(e.code);
     } catch (e) {
       emit(AuthError(message: e.toString()));
     }

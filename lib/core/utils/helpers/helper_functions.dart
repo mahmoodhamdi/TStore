@@ -1,6 +1,8 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:t_store/core/utils/constants/colors.dart';
+import 'package:t_store/core/utils/constants/enums.dart';
 
 class THelperFunctions {
   static Color? getColor(String value) {
@@ -39,25 +41,185 @@ class THelperFunctions {
     }
   }
 
-  static void showSnackBar(String message) {
-    ScaffoldMessenger.of(Get.context!).showSnackBar(
-      SnackBar(content: Text(message)),
+  static void showSnackBar({
+    required String message,
+    required BuildContext context,
+    SnackBarType type = SnackBarType.error,
+    Duration duration = const Duration(seconds: 5),
+    double elevation = 6.0,
+    EdgeInsetsGeometry margin = const EdgeInsets.all(10.0),
+    double borderRadius = 8.0,
+    TextStyle textStyle = const TextStyle(color: Colors.white),
+    Color actionTextColor = Colors.white,
+    SnackBarAction? action,
+  }) {
+    // Define custom icons for different SnackBar types
+    IconData iconData;
+    Color backgroundColor;
+    Color iconColor;
+
+    switch (type) {
+      case SnackBarType.error:
+        iconData = Icons.error;
+        backgroundColor = Colors.red;
+        iconColor = Colors.white;
+        break;
+      case SnackBarType.success:
+        iconData = Icons.check_circle;
+        backgroundColor = Colors.green;
+        iconColor = Colors.white;
+        break;
+      case SnackBarType.info:
+        iconData = Icons.info;
+        backgroundColor = Colors.blue;
+        iconColor = Colors.white;
+        break;
+    }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(
+              iconData,
+              color: iconColor,
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                message,
+                style: textStyle,
+              ),
+            ),
+          ],
+        ),
+        duration: duration,
+        backgroundColor: backgroundColor,
+        action: action,
+        elevation: elevation,
+        margin: margin,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
+        ),
+      ),
     );
   }
 
-  static void showAlert(String title, String message) {
+  static void showAlert({
+    required String title,
+    required String message,
+    required BuildContext context,
+    AlertType type = AlertType.info,
+  }) {
+    Color backgroundColor;
+    Color iconColor;
+    switch (type) {
+      case AlertType.success:
+        backgroundColor = TColors.success.withOpacity(0.1);
+        iconColor = TColors.success;
+        break;
+      case AlertType.error:
+        backgroundColor = TColors.error.withOpacity(0.1);
+        iconColor = TColors.error;
+        break;
+      default:
+        backgroundColor = TColors.info.withOpacity(0.1);
+        iconColor = TColors.info;
+    }
+
     showDialog(
-      context: Get.context!,
+      context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(title),
-          content: Text(message),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('OK'),
-            ),
-          ],
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.only(top: 20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      spreadRadius: 1,
+                      blurRadius: 10,
+                      offset: const Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TweenAnimationBuilder(
+                      tween: Tween<double>(
+                          begin: 0.5, end: 1.0), // Change the scale factor
+                      duration: const Duration(
+                          milliseconds: 500), // Increase the duration
+                      curve: Curves
+                          .easeInOut, // Use elasticOut curve for a bouncy effect
+                      builder: (context, value, child) {
+                        return Transform.scale(
+                          scale: value,
+                          child: child,
+                        );
+                      },
+                      child: Icon(
+                        type == AlertType.success
+                            ? Icons.check_circle
+                            : type == AlertType.error
+                                ? Icons.error_outline
+                                : Icons.info_outline,
+                        color: iconColor,
+                        size: 64,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      message,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: iconColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                        ),
+                        child: const Text(
+                          'OK',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -66,18 +228,83 @@ class THelperFunctions {
   static void navigateToScreen(BuildContext context, Widget screen) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => screen),
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) => screen,
+        transitionsBuilder: (_, animation, __, child) {
+          return ScaleTransition(
+            scale: Tween<double>(begin: 0.5, end: 1.0).animate(
+              CurvedAnimation(
+                parent: animation,
+                curve: Curves.fastOutSlowIn,
+              ),
+            ),
+            child: SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(0.0, 1.0),
+                end: Offset.zero,
+              ).animate(
+                CurvedAnimation(
+                  parent: animation,
+                  curve: Curves.fastOutSlowIn,
+                ),
+              ),
+              child: FadeTransition(
+                opacity: animation,
+                child: child,
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 
   static void popScreen(BuildContext context) {
     Navigator.pop(context);
+    _playfulPopAnimation(context);
+  }
+
+  static void _playfulPopAnimation(BuildContext context) {
+    final bounceAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: ModalRoute.of(context)!.animation!,
+        curve: Curves.elasticOut, // Add a playful bounce effect
+        reverseCurve: Curves.easeOutBack, // Smooth reverse animation
+      ),
+    );
   }
 
   static void navigateReplacementToScreen(BuildContext context, Widget screen) {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => screen),
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) => screen,
+        transitionsBuilder: (_, animation, __, child) {
+          return ScaleTransition(
+            scale: Tween<double>(begin: 0.5, end: 1.0).animate(
+              CurvedAnimation(
+                parent: animation,
+                curve: Curves.fastOutSlowIn,
+              ),
+            ),
+            child: SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(0.0, 1.0),
+                end: Offset.zero,
+              ).animate(
+                CurvedAnimation(
+                  parent: animation,
+                  curve: Curves.fastOutSlowIn,
+                ),
+              ),
+              child: FadeTransition(
+                opacity: animation,
+                child: child,
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -122,5 +349,12 @@ class THelperFunctions {
       wrappedList.add(Row(children: rowChildren));
     }
     return wrappedList;
+  }
+
+  static final Connectivity _connectivity = Connectivity();
+
+  static Future<bool> isConnected() async {
+    var connectivityResult = await _connectivity.checkConnectivity();
+    return connectivityResult != ConnectivityResult.none;
   }
 }

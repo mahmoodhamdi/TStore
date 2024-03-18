@@ -1,17 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:t_store/core/utils/exceptions/firebase_auth_exceptions.dart';
-import 'package:t_store/features/auth/data/models/auth_login_with_email_model.dart';
-import 'package:t_store/features/auth/data/models/auth_register_model.dart';
 import 'package:t_store/features/auth/data/repositories/auth_repo.dart';
+import 'package:t_store/features/auth/presentation/models/auth_login_with_email_model.dart';
+import 'package:t_store/features/auth/presentation/models/auth_register_model.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final FirebaseAuth _firebaseAuth;
 
   AuthRepoImpl() : _firebaseAuth = FirebaseAuth.instance;
-  @override
-  User? get currentUser => _firebaseAuth.currentUser;
-   
+
+
   @override
   Future<void> signUpWithEmail(
       {required AuthRegisterModel authRegisterModel}) async {
@@ -21,16 +20,8 @@ class AuthRepoImpl implements AuthRepo {
         email: authRegisterModel.email,
         password: authRegisterModel.password,
       );
-
-      // Call sendVerificationEmail from the _authRepo instance
-      await sendVerificationEmail();
-
-      if (kDebugMode) {
-        print(currentUser);
-      }
     } on FirebaseAuthException catch (e) {
       // Handle sign up with email exceptions
-      await currentUser?.sendEmailVerification();
       if (kDebugMode) {
         print("Sign up with email failed: $e");
       }
@@ -42,16 +33,28 @@ class AuthRepoImpl implements AuthRepo {
     }
   }
 
-  @override
-  bool isVerified() {
-    return currentUser?.emailVerified ?? false;
+@override
+  Future<bool> isVerified() async {
+    try {
+      User? currentUser = _firebaseAuth.currentUser;
+      await currentUser?.reload();
+      return currentUser?.emailVerified ?? false;
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code);
+    } catch (e) {
+      if (kDebugMode) {
+        print("Check verification failed: $e");
+      }
+      throw Exception("Check verification failed: $e");
+    }
   }
+
 
   @override
   Future<void> sendVerificationEmail() async {
     try {
       // Your send verification email logic here
-      await currentUser?.sendEmailVerification();
+      await _firebaseAuth.currentUser?.sendEmailVerification();
     } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code);
     } catch (e) {
@@ -63,9 +66,12 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<void> signUpWithGoogle() async {
-    try {
-      // Your sign up with Google logic here using GoogleSignIn and FirebaseAuth
+    try {} on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code);
     } catch (e) {
+      if (kDebugMode) {
+        print("Sign up with Google failed: $e");
+      }
       throw Exception("Sign up with Google failed: $e");
     }
   }

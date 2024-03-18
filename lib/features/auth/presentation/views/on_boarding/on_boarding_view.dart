@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_store/core/utils/constants/image_strings.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/features/auth/presentation/models/on_boarding_model.dart';
-import 'package:t_store/features/auth/presentation/cubit/on_boarding_cubit.dart';
+import 'package:t_store/features/auth/presentation/models/on_boarding_cubit.dart';
 import 'package:t_store/features/auth/presentation/widgets/on_boarding_dot_navigation.dart';
 import 'package:t_store/features/auth/presentation/widgets/on_boarding_next_button.dart';
 import 'package:t_store/features/auth/presentation/widgets/on_boarding_page.dart';

@@ -64,7 +64,7 @@ A cutting-edge Flutter app with Firebase integration, TStore is designed to deli
 - [ ] OnBoarding Single Time Appearance (Local Storage)
 - [x] Register User
 - [x] Email Verification
-- [ ] Login using Email & Password
+- [x] Login using Email & Password
 - [ ] GOOGLE SIGN-IN
 - [ ] FACEBOOK SIGN-IN
 - [ ] Forget Password & Reset Password
