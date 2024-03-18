@@ -11,7 +11,7 @@ import 'package:t_store/core/utils/service_locator/service_locator.dart';
 import 'package:t_store/core/utils/theme/theme.dart';
 import 'package:t_store/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:t_store/features/auth/presentation/cubit/on_boarding_cubit.dart';
+import 'package:t_store/features/auth/presentation/models/on_boarding_cubit.dart';
 import 'package:t_store/features/auth/presentation/views/on_boarding/on_boarding_view.dart';
 import 'package:t_store/firebase_options.dart';
 

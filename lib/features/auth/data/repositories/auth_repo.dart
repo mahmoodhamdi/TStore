@@ -1,16 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:t_store/features/auth/data/models/auth_login_with_email_model.dart';
-import 'package:t_store/features/auth/data/models/auth_register_model.dart';
+import 'package:t_store/features/auth/presentation/models/auth_login_with_email_model.dart';
+import 'package:t_store/features/auth/presentation/models/auth_register_model.dart';
 
 abstract class AuthRepo {
-  User? get currentUser;
   // Method to sign up with email
   Future<void> signUpWithEmail({required AuthRegisterModel authRegisterModel});
 
   // Method to send verification email
   Future<void> sendVerificationEmail();
 // method to check if the user is verified
-  bool isVerified();
+   Future<bool> isVerified();
   // Method to sign up with Google
   Future<void> signUpWithGoogle();
 
