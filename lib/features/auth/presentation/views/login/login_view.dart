@@ -24,9 +24,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state is AuthLoggedInWithEmail) {
-          THelperFunctions.navigateReplacementToScreen(context, const NavigationMenu());
-        } else if (state is AuthError) {
+        if (state is AuthError) {
           // Display snackbar with error message
           THelperFunctions.showSnackBar(
             message: state.message,
@@ -35,16 +33,21 @@ class _LoginViewState extends State<LoginView> {
         }
       },
       builder: (context, state) {
-        if (state is AuthLoggingInWithEmail) {
+        if (state is AuthLoggedInWithEmail || state is AuthSignedInWithGoogle) {
+          return const NavigationMenu();
+        } else if (state is AuthLoggingInWithEmail ||
+            state is AuthSigningInWithFacebook ||
+            state is AuthSigningInWithGoogle) {
           return Scaffold(
             body: Center(child: Lottie.asset(TImages.docerAnimation)),
           );
-        } else if (state is AuthLoggedInWithEmail) {
+        } else if (state is AuthLoggedInWithEmail ||
+            state is AuthSignedInWithGoogle ||
+            state is AuthSignedInWithFacebook) {
           return const NavigationMenu();
         } else {
           return const Scaffold(
             body: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
               child: Padding(
                 padding: TSizes.paddingWithAppBarHeight,
                 child: Column(

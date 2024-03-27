@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:t_store/features/auth/presentation/models/auth_login_with_email_model.dart';
 import 'package:t_store/features/auth/presentation/models/auth_register_model.dart';
 
@@ -10,17 +11,16 @@ abstract class AuthRepo {
 // method to check if the user is verified
    Future<bool> isVerified();
   // Method to sign up with Google
-  Future<void> signUpWithGoogle();
 
   // Method to log in with email
   Future<void> loginWithEmail(
       {required AuthLoginWithEmailModel authLoginWithEmailModel});
 
   // Method to sign in with Google
-  Future<void> signInWithGoogle();
+  Future<UserCredential> signInWithGoogle();
 
   // Method to sign in with Facebook
-  Future<void> signInWithFacebook();
+  Future<UserCredential> signInWithFacebook();
 
   // Method to reset password
   Future<void> forgetPassword({required String email});

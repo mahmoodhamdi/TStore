@@ -2,10 +2,11 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:t_store/core/utils/exceptions/exceptions.dart';
 import 'package:t_store/core/utils/exceptions/firebase_auth_exceptions.dart';
+import 'package:t_store/core/utils/exceptions/firebase_exceptions.dart';
 import 'package:t_store/core/utils/exceptions/platform_exceptions.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/features/auth/data/repositories/auth_repo.dart';
@@ -38,13 +39,26 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSigningUpWithEmail());
       await _authRepo.signUpWithEmail(authRegisterModel: authRegisterModel);
       emit(AuthSignedUpWithEmail(authRegisterModel: authRegisterModel));
-    } on FirebaseAuthException catch (e) {
-      emit(AuthError(message: e.code));
-      throw TFirebaseAuthException(e.code);
-    } on PlatformException catch (e) {
-      emit(AuthError(message: e.code));
-
-      throw TPlatformException(e.code);
+    } on TFirebaseAuthException catch (e) {
+      if (kDebugMode) {
+        print("firebase auth exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TPlatformException catch (e) {
+      if (kDebugMode) {
+        print("platform exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TFirebaseException catch (e) {
+      if (kDebugMode) {
+        print("firebase exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TExceptions catch (e) {
+      if (kDebugMode) {
+        print("exceptions: $e");
+      }
+      emit(AuthError(message: e.message));
     } catch (e) {
       emit(AuthError(message: e.toString()));
     }
@@ -55,13 +69,26 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSendingVerifyingEmail());
       await _authRepo.sendVerificationEmail();
       emit(AuthVerifyingEmailSent());
-    } on FirebaseAuthException catch (e) {
-      emit(AuthError(message: e.code));
-      throw TFirebaseAuthException(e.code);
-    } on PlatformException catch (e) {
-      emit(AuthError(message: e.code));
-
-      throw TPlatformException(e.code);
+    } on TFirebaseAuthException catch (e) {
+      if (kDebugMode) {
+        print("firebase auth exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TPlatformException catch (e) {
+      if (kDebugMode) {
+        print("platform exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TFirebaseException catch (e) {
+      if (kDebugMode) {
+        print("firebase exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TExceptions catch (e) {
+      if (kDebugMode) {
+        print("exceptions: $e");
+      }
+      emit(AuthError(message: e.message));
     } catch (e) {
       emit(AuthError(message: e.toString()));
     }
@@ -69,31 +96,41 @@ class AuthCubit extends Cubit<AuthState> {
 
   void isVerified() async {
     try {
-      bool verified = await _authRepo.isVerified();
+
+            bool verified = await _authRepo.isVerified();
       if (verified) {
         emit(AuthVerifiedEmail());
       } else {
         emit(AuthUnverifiedEmail());
+
+        isVerified();
       }
     } on TFirebaseAuthException catch (e) {
-      emit(AuthError(message: e.code));
+      if (kDebugMode) {
+        print("firebase auth exception: $e");
+      }
+      emit(AuthError(message: e.message));
     } on TPlatformException catch (e) {
-      emit(AuthError(message: e.code));
+      if (kDebugMode) {
+        print("platform exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TFirebaseException catch (e) {
+      if (kDebugMode) {
+        print("firebase exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TExceptions catch (e) {
+      if (kDebugMode) {
+        print("exceptions: $e");
+      }
+      emit(AuthError(message: e.message));
     } catch (e) {
       emit(AuthError(message: e.toString()));
     }
   }
 
-  Future<void> signUpWithGoogle() async {
-    try {
-      emit(AuthSigningUpWithGoogle());
-      await _authRepo.signUpWithGoogle();
-      emit(AuthSignedUpWithGoogle());
-    } catch (e) {
-      emit(AuthError(message: e.toString()));
-    }
-  }
-
+ 
   Future<void> loginWithEmail(
       {required AuthLoginWithEmailModel authLoginWithEmailModel}) async {
     try {
@@ -101,13 +138,26 @@ class AuthCubit extends Cubit<AuthState> {
       await _authRepo.loginWithEmail(
           authLoginWithEmailModel: authLoginWithEmailModel);
       emit(AuthLoggedInWithEmail());
-    } on FirebaseAuthException catch (e) {
-      emit(AuthError(message: e.code));
-      throw TFirebaseAuthException(e.code);
-    } on PlatformException catch (e) {
-      emit(AuthError(message: e.code));
-
-      throw TPlatformException(e.code);
+    } on TFirebaseAuthException catch (e) {
+      if (kDebugMode) {
+        print("firebase auth exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TPlatformException catch (e) {
+      if (kDebugMode) {
+        print("platform exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TFirebaseException catch (e) {
+      if (kDebugMode) {
+        print("firebase exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TExceptions catch (e) {
+      if (kDebugMode) {
+        print("exceptions: $e");
+      }
+      emit(AuthError(message: e.message));
     } catch (e) {
       emit(AuthError(message: e.toString()));
     }
@@ -118,15 +168,26 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSigningInWithGoogle());
       await _authRepo.signInWithGoogle();
       emit(AuthSignedInWithGoogle());
-    } on PlatformException catch (e) {
-      emit(AuthError(message: e.code));
-
-      throw TPlatformException(e.code);
-    } on FirebaseAuthException catch (e) {
-      emit(AuthError(message: e.code));
-      throw TFirebaseAuthException(e.code);
-    } on FirebaseException catch (e) {
-      emit(AuthError(message: e.code));
+    } on TFirebaseAuthException catch (e) {
+      if (kDebugMode) {
+        print("firebase auth exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TPlatformException catch (e) {
+      if (kDebugMode) {
+        print("platform exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TFirebaseException catch (e) {
+      if (kDebugMode) {
+        print("firebase exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TExceptions catch (e) {
+      if (kDebugMode) {
+        print("exceptions: $e");
+      }
+      emit(AuthError(message: e.message));
     } catch (e) {
       emit(AuthError(message: e.toString()));
     }
@@ -137,13 +198,26 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSigningInWithFacebook());
       await _authRepo.signInWithFacebook();
       emit(AuthSignedInWithFacebook());
-    } on FirebaseAuthException catch (e) {
-      emit(AuthError(message: e.code));
-      throw TFirebaseAuthException(e.code);
-    } on PlatformException catch (e) {
-      emit(AuthError(message: e.code));
-
-      throw TPlatformException(e.code);
+    } on TFirebaseAuthException catch (e) {
+      if (kDebugMode) {
+        print("firebase auth exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TPlatformException catch (e) {
+      if (kDebugMode) {
+        print("platform exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TFirebaseException catch (e) {
+      if (kDebugMode) {
+        print("firebase exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TExceptions catch (e) {
+      if (kDebugMode) {
+        print("exceptions: $e");
+      }
+      emit(AuthError(message: e.message));
     } catch (e) {
       emit(AuthError(message: e.toString()));
     }
@@ -154,6 +228,26 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthForgettingPassword());
       await _authRepo.forgetPassword(email: email);
       emit(AuthPasswordReset());
+    } on TFirebaseAuthException catch (e) {
+      if (kDebugMode) {
+        print("firebase auth exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TPlatformException catch (e) {
+      if (kDebugMode) {
+        print("platform exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TFirebaseException catch (e) {
+      if (kDebugMode) {
+        print("firebase exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TExceptions catch (e) {
+      if (kDebugMode) {
+        print("exceptions: $e");
+      }
+      emit(AuthError(message: e.message));
     } catch (e) {
       emit(AuthError(message: e.toString()));
     }
@@ -165,13 +259,26 @@ class AuthCubit extends Cubit<AuthState> {
       await _authRepo.logout();
 
       emit(AuthLoggedOut());
-    } on FirebaseAuthException catch (e) {
-      emit(AuthError(message: e.code));
-      throw TFirebaseAuthException(e.code);
-    } on PlatformException catch (e) {
-      emit(AuthError(message: e.code));
-
-      throw TPlatformException(e.code);
+    } on TFirebaseAuthException catch (e) {
+      if (kDebugMode) {
+        print("firebase auth exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TPlatformException catch (e) {
+      if (kDebugMode) {
+        print("platform exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TFirebaseException catch (e) {
+      if (kDebugMode) {
+        print("firebase exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TExceptions catch (e) {
+      if (kDebugMode) {
+        print("exceptions: $e");
+      }
+      emit(AuthError(message: e.message));
     } catch (e) {
       emit(AuthError(message: e.toString()));
     }

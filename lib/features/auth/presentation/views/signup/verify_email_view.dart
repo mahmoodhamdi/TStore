@@ -8,6 +8,7 @@ import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/device/device_utility.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:t_store/features/auth/presentation/views/login/login_view.dart';
 import 'package:t_store/features/auth/presentation/widgets/email_verified_successfully.dart';
 
 class VerifyEmailView extends StatelessWidget {
@@ -24,13 +25,11 @@ class VerifyEmailView extends StatelessWidget {
           message: state.message,
           context: context,
         );
-      }
-       else if (state is AuthVerifyingEmailSent) {
+      } else if (state is AuthVerifyingEmailSent) {
         THelperFunctions.showSnackBar(
             type: SnackBarType.success,
             message: "verifying email sent to $email",
             context: context);
-        const Duration(seconds: 10);
         context.read<AuthCubit>().isVerified();
       } else if (state is AuthUnverifiedEmail) {
         THelperFunctions.showSnackBar(
@@ -51,7 +50,7 @@ class VerifyEmailView extends StatelessWidget {
             IconButton(
               onPressed: () {
                 THelperFunctions.navigateReplacementToScreen(
-                    context, const EmailVerifiedSuccessfully());
+                    context, const LoginView());
               },
               icon: const Icon(CupertinoIcons.clear),
             )
