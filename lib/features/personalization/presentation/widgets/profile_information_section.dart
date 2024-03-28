@@ -6,8 +6,8 @@ import 'package:t_store/core/common/widgets/section_heading.dart';
 import 'package:t_store/core/utils/constants/image_strings.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/features/personalization/presentation/models/profile_entity_tile_model.dart';
-import 'package:t_store/features/personalization/presentation/views/profile_view.dart';
 import 'package:t_store/features/personalization/presentation/widgets/profile_entity_tile_list.dart';
+import 'package:t_store/features/personalization/presentation/widgets/space_btw_sections_with_divider.dart';
 
 class ProfileInformationSection extends StatelessWidget {
   const ProfileInformationSection({
