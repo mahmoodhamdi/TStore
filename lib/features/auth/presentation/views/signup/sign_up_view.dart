@@ -25,6 +25,13 @@ class SignUpView extends StatelessWidget {
             message: state.message,
             context: context,
           );
+        } else if (state is AuthSignedUpWithEmail) {
+          context.read<AuthCubit>().sendVerificationEmail();
+          THelperFunctions.navigateReplacementToScreen(
+              context,
+              VerifyEmailView(
+                email: state.authRegisterModel.email,
+              ));
         }
       },
       builder: (context, state) {
@@ -33,11 +40,6 @@ class SignUpView extends StatelessWidget {
             state is AuthSigningUpWithGoogle) {
           return Scaffold(
               body: Center(child: Lottie.asset(TImages.docerAnimation)));
-        } else if (state is AuthSignedUpWithEmail) {
-          context.read<AuthCubit>().sendVerificationEmail();
-          return VerifyEmailView(
-            email: state.authRegisterModel.email,
-          );
         } else if (state is AuthSignedInWithFacebook ||
             state is AuthSignedInWithGoogle) {
           return const NavigationMenu();
