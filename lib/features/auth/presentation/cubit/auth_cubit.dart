@@ -96,8 +96,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   void isVerified() async {
     try {
-
-            bool verified = await _authRepo.isVerified();
+      bool verified = await _authRepo.isVerified();
       if (verified) {
         emit(AuthVerifiedEmail());
       } else {
@@ -130,7 +129,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
- 
   Future<void> loginWithEmail(
       {required AuthLoginWithEmailModel authLoginWithEmailModel}) async {
     try {
@@ -223,10 +221,10 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> forgetPassword({required String email}) async {
+  Future<void> sendResetPasswordEmail({required String email}) async {
     try {
       emit(AuthForgettingPassword());
-      await _authRepo.forgetPassword(email: email);
+      await _authRepo.sendResetPasswordEmail(email: email);
       emit(AuthPasswordReset());
     } on TFirebaseAuthException catch (e) {
       if (kDebugMode) {
