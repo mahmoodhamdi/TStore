@@ -281,4 +281,34 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthError(message: e.toString()));
     }
   }
+
+  Future<void> deleteAccount() async {
+    try {
+      emit(AuthDeletingAccount());
+      await _authRepo.deleteAccount();
+      emit(AuthDeletedAccount());
+    } on TFirebaseAuthException catch (e) {
+      if (kDebugMode) {
+        print("firebase auth exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TPlatformException catch (e) {
+      if (kDebugMode) {
+        print("platform exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TFirebaseException catch (e) {
+      if (kDebugMode) {
+        print("firebase exception: $e");
+      }
+      emit(AuthError(message: e.message));
+    } on TExceptions catch (e) {
+      if (kDebugMode) {
+        print("exceptions: $e");
+      }
+      emit(AuthError(message: e.message));
+    } catch (e) {
+      emit(AuthError(message: e.toString()));
+    }
+  }
 }

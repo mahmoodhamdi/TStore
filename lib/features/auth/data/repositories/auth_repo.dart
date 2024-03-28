@@ -25,4 +25,6 @@ abstract class AuthRepo {
   
   // Method to log out
   Future<void> logout();
+  // Method to delete account
+  Future<void> deleteAccount();
 }

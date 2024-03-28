@@ -238,38 +238,6 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<void> resetPassword({required String email}) async {
-    try {
-      // Your forget password logic here using _firebaseAuth
-    } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("Platform exception: $e");
-      }
-      throw TPlatformException(e.code).message;
-    } on FirebaseAuthException catch (e) {
-      // Handle sign up with email exceptions
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
-      throw TFirebaseAuthException(e.code).message;
-    } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("Firebase exception: $e");
-      }
-      throw TFirebaseException(e.code).message;
-    } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("Exceptions: $e");
-      }
-      throw TExceptions(e.message).message;
-    } catch (e) {
-      if (kDebugMode) {
-        print("exceptions: $e");
-      }
-    }
-  }
-
-  @override
   Future<UserCredential> signInWithFacebook() async {
     try {
       // Trigger the Facebook sign-in flow
@@ -293,6 +261,34 @@ class AuthRepoImpl implements AuthRepo {
           message: 'Failed to sign in with Facebook: ${result.status}',
         );
       }
+    } on TPlatformException catch (e) {
+      if (kDebugMode) {
+        print("Platform exception: $e");
+      }
+      throw TPlatformException(e.code).message;
+    } on FirebaseAuthException catch (e) {
+      // Handle sign up with email exceptions
+      if (kDebugMode) {
+        print("firebase auth exception: $e");
+      }
+      throw TFirebaseAuthException(e.code).message;
+    } on TFirebaseException catch (e) {
+      if (kDebugMode) {
+        print("Firebase exception: $e");
+      }
+      throw TFirebaseException(e.code).message;
+    } on TExceptions catch (e) {
+      if (kDebugMode) {
+        print("Exceptions: $e");
+      }
+      throw TExceptions(e.message).message;
+    }
+  }
+
+  @override
+  Future<void> deleteAccount() async {
+    try {
+      await _firebaseAuth.currentUser?.delete();
     } on TPlatformException catch (e) {
       if (kDebugMode) {
         print("Platform exception: $e");
