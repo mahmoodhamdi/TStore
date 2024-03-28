@@ -9,7 +9,6 @@ import 'package:t_store/features/auth/presentation/views/login/login_view.dart';
 
 class ResetPasswordView extends StatelessWidget {
   const ResetPasswordView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +31,7 @@ class ResetPasswordView extends StatelessWidget {
           child: Column(
             children: [
               Image(
-                  width: TDeviceUtils.getScreenWidth(context) * .6,
+                  width: TDeviceUtils.getScreenWidth(context) * .8,
                   image: const AssetImage(TImages.deliveredEmailIllustration)),
               const SizedBox(
                 height: TSizes.spaceBtwSections,
@@ -56,16 +55,17 @@ class ResetPasswordView extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    onPressed: () {}, child: const Text(TTexts.done)),
+                    onPressed: () {
+                      THelperFunctions.navigateReplacementToScreen(
+                        context,
+                        const LoginView(),
+                      );
+                    },
+                    child: const Text(TTexts.done)),
               ),
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
-              SizedBox(
-                width: double.infinity,
-                child: TextButton(
-                    onPressed: () {}, child: const Text(TTexts.resendEmail)),
-              )
             ],
           ),
         ),

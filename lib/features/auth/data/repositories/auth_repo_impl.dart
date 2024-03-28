@@ -101,6 +101,39 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
+  Future<void> sendResetPasswordEmail({required String email}) async {
+    try {
+      // Your send verification email logic here
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+    } on TPlatformException catch (e) {
+      if (kDebugMode) {
+        print("Platform exception: $e");
+      }
+      throw TPlatformException(e.code).message;
+    } on FirebaseAuthException catch (e) {
+      // Handle sign up with email exceptions
+      if (kDebugMode) {
+        print("firebase auth exception: $e");
+      }
+      throw TFirebaseAuthException(e.code).message;
+    } on TFirebaseException catch (e) {
+      if (kDebugMode) {
+        print("Firebase exception: $e");
+      }
+      throw TFirebaseException(e.code).message;
+    } on TExceptions catch (e) {
+      if (kDebugMode) {
+        print("Exceptions: $e");
+      }
+      throw TExceptions(e.message).message;
+    } catch (e) {
+      if (kDebugMode) {
+        print("exceptions: $e");
+      }
+    }
+  }
+
+  @override
   Future<void> loginWithEmail(
       {required AuthLoginWithEmailModel authLoginWithEmailModel}) async {
     try {
@@ -205,7 +238,7 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<void> forgetPassword({required String email}) async {
+  Future<void> resetPassword({required String email}) async {
     try {
       // Your forget password logic here using _firebaseAuth
     } on TPlatformException catch (e) {
