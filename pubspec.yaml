@@ -9,6 +9,7 @@ dependencies:
   cached_network_image: ^3.3.1
   capped_progress_indicator: ^0.0.2
   carousel_slider: ^4.2.1
+  cloud_firestore: ^4.15.10
   connectivity_plus: ^5.0.2
   cupertino_icons: ^1.0.6
   dartz: ^0.10.1

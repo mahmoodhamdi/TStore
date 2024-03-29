@@ -13,6 +13,7 @@ class AuthPasswordVisibilityToggled extends AuthState {
   @override
   List<Object> get props => [];
 }
+
 class AuthNotConnected extends AuthState {}
 
 class AuthSigningUpWithEmail extends AuthState {}
@@ -62,8 +63,11 @@ class AuthPasswordReset extends AuthState {}
 class AuthLoggingOut extends AuthState {}
 
 class AuthLoggedOut extends AuthState {}
+
 class AuthDeletingAccount extends AuthState {}
+
 class AuthDeletedAccount extends AuthState {}
+
 class AuthError extends AuthState {
   final String message;
 
