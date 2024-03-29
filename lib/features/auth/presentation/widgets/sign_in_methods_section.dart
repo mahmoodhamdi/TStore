@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/image_strings.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
+import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
 
 class SignInMethodsSection extends StatelessWidget {
@@ -37,7 +38,8 @@ class SignInMethodsSection extends StatelessWidget {
             borderRadius: BorderRadius.circular(100)),
         child: IconButton(
           onPressed: () {
-            context.read<AuthCubit>().signInWithFacebook();
+            THelperFunctions.showSnackBar(
+                context: context, message: 'Not implemented yet');
           },
           icon: const Image(
             height: TSizes.iconMd,

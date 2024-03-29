@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:t_store/features/auth/presentation/models/auth_login_with_email_model.dart';
 import 'package:t_store/features/auth/presentation/models/auth_register_model.dart';
 
@@ -17,12 +16,8 @@ abstract class AuthRepo {
       {required AuthLoginWithEmailModel authLoginWithEmailModel});
 
   // Method to sign in with Google
-  Future<UserCredential> signInWithGoogle();
+  Future<void> signInWithGoogle();
 
-  // Method to sign in with Facebook
-  Future<UserCredential> signInWithFacebook();
-
-  
   // Method to log out
   Future<void> logout();
   // Method to delete account
