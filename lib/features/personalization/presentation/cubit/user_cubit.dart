@@ -1,6 +1,7 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 import 'package:t_store/core/utils/exceptions/exceptions.dart';
 import 'package:t_store/core/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:t_store/core/utils/exceptions/firebase_exceptions.dart';
@@ -22,28 +23,19 @@ class UserCubit extends Cubit<UserState> {
       await _userRepo.saveUserData(userModel);
       emit(UserSaved()); // Emit a state to indicate successful user data saving
     } on TFirebaseAuthException catch (e) {
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
+      TLoggerHelper.error("Firebase Auth Exception", e);
       emit(UserFailure(message: e.message));
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       emit(UserFailure(message: e.message));
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       emit(UserFailure(message: e.message));
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("exceptions: $e");
-      }
+      TLoggerHelper.error("General Exception", e);
       emit(UserFailure(message: e.message));
     } catch (e, stackTrace) {
       TLoggerHelper.error("An error occurred", e);
-
       TLoggerHelper.error(stackTrace.toString());
       emit(UserFailure(message: e.toString()));
     }

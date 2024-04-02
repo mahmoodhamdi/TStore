@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:t_store/core/utils/exceptions/exceptions.dart';
 import 'package:t_store/core/utils/exceptions/firebase_auth_exceptions.dart';
@@ -53,28 +52,21 @@ class AuthRepoImpl implements AuthRepo {
         await _userRepo.saveUserData(userModel);
       }
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("Platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       throw TPlatformException(e.code).message;
     } on FirebaseAuthException catch (e) {
-      // Handle sign up with email exceptions
-      if (kDebugMode) {
-        print("Sign up with email failed: $e");
-      }
+      TLoggerHelper.error("Firebase Auth Exception", e);
       throw TFirebaseAuthException(e.code).message;
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("Firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       throw TFirebaseException(e.code).message;
     } on TExceptions catch (e) {
-
+      TLoggerHelper.error("General Exception", e);
       throw TExceptions(e.message).message;
     } catch (e, stackTrace) {
       TLoggerHelper.error("An error occurred", e);
-
       TLoggerHelper.error(stackTrace.toString());
+      throw Exception(e.toString());
     }
   }
 
@@ -84,16 +76,22 @@ class AuthRepoImpl implements AuthRepo {
       User? currentUser = _firebaseAuth.currentUser;
       await currentUser?.reload();
       return currentUser?.emailVerified ?? false;
+    } on TPlatformException catch (e) {
+      TLoggerHelper.error("Platform Exception", e);
+      throw TPlatformException(e.code).message;
     } on FirebaseAuthException catch (e) {
-      throw TFirebaseAuthException(e.code);
+      TLoggerHelper.error("Firebase Auth Exception", e);
+      throw TFirebaseAuthException(e.code).message;
+    } on TFirebaseException catch (e) {
+      TLoggerHelper.error("Firebase Exception", e);
+      throw TFirebaseException(e.code).message;
+    } on TExceptions catch (e) {
+      TLoggerHelper.error("General Exception", e);
+      throw TExceptions(e.message).message;
     } catch (e, stackTrace) {
-              TLoggerHelper.error("An error occurred", e);
-
+      TLoggerHelper.error("An error occurred", e);
       TLoggerHelper.error(stackTrace.toString());
-      if (kDebugMode) {
-        print("Check verification failed: $e");
-      }
-      throw Exception("Check verification failed: $e");
+      throw Exception(e.toString());
     }
   }
 
@@ -103,29 +101,21 @@ class AuthRepoImpl implements AuthRepo {
       // Your send verification email logic here
       await _firebaseAuth.currentUser?.sendEmailVerification();
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("Platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       throw TPlatformException(e.code).message;
     } on FirebaseAuthException catch (e) {
-      // Handle sign up with email exceptions
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
+      TLoggerHelper.error("Firebase Auth Exception", e);
       throw TFirebaseAuthException(e.code).message;
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("Firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       throw TFirebaseException(e.code).message;
     } on TExceptions catch (e) {
-
+      TLoggerHelper.error("General Exception", e);
       throw TExceptions(e.message).message;
     } catch (e, stackTrace) {
-
       TLoggerHelper.error("An error occurred", e);
-
       TLoggerHelper.error(stackTrace.toString());
+      throw Exception(e.toString());
     }
   }
 
@@ -135,29 +125,21 @@ class AuthRepoImpl implements AuthRepo {
       // Your send verification email logic here
       await _firebaseAuth.sendPasswordResetEmail(email: email);
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("Platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       throw TPlatformException(e.code).message;
     } on FirebaseAuthException catch (e) {
-      // Handle sign up with email exceptions
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
+      TLoggerHelper.error("Firebase Auth Exception", e);
       throw TFirebaseAuthException(e.code).message;
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("Firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       throw TFirebaseException(e.code).message;
     } on TExceptions catch (e) {
-
+      TLoggerHelper.error("General Exception", e);
       throw TExceptions(e.message).message;
     } catch (e, stackTrace) {
-              TLoggerHelper.error("An error occurred", e);
-
+      TLoggerHelper.error("An error occurred", e);
       TLoggerHelper.error(stackTrace.toString());
-
+      throw Exception(e.toString());
     }
   }
 
@@ -178,7 +160,7 @@ class AuthRepoImpl implements AuthRepo {
         // Retrieve the updated user object to ensure that all data is available
         user = _firebaseAuth.currentUser;
         UserModel userModel = UserModel(
-            email: authLoginWithEmailModel.email,
+          email: authLoginWithEmailModel.email,
           username: user!.providerData[0].displayName!,
           emailVerified: user.emailVerified,
           id: user.uid,
@@ -186,29 +168,21 @@ class AuthRepoImpl implements AuthRepo {
         await _userRepo.saveUserData(userModel); // Save user data to Firestore
       }
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("Platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       throw TPlatformException(e.code).message;
     } on FirebaseAuthException catch (e) {
-      // Handle sign up with email exceptions
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
+      TLoggerHelper.error("Firebase Auth Exception", e);
       throw TFirebaseAuthException(e.code).message;
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("Firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       throw TFirebaseException(e.code).message;
     } on TExceptions catch (e) {
-
+      TLoggerHelper.error("General Exception", e);
       throw TExceptions(e.message).message;
     } catch (e, stackTrace) {
-        TLoggerHelper.error("An error occurred", e);
-
-            TLoggerHelper.error(stackTrace.toString());
-
+      TLoggerHelper.error("An error occurred", e);
+      TLoggerHelper.error(stackTrace.toString());
+      throw Exception(e.toString());
     }
   }
 
@@ -218,28 +192,21 @@ class AuthRepoImpl implements AuthRepo {
       // Your logout logic here
       await _firebaseAuth.signOut();
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("Platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       throw TPlatformException(e.code).message;
     } on FirebaseAuthException catch (e) {
-      // Handle sign up with email exceptions
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
+      TLoggerHelper.error("Firebase Auth Exception", e);
       throw TFirebaseAuthException(e.code).message;
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("Firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       throw TFirebaseException(e.code).message;
     } on TExceptions catch (e) {
-
+      TLoggerHelper.error("General Exception", e);
       throw TExceptions(e.message).message;
     } catch (e, stackTrace) {
       TLoggerHelper.error("An error occurred", e);
-
       TLoggerHelper.error(stackTrace.toString());
+      throw Exception(e.toString());
     }
   }
 
@@ -272,28 +239,21 @@ class AuthRepoImpl implements AuthRepo {
         await _userRepo.saveUserData(userModel); // Save user data to Firestore
       }
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("Platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       throw TPlatformException(e.code).message;
     } on FirebaseAuthException catch (e) {
-      // Handle sign up with email exceptions
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
+      TLoggerHelper.error("Firebase Auth Exception", e);
       throw TFirebaseAuthException(e.code).message;
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("Firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       throw TFirebaseException(e.code).message;
     } on TExceptions catch (e) {
-
+      TLoggerHelper.error("General Exception", e);
       throw TExceptions(e.message).message;
     } catch (e, stackTrace) {
       TLoggerHelper.error("An error occurred", e);
-
       TLoggerHelper.error(stackTrace.toString());
+      throw Exception(e.toString());
     }
   }
 
@@ -306,28 +266,21 @@ class AuthRepoImpl implements AuthRepo {
         await _userRepo.deleteUserData(user.uid);
       }
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("Platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       throw TPlatformException(e.code).message;
     } on FirebaseAuthException catch (e) {
-      // Handle sign up with email exceptions
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
+      TLoggerHelper.error("Firebase Auth Exception", e);
       throw TFirebaseAuthException(e.code).message;
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("Firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       throw TFirebaseException(e.code).message;
     } on TExceptions catch (e) {
-
+      TLoggerHelper.error("General Exception", e);
       throw TExceptions(e.message).message;
     } catch (e, stackTrace) {
       TLoggerHelper.error("An error occurred", e);
-
       TLoggerHelper.error(stackTrace.toString());
+      throw Exception(e.toString());
     }
   }
 }
