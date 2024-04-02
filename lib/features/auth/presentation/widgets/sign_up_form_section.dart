@@ -6,7 +6,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/validators/validation.dart';
-import 'package:t_store/features/auth/data/models/sign_up_form_bloc.dart';
+import 'package:t_store/features/auth/data/bloc/sign_up_form_bloc.dart';
 import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
 
 import 'terms_and_privacy_agreement.dart';

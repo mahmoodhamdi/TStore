@@ -5,7 +5,7 @@ import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/core/utils/validators/validation.dart';
-import 'package:t_store/features/auth/data/models/login_form_bloc.dart';
+import 'package:t_store/features/auth/data/bloc/login_form_bloc.dart';
 import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:t_store/features/auth/presentation/views/password_configuration/forget_password_view.dart';
 import 'package:t_store/features/auth/presentation/views/signup/sign_up_view.dart';

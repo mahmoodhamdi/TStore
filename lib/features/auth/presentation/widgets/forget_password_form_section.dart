@@ -3,7 +3,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/validators/validation.dart';
-import 'package:t_store/features/auth/data/models/forget_password_form_bloc.dart';
+import 'package:t_store/features/auth/data/bloc/forget_password_form_bloc.dart';
 
 class ForgetPasswordFormSection extends StatefulWidget {
   const ForgetPasswordFormSection({super.key});
