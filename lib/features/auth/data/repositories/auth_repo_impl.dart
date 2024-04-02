@@ -5,6 +5,7 @@ import 'package:t_store/core/utils/exceptions/exceptions.dart';
 import 'package:t_store/core/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:t_store/core/utils/exceptions/firebase_exceptions.dart';
 import 'package:t_store/core/utils/exceptions/platform_exceptions.dart';
+import 'package:t_store/core/utils/logging/logger.dart';
 import 'package:t_store/features/auth/data/repositories/auth_repo.dart';
 import 'package:t_store/features/auth/presentation/models/auth_login_with_email_model.dart';
 import 'package:t_store/features/auth/presentation/models/auth_register_model.dart';
@@ -68,14 +69,12 @@ class AuthRepoImpl implements AuthRepo {
       }
       throw TFirebaseException(e.code).message;
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("Exceptions: $e");
-      }
+
       throw TExceptions(e.message).message;
-    } catch (e) {
-      if (kDebugMode) {
-        print("Sign up with email failed: $e");
-      }
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+
+      TLoggerHelper.error(stackTrace.toString());
     }
   }
 
@@ -87,7 +86,10 @@ class AuthRepoImpl implements AuthRepo {
       return currentUser?.emailVerified ?? false;
     } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code);
-    } catch (e) {
+    } catch (e, stackTrace) {
+              TLoggerHelper.error("An error occurred", e);
+
+      TLoggerHelper.error(stackTrace.toString());
       if (kDebugMode) {
         print("Check verification failed: $e");
       }
@@ -117,14 +119,13 @@ class AuthRepoImpl implements AuthRepo {
       }
       throw TFirebaseException(e.code).message;
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("Exceptions: $e");
-      }
+
       throw TExceptions(e.message).message;
-    } catch (e) {
-      if (kDebugMode) {
-        print("exceptions: $e");
-      }
+    } catch (e, stackTrace) {
+
+      TLoggerHelper.error("An error occurred", e);
+
+      TLoggerHelper.error(stackTrace.toString());
     }
   }
 
@@ -150,14 +151,13 @@ class AuthRepoImpl implements AuthRepo {
       }
       throw TFirebaseException(e.code).message;
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("Exceptions: $e");
-      }
+
       throw TExceptions(e.message).message;
-    } catch (e) {
-      if (kDebugMode) {
-        print("exceptions: $e");
-      }
+    } catch (e, stackTrace) {
+              TLoggerHelper.error("An error occurred", e);
+
+      TLoggerHelper.error(stackTrace.toString());
+
     }
   }
 
@@ -202,14 +202,13 @@ class AuthRepoImpl implements AuthRepo {
       }
       throw TFirebaseException(e.code).message;
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("Exceptions: $e");
-      }
+
       throw TExceptions(e.message).message;
-    } catch (e) {
-      if (kDebugMode) {
-        print("exceptions: $e");
-      }
+    } catch (e, stackTrace) {
+        TLoggerHelper.error("An error occurred", e);
+
+            TLoggerHelper.error(stackTrace.toString());
+
     }
   }
 
@@ -235,14 +234,12 @@ class AuthRepoImpl implements AuthRepo {
       }
       throw TFirebaseException(e.code).message;
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("Exceptions: $e");
-      }
+
       throw TExceptions(e.message).message;
-    } catch (e) {
-      if (kDebugMode) {
-        print("exceptions: $e");
-      }
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+
+      TLoggerHelper.error(stackTrace.toString());
     }
   }
 
@@ -291,10 +288,12 @@ class AuthRepoImpl implements AuthRepo {
       }
       throw TFirebaseException(e.code).message;
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("Exceptions: $e");
-      }
+
       throw TExceptions(e.message).message;
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+
+      TLoggerHelper.error(stackTrace.toString());
     }
   }
 
@@ -323,10 +322,12 @@ class AuthRepoImpl implements AuthRepo {
       }
       throw TFirebaseException(e.code).message;
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("Exceptions: $e");
-      }
+
       throw TExceptions(e.message).message;
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+
+      TLoggerHelper.error(stackTrace.toString());
     }
   }
 }
