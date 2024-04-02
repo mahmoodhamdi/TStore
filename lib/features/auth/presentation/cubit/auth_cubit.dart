@@ -9,6 +9,7 @@ import 'package:t_store/core/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:t_store/core/utils/exceptions/firebase_exceptions.dart';
 import 'package:t_store/core/utils/exceptions/platform_exceptions.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/core/utils/logging/logger.dart';
 import 'package:t_store/features/auth/data/repositories/auth_repo.dart';
 import 'package:t_store/features/auth/presentation/models/auth_login_with_email_model.dart';
 import 'package:t_store/features/auth/presentation/models/auth_register_model.dart';
@@ -156,7 +157,10 @@ class AuthCubit extends Cubit<AuthState> {
         print("exceptions: $e");
       }
       emit(AuthError(message: e.message));
-    } catch (e) {
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+
+      TLoggerHelper.error(stackTrace.toString());
       emit(AuthError(message: e.toString()));
     }
   }
@@ -186,7 +190,10 @@ class AuthCubit extends Cubit<AuthState> {
         print("exceptions: $e");
       }
       emit(AuthError(message: e.message));
-    } catch (e) {
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+
+      TLoggerHelper.error(stackTrace.toString());
       emit(AuthError(message: e.toString()));
     }
   }
@@ -216,7 +223,10 @@ class AuthCubit extends Cubit<AuthState> {
         print("exceptions: $e");
       }
       emit(AuthError(message: e.message));
-    } catch (e) {
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+
+      TLoggerHelper.error(stackTrace.toString());
       emit(AuthError(message: e.toString()));
     }
   }
@@ -247,7 +257,10 @@ class AuthCubit extends Cubit<AuthState> {
         print("exceptions: $e");
       }
       emit(AuthError(message: e.message));
-    } catch (e) {
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+
+      TLoggerHelper.error(stackTrace.toString());
       emit(AuthError(message: e.toString()));
     }
   }
@@ -277,7 +290,10 @@ class AuthCubit extends Cubit<AuthState> {
         print("exceptions: $e");
       }
       emit(AuthError(message: e.message));
-    } catch (e) {
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+
+      TLoggerHelper.error(stackTrace.toString());
       emit(AuthError(message: e.toString()));
     }
   }

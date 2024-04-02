@@ -5,6 +5,7 @@ import 'package:t_store/core/utils/exceptions/exceptions.dart';
 import 'package:t_store/core/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:t_store/core/utils/exceptions/firebase_exceptions.dart';
 import 'package:t_store/core/utils/exceptions/platform_exceptions.dart';
+import 'package:t_store/core/utils/logging/logger.dart';
 import 'package:t_store/features/personalization/data/models/user_model.dart';
 import 'package:t_store/features/personalization/data/repositories/user_repo.dart';
 
@@ -40,7 +41,10 @@ class UserCubit extends Cubit<UserState> {
         print("exceptions: $e");
       }
       emit(UserFailure(message: e.message));
-    } catch (e) {
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+
+      TLoggerHelper.error(stackTrace.toString());
       emit(UserFailure(message: e.toString()));
     }
   }
