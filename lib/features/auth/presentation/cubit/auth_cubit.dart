@@ -40,27 +40,21 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSigningUpWithEmail());
       await _authRepo.signUpWithEmail(authRegisterModel: authRegisterModel);
       emit(AuthSignedUpWithEmail(authRegisterModel: authRegisterModel));
-    } on TFirebaseAuthException catch (e) {
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
+    }  on TFirebaseAuthException catch (e) {
+      TLoggerHelper.error("Firebase Auth Exception", e);
       emit(AuthError(message: e.message));
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       emit(AuthError(message: e.message));
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       emit(AuthError(message: e.message));
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("exceptions: $e");
-      }
+      TLoggerHelper.error("General Exception", e);
       emit(AuthError(message: e.message));
-    } catch (e) {
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+      TLoggerHelper.error(stackTrace.toString());
       emit(AuthError(message: e.toString()));
     }
   }
@@ -70,27 +64,21 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSendingVerifyingEmail());
       await _authRepo.sendVerificationEmail();
       emit(AuthVerifyingEmailSent());
-    } on TFirebaseAuthException catch (e) {
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
+    }  on TFirebaseAuthException catch (e) {
+      TLoggerHelper.error("Firebase Auth Exception", e);
       emit(AuthError(message: e.message));
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       emit(AuthError(message: e.message));
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       emit(AuthError(message: e.message));
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("exceptions: $e");
-      }
+      TLoggerHelper.error("General Exception", e);
       emit(AuthError(message: e.message));
-    } catch (e) {
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+      TLoggerHelper.error(stackTrace.toString());
       emit(AuthError(message: e.toString()));
     }
   }
@@ -106,26 +94,20 @@ class AuthCubit extends Cubit<AuthState> {
         isVerified();
       }
     } on TFirebaseAuthException catch (e) {
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
+      TLoggerHelper.error("Firebase Auth Exception", e);
       emit(AuthError(message: e.message));
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       emit(AuthError(message: e.message));
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       emit(AuthError(message: e.message));
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("exceptions: $e");
-      }
+      TLoggerHelper.error("General Exception", e);
       emit(AuthError(message: e.message));
-    } catch (e) {
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+      TLoggerHelper.error(stackTrace.toString());
       emit(AuthError(message: e.toString()));
     }
   }
@@ -137,29 +119,20 @@ class AuthCubit extends Cubit<AuthState> {
       await _authRepo.loginWithEmail(
           authLoginWithEmailModel: authLoginWithEmailModel);
       emit(AuthLoggedInWithEmail());
-    } on TFirebaseAuthException catch (e) {
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
+    }  on TFirebaseAuthException catch (e) {
+      TLoggerHelper.error("Firebase Auth Exception", e);
       emit(AuthError(message: e.message));
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       emit(AuthError(message: e.message));
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       emit(AuthError(message: e.message));
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("exceptions: $e");
-      }
+      TLoggerHelper.error("General Exception", e);
       emit(AuthError(message: e.message));
     } catch (e, stackTrace) {
       TLoggerHelper.error("An error occurred", e);
-
       TLoggerHelper.error(stackTrace.toString());
       emit(AuthError(message: e.toString()));
     }
@@ -171,61 +144,42 @@ class AuthCubit extends Cubit<AuthState> {
       await _authRepo.signInWithGoogle();
       emit(AuthSignedInWithGoogle());
     } on TFirebaseAuthException catch (e) {
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
+      TLoggerHelper.error("Firebase Auth Exception", e);
       emit(AuthError(message: e.message));
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       emit(AuthError(message: e.message));
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       emit(AuthError(message: e.message));
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("exceptions: $e");
-      }
+      TLoggerHelper.error("General Exception", e);
       emit(AuthError(message: e.message));
     } catch (e, stackTrace) {
       TLoggerHelper.error("An error occurred", e);
-
       TLoggerHelper.error(stackTrace.toString());
       emit(AuthError(message: e.toString()));
     }
   }
-
   Future<void> sendResetPasswordEmail({required String email}) async {
     try {
       emit(AuthForgettingPassword());
       await _authRepo.sendResetPasswordEmail(email: email);
       emit(AuthPasswordReset());
-    } on TFirebaseAuthException catch (e) {
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
+    }  on TFirebaseAuthException catch (e) {
+      TLoggerHelper.error("Firebase Auth Exception", e);
       emit(AuthError(message: e.message));
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       emit(AuthError(message: e.message));
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       emit(AuthError(message: e.message));
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("exceptions: $e");
-      }
+      TLoggerHelper.error("General Exception", e);
       emit(AuthError(message: e.message));
     } catch (e, stackTrace) {
       TLoggerHelper.error("An error occurred", e);
-
       TLoggerHelper.error(stackTrace.toString());
       emit(AuthError(message: e.toString()));
     }
@@ -237,29 +191,20 @@ class AuthCubit extends Cubit<AuthState> {
       await _authRepo.logout();
 
       emit(AuthLoggedOut());
-    } on TFirebaseAuthException catch (e) {
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
+    }  on TFirebaseAuthException catch (e) {
+      TLoggerHelper.error("Firebase Auth Exception", e);
       emit(AuthError(message: e.message));
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       emit(AuthError(message: e.message));
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       emit(AuthError(message: e.message));
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("exceptions: $e");
-      }
+      TLoggerHelper.error("General Exception", e);
       emit(AuthError(message: e.message));
     } catch (e, stackTrace) {
       TLoggerHelper.error("An error occurred", e);
-
       TLoggerHelper.error(stackTrace.toString());
       emit(AuthError(message: e.toString()));
     }
@@ -271,28 +216,19 @@ class AuthCubit extends Cubit<AuthState> {
       await _authRepo.deleteAccount();
       emit(AuthDeletedAccount());
     } on TFirebaseAuthException catch (e) {
-      if (kDebugMode) {
-        print("firebase auth exception: $e");
-      }
+      TLoggerHelper.error("Firebase Auth Exception", e);
       emit(AuthError(message: e.message));
     } on TPlatformException catch (e) {
-      if (kDebugMode) {
-        print("platform exception: $e");
-      }
+      TLoggerHelper.error("Platform Exception", e);
       emit(AuthError(message: e.message));
     } on TFirebaseException catch (e) {
-      if (kDebugMode) {
-        print("firebase exception: $e");
-      }
+      TLoggerHelper.error("Firebase Exception", e);
       emit(AuthError(message: e.message));
     } on TExceptions catch (e) {
-      if (kDebugMode) {
-        print("exceptions: $e");
-      }
+      TLoggerHelper.error("General Exception", e);
       emit(AuthError(message: e.message));
     } catch (e, stackTrace) {
       TLoggerHelper.error("An error occurred", e);
-
       TLoggerHelper.error(stackTrace.toString());
       emit(AuthError(message: e.toString()));
     }
