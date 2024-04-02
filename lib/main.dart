@@ -9,6 +9,7 @@ import 'package:t_store/core/cubits/navigation_menu_cubit/navigation_menu_cubit.
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/service_locator/service_locator.dart';
 import 'package:t_store/core/utils/theme/theme.dart';
+import 'package:t_store/features/auth/data/bloc/bloc_observer.dart';
 import 'package:t_store/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:t_store/features/auth/presentation/models/on_boarding_cubit.dart';
@@ -24,6 +25,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   setupServiceLocator();
+  Bloc.observer = CustomBlocObserver();
   runApp(const MyApp());
 }
 
