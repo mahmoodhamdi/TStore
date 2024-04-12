@@ -5,9 +5,11 @@ class UserProfileTileModel {
   final String subtitle;
   final IconData trailing;
   final String leading;
+  final bool isNetworkImage;
   final void Function()? onTap;
   const UserProfileTileModel({
     this.onTap,
+    this.isNetworkImage = false,
     required this.title,
     required this.subtitle,
     required this.trailing,

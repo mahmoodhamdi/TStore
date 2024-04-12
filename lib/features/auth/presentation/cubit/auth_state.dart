@@ -68,6 +68,17 @@ class AuthDeletingAccount extends AuthState {}
 
 class AuthDeletedAccount extends AuthState {}
 
+class AuthFetchingUserData extends AuthState {}
+
+class AuthSavingUserData extends AuthState {}
+
+class AuthSavedUserData extends AuthState {}
+
+class AuthFetchedUserData extends AuthState {
+  final UserModel userModel;
+  const AuthFetchedUserData({required this.userModel});
+}
+
 class AuthError extends AuthState {
   final String message;
 

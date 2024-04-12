@@ -5,6 +5,7 @@ import 'package:t_store/core/common/widgets/rounded_image.dart';
 import 'package:t_store/core/common/widgets/section_heading.dart';
 import 'package:t_store/core/utils/constants/image_strings.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
+import 'package:t_store/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:t_store/features/personalization/presentation/models/profile_entity_tile_model.dart';
 import 'package:t_store/features/personalization/presentation/widgets/profile_entity_tile_list.dart';
 import 'package:t_store/features/personalization/presentation/widgets/space_btw_sections_with_divider.dart';
@@ -26,7 +27,8 @@ class ProfileInformationSection extends StatelessWidget {
             children: [
               RoundedImage(
                 roundedImageModel: RoundedImageModel(
-                  image: TImages.user,
+                  isNetworkImage: cachedUserData!.image != null,
+                  image: cachedUserData!.image ?? TImages.user,
                   width: 80,
                   height: 80,
                   onTap: () {},

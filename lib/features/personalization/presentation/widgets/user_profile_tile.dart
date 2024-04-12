@@ -15,6 +15,7 @@ class UserProfileTile extends StatelessWidget {
     return ListTile(
         leading: RoundedImage(
             roundedImageModel: RoundedImageModel(
+                isNetworkImage: userProfileTileModel.isNetworkImage,
                 image: userProfileTileModel.leading,
                 width: 50,
                 height: 50,

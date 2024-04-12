@@ -6,6 +6,7 @@ import 'package:t_store/core/common/widgets/cart_counter_icon.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:t_store/features/shop/presentation/views/cart_view.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -27,7 +28,7 @@ class HomeAppBar extends StatelessWidget {
                   ),
             ),
             Text(
-              TTexts.homeAppbarSubTitle,
+              cachedUserData!.username,
               style: Theme.of(context).textTheme.headlineSmall!.apply(
                     color: TColors.white,
                   ),

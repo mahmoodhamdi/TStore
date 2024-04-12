@@ -6,7 +6,9 @@ import 'package:t_store/core/common/widgets/app_bar.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/enums.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
+import 'package:t_store/core/utils/formatters/formatter.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:t_store/features/auth/presentation/views/login/login_view.dart';
 import 'package:t_store/features/personalization/presentation/models/profile_entity_tile_model.dart';
@@ -22,36 +24,36 @@ class ProfileView extends StatelessWidget {
     final List<ProfileEntityTileModel> profileInformation = [
       ProfileEntityTileModel(
         title: "Name",
-        value: "John Doe",
+        value: cachedUserData!.fullName,
         onTap: () {},
       ),
-      const ProfileEntityTileModel(
+      ProfileEntityTileModel(
         title: "Username",
-        value: "Elashwah Hamdi",
+        value: cachedUserData!.username,
       ),
     ];
     final List<ProfileEntityTileModel> personalInformation = [
       ProfileEntityTileModel(
         trailing: Iconsax.copy,
         title: "User ID",
-        value: "21-02064",
+        value: cachedUserData!.id.toString(),
         onTap: () {},
       ),
-      const ProfileEntityTileModel(
+      ProfileEntityTileModel(
         title: "Email",
-        value: "hmdy7486@gmail.com",
+        value: cachedUserData!.email,
       ),
-      const ProfileEntityTileModel(
+      ProfileEntityTileModel(
         title: "Phone Number",
-        value: "+201019793768",
+        value: cachedUserData!.phoneNumber ?? "None",
       ),
-      const ProfileEntityTileModel(
+      ProfileEntityTileModel(
         title: "Gender",
-        value: "Male",
+        value: cachedUserData!.gender ?? "None",
       ),
-      const ProfileEntityTileModel(
+      ProfileEntityTileModel(
         title: "Date Of Birth",
-        value: "13/01/2003",
+        value: TFormatter.formatDate(cachedUserData!.birthDate),
       ),
     ];
     return Scaffold(

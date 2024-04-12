@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
+import 'package:t_store/core/common/widgets/loading_view.dart';
 import 'package:t_store/core/common/widgets/navigation_menu.dart';
-import 'package:t_store/core/utils/constants/image_strings.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
@@ -33,18 +32,15 @@ class _LoginViewState extends State<LoginView> {
         }
       },
       builder: (context, state) {
-        if (state is AuthLoggedInWithEmail || state is AuthSignedInWithGoogle) {
+        if (state is AuthLoggedInWithEmail ||
+            state is AuthSignedInWithGoogle ||
+            state is AuthSignedInWithFacebook) {
+
           return const NavigationMenu();
         } else if (state is AuthLoggingInWithEmail ||
             state is AuthSigningInWithFacebook ||
             state is AuthSigningInWithGoogle) {
-          return Scaffold(
-            body: Center(child: Lottie.asset(TImages.docerAnimation)),
-          );
-        } else if (state is AuthLoggedInWithEmail ||
-            state is AuthSignedInWithGoogle ||
-            state is AuthSignedInWithFacebook) {
-          return const NavigationMenu();
+          return const LoadingView();
         } else {
           return const Scaffold(
             body: SingleChildScrollView(

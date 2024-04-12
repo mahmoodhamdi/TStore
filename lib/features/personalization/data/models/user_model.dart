@@ -1,17 +1,27 @@
 class Address {
-  final String ?street;
-  final String ? city;
-  final String ?state;
-  final String ?zipCode;
+  final String? street;
+  final String? city;
+  final String? state;
+  final String? zipCode;
   final String address;
 
   Address({
     required this.address,
-      this.street,
-      this.city,
-      this.state,
-      this.zipCode,
+    this.street,
+    this.city,
+    this.state,
+    this.zipCode,
   });
+
+  factory Address.fromJson(Map<String, dynamic> json) {
+    return Address(
+      street: json['street'],
+      city: json['city'],
+      state: json['state'],
+      zipCode: json['zipCode'],
+      address: json['address'],
+    );
+  }
 
   Map<String, dynamic> toJson() {
     return {
@@ -35,9 +45,13 @@ class UserModel {
   final String? image;
   final bool rememberMe;
   final bool emailVerified;
+  final String? gender;
+  final DateTime? birthDate;
+
+  String get fullName => '$firstName $lastName';
 
   UserModel({
-    this.emailVerified=false,
+    this.emailVerified = false,
     required this.id,
     this.firstName,
     this.lastName,
@@ -47,7 +61,28 @@ class UserModel {
     this.address,
     this.image,
     this.rememberMe = false,
+    this.gender,
+    this.birthDate,
   });
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['id'],
+      firstName: json['firstName'],
+      lastName: json['lastName'],
+      username: json['username'],
+      email: json['email'],
+      phoneNumber: json['phoneNumber'],
+      address:
+          json['address'] != null ? Address.fromJson(json['address']) : null,
+      image: json['image'],
+      rememberMe: json['rememberMe'] ?? false,
+      emailVerified: json['emailVerified'] ?? false,
+      gender: json['gender'],
+      birthDate:
+          json['birthdate'] != null ? DateTime.parse(json['birthdate']) : null,
+    );
+  }
 
   Map<String, dynamic> toJson() {
     return {
@@ -57,10 +92,12 @@ class UserModel {
       'username': username,
       'email': email,
       'phoneNumber': phoneNumber,
-      'address': address?.toJson(), // Convert Address to JSON if not null
+      'address': address?.toJson(),
       'image': image,
       'rememberMe': rememberMe,
-      'emailVerified':emailVerified
+      'emailVerified': emailVerified,
+      'gender': gender,
+      'birthdate': birthDate?.toIso8601String(),
     };
   }
 }

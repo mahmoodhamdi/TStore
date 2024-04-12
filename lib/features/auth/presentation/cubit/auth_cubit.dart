@@ -2,7 +2,6 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:t_store/core/utils/exceptions/exceptions.dart';
 import 'package:t_store/core/utils/exceptions/firebase_auth_exceptions.dart';
@@ -13,6 +12,7 @@ import 'package:t_store/core/utils/logging/logger.dart';
 import 'package:t_store/features/auth/data/repositories/auth_repo.dart';
 import 'package:t_store/features/auth/presentation/models/auth_login_with_email_model.dart';
 import 'package:t_store/features/auth/presentation/models/auth_register_model.dart';
+import 'package:t_store/features/personalization/data/models/user_model.dart';
 
 part 'auth_state.dart';
 
@@ -39,8 +39,9 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthSigningUpWithEmail());
       await _authRepo.signUpWithEmail(authRegisterModel: authRegisterModel);
+
       emit(AuthSignedUpWithEmail(authRegisterModel: authRegisterModel));
-    }  on TFirebaseAuthException catch (e) {
+    } on TFirebaseAuthException catch (e) {
       TLoggerHelper.error("Firebase Auth Exception", e);
       emit(AuthError(message: e.message));
     } on TPlatformException catch (e) {
@@ -64,7 +65,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSendingVerifyingEmail());
       await _authRepo.sendVerificationEmail();
       emit(AuthVerifyingEmailSent());
-    }  on TFirebaseAuthException catch (e) {
+    } on TFirebaseAuthException catch (e) {
       TLoggerHelper.error("Firebase Auth Exception", e);
       emit(AuthError(message: e.message));
     } on TPlatformException catch (e) {
@@ -118,8 +119,11 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthLoggingInWithEmail());
       await _authRepo.loginWithEmail(
           authLoginWithEmailModel: authLoginWithEmailModel);
+          
+      await fetchUserData();
+
       emit(AuthLoggedInWithEmail());
-    }  on TFirebaseAuthException catch (e) {
+    } on TFirebaseAuthException catch (e) {
       TLoggerHelper.error("Firebase Auth Exception", e);
       emit(AuthError(message: e.message));
     } on TPlatformException catch (e) {
@@ -142,6 +146,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthSigningInWithGoogle());
       await _authRepo.signInWithGoogle();
+      await fetchUserData();
       emit(AuthSignedInWithGoogle());
     } on TFirebaseAuthException catch (e) {
       TLoggerHelper.error("Firebase Auth Exception", e);
@@ -161,12 +166,13 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthError(message: e.toString()));
     }
   }
+
   Future<void> sendResetPasswordEmail({required String email}) async {
     try {
       emit(AuthForgettingPassword());
       await _authRepo.sendResetPasswordEmail(email: email);
       emit(AuthPasswordReset());
-    }  on TFirebaseAuthException catch (e) {
+    } on TFirebaseAuthException catch (e) {
       TLoggerHelper.error("Firebase Auth Exception", e);
       emit(AuthError(message: e.message));
     } on TPlatformException catch (e) {
@@ -191,7 +197,7 @@ class AuthCubit extends Cubit<AuthState> {
       await _authRepo.logout();
 
       emit(AuthLoggedOut());
-    }  on TFirebaseAuthException catch (e) {
+    } on TFirebaseAuthException catch (e) {
       TLoggerHelper.error("Firebase Auth Exception", e);
       emit(AuthError(message: e.message));
     } on TPlatformException catch (e) {
@@ -215,6 +221,36 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthDeletingAccount());
       await _authRepo.deleteAccount();
       emit(AuthDeletedAccount());
+    } on TFirebaseAuthException catch (e) {
+      TLoggerHelper.error("Firebase Auth Exception", e);
+      emit(AuthError(message: e.message));
+    } on TPlatformException catch (e) {
+      TLoggerHelper.error("Platform Exception", e);
+      emit(AuthError(message: e.message));
+    } on TFirebaseException catch (e) {
+      TLoggerHelper.error("Firebase Exception", e);
+      emit(AuthError(message: e.message));
+    } on TExceptions catch (e) {
+      TLoggerHelper.error("General Exception", e);
+      emit(AuthError(message: e.message));
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+      TLoggerHelper.error(stackTrace.toString());
+      emit(AuthError(message: e.toString()));
+    }
+  }
+
+  Future<void> fetchUserData() async {
+    try {
+      emit(AuthFetchingUserData());
+      final UserModel? userModel = await _authRepo.fetchUserData();
+      if (userModel != null) {
+        emit(AuthFetchedUserData(
+          userModel: userModel,
+        ));
+      } else {
+        emit(const AuthError(message: "User not found"));
+      }
     } on TFirebaseAuthException catch (e) {
       TLoggerHelper.error("Firebase Auth Exception", e);
       emit(AuthError(message: e.message));
