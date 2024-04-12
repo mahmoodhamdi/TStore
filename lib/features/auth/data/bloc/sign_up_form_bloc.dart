@@ -7,8 +7,6 @@ import 'package:t_store/core/utils/constants/enums.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:t_store/features/auth/presentation/models/auth_register_model.dart';
-import 'package:t_store/features/personalization/data/models/user_model.dart';
-import 'package:t_store/features/personalization/presentation/cubit/user_cubit.dart';
 
 class SignUpFormBloc extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
@@ -53,8 +51,7 @@ class SignUpFormBloc extends ChangeNotifier {
                 email: emailController.text.trim(),
                 phoneNo: phoneNoController.text.trim(),
                 password: passwordController.text.trim()));
-                
-       }
+      }
     } catch (e) {
       if (kDebugMode) {
         print("Error during sign up: $e");

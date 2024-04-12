@@ -14,7 +14,7 @@ A cutting-edge Flutter app with Firebase integration, TStore is designed to deli
 - [x] 🎨 **UI DESIGN**  
       Engaging designs with responsive layouts.
 
-- [ ] 🔐 **Firebase Auth**  
+- [x] 🔐 **Firebase Auth**  
       Secure sign-ins with email, Google, and Facebook.
 
 - [ ] 💻 **Backend with Firebase**  
@@ -74,6 +74,7 @@ A cutting-edge Flutter app with Firebase integration, TStore is designed to deli
 ### APP BACKEND
 
 - [x] Save User Information to Firestore
+- [x] Fetch User Information from Firestore
 - [ ] Fetch Categories
 - [ ] Fetch Brands
 - [ ] Fetch Products

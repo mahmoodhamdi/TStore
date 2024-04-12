@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
+import 'package:t_store/core/common/widgets/loading_view.dart';
 import 'package:t_store/core/common/widgets/navigation_menu.dart';
-import 'package:t_store/core/utils/constants/image_strings.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
@@ -38,8 +37,7 @@ class SignUpView extends StatelessWidget {
         if (state is AuthSigningUpWithEmail ||
             state is AuthSigningInWithFacebook ||
             state is AuthSigningUpWithGoogle) {
-          return Scaffold(
-              body: Center(child: Lottie.asset(TImages.docerAnimation)));
+          return const LoadingView();
         } else if (state is AuthSignedInWithFacebook ||
             state is AuthSignedInWithGoogle) {
           return const NavigationMenu();

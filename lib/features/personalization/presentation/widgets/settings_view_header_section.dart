@@ -7,6 +7,7 @@ import 'package:t_store/core/utils/constants/image_strings.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:t_store/features/personalization/presentation/models/user_profile_tile_model.dart';
 import 'package:t_store/features/personalization/presentation/views/profile_view.dart';
 import 'package:t_store/features/personalization/presentation/widgets/user_profile_tile.dart';
@@ -32,12 +33,13 @@ class SettingsViewHeaderSection extends StatelessWidget {
         const SizedBox(height: TSizes.spaceBtwSections),
         UserProfileTile(
           userProfileTileModel: UserProfileTileModel(
-              title: "Mahmoud Hamdy",
-              subtitle: "hmdy7486@gmail.com",
+              isNetworkImage: cachedUserData!.image != null,
+              title: cachedUserData!.username,
+              subtitle: cachedUserData!.email,
               onTap: () => THelperFunctions.navigateToScreen(
                   context, const ProfileView()),
               trailing: Iconsax.edit,
-              leading: TImages.user),
+              leading: cachedUserData!.image ?? TImages.user),
         ),
         const SizedBox(height: TSizes.spaceBtwSections * 1.2),
       ],

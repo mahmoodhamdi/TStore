@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:t_store/core/utils/exceptions/exceptions.dart';
@@ -14,6 +15,7 @@ import 'package:t_store/features/personalization/data/repositories/user_repo.dar
 class AuthRepoImpl implements AuthRepo {
   final FirebaseAuth _firebaseAuth;
   final UserRepo _userRepo; // Inject UserRepo
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   AuthRepoImpl(this._userRepo) : _firebaseAuth = FirebaseAuth.instance;
   @override
@@ -151,22 +153,7 @@ class AuthRepoImpl implements AuthRepo {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: authLoginWithEmailModel.email,
           password: authLoginWithEmailModel.password);
-      // After successful sign-in, retrieve user information and store it
-      User? user = _firebaseAuth.currentUser;
-      if (user != null) {
-        // Wait for the user data to become available
-        await user.reload();
-
-        // Retrieve the updated user object to ensure that all data is available
-        user = _firebaseAuth.currentUser;
-        UserModel userModel = UserModel(
-          email: authLoginWithEmailModel.email,
-          username: user!.providerData[0].displayName!,
-          emailVerified: user.emailVerified,
-          id: user.uid,
-        );
-        await _userRepo.saveUserData(userModel); // Save user data to Firestore
-      }
+          
     } on TPlatformException catch (e) {
       TLoggerHelper.error("Platform Exception", e);
       throw TPlatformException(e.code).message;
@@ -283,4 +270,39 @@ class AuthRepoImpl implements AuthRepo {
       throw Exception(e.toString());
     }
   }
+
+  @override
+  Future<UserModel?> fetchUserData() async {
+    try {
+      final documentSnapshot = await _firestore
+          .collection('users')
+          .doc(_firebaseAuth.currentUser!.uid)
+          .get();
+
+      if (documentSnapshot.exists) {
+        cachedUserData = UserModel.fromJson(documentSnapshot.data()!);
+        return cachedUserData;
+      } else {
+        return null;
+      }
+    } on TPlatformException catch (e) {
+      TLoggerHelper.error("Platform Exception", e);
+      throw TPlatformException(e.code).message;
+    } on FirebaseAuthException catch (e) {
+      TLoggerHelper.error("Firebase Auth Exception", e);
+      throw TFirebaseAuthException(e.code).message;
+    } on TFirebaseException catch (e) {
+      TLoggerHelper.error("Firebase Exception", e);
+      throw TFirebaseException(e.code).message;
+    } on TExceptions catch (e) {
+      TLoggerHelper.error("General Exception", e);
+      throw TExceptions(e.message).message;
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+      TLoggerHelper.error(stackTrace.toString());
+      throw Exception(e.toString());
+    }
+  }
 }
+
+UserModel? cachedUserData; // Global variable to store cached user data
