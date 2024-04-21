@@ -30,14 +30,17 @@ class _LoginViewState extends State<LoginView> {
             context: context,
           );
         }
-      },
-      builder: (context, state) {
         if (state is AuthLoggedInWithEmail ||
             state is AuthSignedInWithGoogle ||
             state is AuthSignedInWithFacebook) {
-
-          return const NavigationMenu();
-        } else if (state is AuthLoggingInWithEmail ||
+          THelperFunctions.navigateReplacementToScreen(
+            context,
+            const NavigationMenu(),
+          );
+        }
+      },
+      builder: (context, state) {
+        if (state is AuthLoggingInWithEmail ||
             state is AuthSigningInWithFacebook ||
             state is AuthSigningInWithGoogle) {
           return const LoadingView();

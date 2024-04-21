@@ -6,23 +6,19 @@ abstract class AuthRepo {
   // Method to sign up with email
   Future<void> signUpWithEmail({required AuthRegisterModel authRegisterModel});
 
-  // Method to send verification email
   Future<void> sendVerificationEmail();
-// method to check if the user is verified
   Future<bool> isVerified();
-  // Method to send reset password email
   Future<void> sendResetPasswordEmail({required String email});
-  // Method to log in with email
   Future<void> loginWithEmail(
       {required AuthLoginWithEmailModel authLoginWithEmailModel});
 
-  // Method to sign in with Google
   Future<void> signInWithGoogle();
 
-  // Method to log out
   Future<void> logout();
-  // Method to delete account
   Future<void> deleteAccount();
-  // Method to fetch user data
-  Future<UserModel?> fetchUserData();
+   Future<UserModel?> fetchUserData();
+  Future<void> uploadImage();
+  Future<UserModel> updateUserData(UserModel userModel);
+  Future<void> saveUserData(UserModel userModel);
+  Future<void> deleteUserData(String userId);
 }

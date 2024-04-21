@@ -13,6 +13,15 @@ class UserSaving extends UserState {}
 
 class UserSaved extends UserState {}
 
+class UserImageUploading extends UserState {}
+
+class UserImageUploadFailed extends UserState {
+  final String message;
+  const UserImageUploadFailed({required this.message});
+}
+
+class UserImageUploaded extends UserState {}
+
 class UserSaveFailed extends UserState {
   final String message;
   const UserSaveFailed({required this.message});
@@ -25,6 +34,10 @@ class UserFetched extends UserState {
   const UserFetched(this.user);
 }
 
+class UserUpdating extends UserState {}
+
+class UserUpdated extends UserState {}
+
 class UserFetchFailed extends UserState {
   final String message;
   const UserFetchFailed({required this.message});
@@ -32,5 +45,5 @@ class UserFetchFailed extends UserState {
 
 class UserFailure extends UserState {
   final String message;
-  const UserFailure({required  this.message});
+  const UserFailure({required this.message});
 }

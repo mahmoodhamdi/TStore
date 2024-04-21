@@ -79,6 +79,10 @@ class AuthFetchedUserData extends AuthState {
   const AuthFetchedUserData({required this.userModel});
 }
 
+class AuthImageUploading extends AuthState {}
+
+class AuthImageUploaded extends AuthState {}
+
 class AuthError extends AuthState {
   final String message;
 

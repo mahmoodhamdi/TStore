@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:t_store/core/utils/exceptions/exceptions.dart';
 import 'package:t_store/core/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:t_store/core/utils/exceptions/firebase_exceptions.dart';
@@ -10,14 +14,13 @@ import 'package:t_store/features/auth/data/repositories/auth_repo.dart';
 import 'package:t_store/features/auth/presentation/models/auth_login_with_email_model.dart';
 import 'package:t_store/features/auth/presentation/models/auth_register_model.dart';
 import 'package:t_store/features/personalization/data/models/user_model.dart';
-import 'package:t_store/features/personalization/data/repositories/user_repo.dart';
 
 class AuthRepoImpl implements AuthRepo {
-  final FirebaseAuth _firebaseAuth;
-  final UserRepo _userRepo; // Inject UserRepo
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final CollectionReference _usersCollection =
+      FirebaseFirestore.instance.collection('users');
 
-  AuthRepoImpl(this._userRepo) : _firebaseAuth = FirebaseAuth.instance;
   @override
   Future<void> signUpWithEmail(
       {required AuthRegisterModel authRegisterModel}) async {
@@ -51,7 +54,7 @@ class AuthRepoImpl implements AuthRepo {
         );
 
         // Save user data to Firestore
-        await _userRepo.saveUserData(userModel);
+        await saveUserData(userModel);
       }
     } on TPlatformException catch (e) {
       TLoggerHelper.error("Platform Exception", e);
@@ -153,7 +156,6 @@ class AuthRepoImpl implements AuthRepo {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: authLoginWithEmailModel.email,
           password: authLoginWithEmailModel.password);
-          
     } on TPlatformException catch (e) {
       TLoggerHelper.error("Platform Exception", e);
       throw TPlatformException(e.code).message;
@@ -200,18 +202,27 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<void> signInWithGoogle() async {
     try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
+      // Check if user is already signed in
+      if (_firebaseAuth.currentUser == null) {
+        final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+        final GoogleSignInAuthentication? googleAuth =
+            await googleUser?.authentication;
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken,
+          idToken: googleAuth?.idToken,
+        );
 
-      await _firebaseAuth.signInWithCredential(credential);
+        await _firebaseAuth.signInWithCredential(credential);
+      }
+
       // After successful sign-in, retrieve user information and store it
       User? user = _firebaseAuth.currentUser;
       if (user != null) {
+        // Check if user is already signed in to prevent updating information
+        if (user.providerData.isNotEmpty) {
+          return; // User is already signed in, no need to update information
+        }
+
         UserModel userModel = UserModel(
           email: user.providerData[0].email!,
           username: user.providerData[0].displayName!,
@@ -223,7 +234,7 @@ class AuthRepoImpl implements AuthRepo {
           id: user.uid,
           // Add other user information if needed
         );
-        await _userRepo.saveUserData(userModel); // Save user data to Firestore
+        await saveUserData(userModel); // Save user data to Firestore
       }
     } on TPlatformException catch (e) {
       TLoggerHelper.error("Platform Exception", e);
@@ -250,7 +261,7 @@ class AuthRepoImpl implements AuthRepo {
       await _firebaseAuth.currentUser?.delete();
       User? user = _firebaseAuth.currentUser;
       if (user != null) {
-        await _userRepo.deleteUserData(user.uid);
+        await deleteUserData(user.uid);
       }
     } on TPlatformException catch (e) {
       TLoggerHelper.error("Platform Exception", e);
@@ -280,8 +291,7 @@ class AuthRepoImpl implements AuthRepo {
           .get();
 
       if (documentSnapshot.exists) {
-        cachedUserData = UserModel.fromJson(documentSnapshot.data()!);
-        return cachedUserData;
+        return UserModel.fromJson(documentSnapshot.data()!);
       } else {
         return null;
       }
@@ -303,6 +313,111 @@ class AuthRepoImpl implements AuthRepo {
       throw Exception(e.toString());
     }
   }
-}
 
-UserModel? cachedUserData; // Global variable to store cached user data
+  @override
+  Future<void> uploadImage() async {
+    try {
+      final imagePicker = ImagePicker();
+      final XFile? image =
+          await imagePicker.pickImage(source: ImageSource.gallery);
+      final ref =
+          FirebaseStorage.instance.ref("profile_images").child(image!.name);
+      await ref.putFile(File(image.path));
+      final url = await ref.getDownloadURL();
+      await updateUserData(UserModel(
+        id: _firebaseAuth.currentUser!.uid,
+        image: url,
+        username: _firebaseAuth.currentUser!.displayName ?? '',
+        email: _firebaseAuth.currentUser!.email ?? '',
+      ));
+    } on TPlatformException catch (e) {
+      TLoggerHelper.error("Platform Exception", e);
+      throw TPlatformException(e.code).message;
+    } on FirebaseAuthException catch (e) {
+      TLoggerHelper.error("Firebase Auth Exception", e);
+      throw TFirebaseAuthException(e.code).message;
+    } on TFirebaseException catch (e) {
+      TLoggerHelper.error("Firebase Exception", e);
+      throw TFirebaseException(e.code).message;
+    } on TExceptions catch (e) {
+      TLoggerHelper.error("General Exception", e);
+      throw TExceptions(e.message).message;
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+      TLoggerHelper.error(stackTrace.toString());
+      throw Exception(e.toString());
+    }
+  }
+
+  @override
+  Future<UserModel> updateUserData(
+    UserModel userModel,
+  ) async {
+    try {
+      await _usersCollection.doc(userModel.id).update(userModel.toJson());
+      return userModel;
+    } on TPlatformException catch (e) {
+      TLoggerHelper.error("Platform Exception", e);
+      throw TPlatformException(e.code).message;
+    } on FirebaseAuthException catch (e) {
+      TLoggerHelper.error("Firebase Auth Exception", e);
+      throw TFirebaseAuthException(e.code).message;
+    } on TFirebaseException catch (e) {
+      TLoggerHelper.error("Firebase Exception", e);
+      throw TFirebaseException(e.code).message;
+    } on TExceptions catch (e) {
+      TLoggerHelper.error("General Exception", e);
+      throw TExceptions(e.message).message;
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+      TLoggerHelper.error(stackTrace.toString());
+      throw Exception(e.toString());
+    }
+  }
+
+  @override
+  Future<void> deleteUserData(String userId) async {
+    try {
+      await _usersCollection.doc(userId).delete();
+    } on TPlatformException catch (e) {
+      TLoggerHelper.error("Platform Exception", e);
+      throw TPlatformException(e.code).message;
+    } on FirebaseAuthException catch (e) {
+      TLoggerHelper.error("Firebase Auth Exception", e);
+      throw TFirebaseAuthException(e.code).message;
+    } on TFirebaseException catch (e) {
+      TLoggerHelper.error("Firebase Exception", e);
+      throw TFirebaseException(e.code).message;
+    } on TExceptions catch (e) {
+      TLoggerHelper.error("General Exception", e);
+      throw TExceptions(e.message).message;
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+      TLoggerHelper.error(stackTrace.toString());
+      throw Exception(e.toString());
+    }
+  }
+
+  @override
+  Future<void> saveUserData(UserModel userModel) async {
+    try {
+      await _usersCollection.doc(userModel.id).set(userModel.toJson());
+    } on TPlatformException catch (e) {
+      TLoggerHelper.error("Platform Exception", e);
+      throw TPlatformException(e.code).message;
+    } on FirebaseAuthException catch (e) {
+      TLoggerHelper.error("Firebase Auth Exception", e);
+      throw TFirebaseAuthException(e.code).message;
+    } on TFirebaseException catch (e) {
+      TLoggerHelper.error("Firebase Exception", e);
+      throw TFirebaseException(e.code).message;
+    } on TExceptions catch (e) {
+      TLoggerHelper.error("General Exception", e);
+      throw TExceptions(e.message).message;
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+      TLoggerHelper.error(stackTrace.toString());
+      throw Exception(e.toString());
+    }
+  }
+}
