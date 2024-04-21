@@ -70,11 +70,13 @@ A cutting-edge Flutter app with Firebase integration, TStore is designed to deli
 - [x] Forget Password & Reset Password
 - [x] Logout User
 - [x] Delete Account
+- [x] Save User Information to Firestore
+- [x] Fetch User Information from Firestore
+- [x] Upload User Profile Image to Cloud Storage
+- [x] Fetch User Profile Image from Cloud Storage
 
 ### APP BACKEND
 
-- [x] Save User Information to Firestore
-- [x] Fetch User Information from Firestore
 - [ ] Fetch Categories
 - [ ] Fetch Brands
 - [ ] Fetch Products

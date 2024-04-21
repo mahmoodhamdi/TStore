@@ -64,6 +64,35 @@ class UserModel {
     this.gender,
     this.birthDate,
   });
+  UserModel copyWith({
+    String? id,
+    String? firstName,
+    String? lastName,
+    String? username,
+    String? email,
+    String? phoneNumber,
+    Address? address,
+    String? image,
+    bool? rememberMe,
+    bool? emailVerified,
+    String? gender,
+    DateTime? birthDate,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      username: username ?? this.username,
+      email: email ?? this.email,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      address: address ?? this.address,
+      image: image ?? this.image,
+      rememberMe: rememberMe ?? this.rememberMe,
+      emailVerified: emailVerified ?? this.emailVerified,
+      gender: gender ?? this.gender,
+      birthDate: birthDate ?? this.birthDate,
+    );
+  }
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(

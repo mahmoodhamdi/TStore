@@ -14,8 +14,6 @@ import 'package:t_store/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:t_store/features/auth/presentation/models/on_boarding_cubit.dart';
 import 'package:t_store/features/auth/presentation/views/on_boarding/on_boarding_view.dart';
-import 'package:t_store/features/personalization/data/repositories/user_repo_impl.dart';
-import 'package:t_store/features/personalization/presentation/cubit/user_cubit.dart';
 import 'package:t_store/firebase_options.dart';
 
 Future<void> main() async {
@@ -48,7 +46,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => BannerCarouselSliderCubit(),
         ),
-        BlocProvider(create: (context) => UserCubit(getIt.get<UserRepoImpl>()))
+        // BlocProvider(create: (context) => UserCubit(getIt.get<UserRepoImpl>()))
       ],
       child: MaterialApp(
         title: TTexts.appName,
@@ -61,4 +59,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

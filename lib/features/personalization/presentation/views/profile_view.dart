@@ -8,7 +8,6 @@ import 'package:t_store/core/utils/constants/enums.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/formatters/formatter.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:t_store/features/auth/presentation/views/login/login_view.dart';
 import 'package:t_store/features/personalization/presentation/models/profile_entity_tile_model.dart';
@@ -24,36 +23,37 @@ class ProfileView extends StatelessWidget {
     final List<ProfileEntityTileModel> profileInformation = [
       ProfileEntityTileModel(
         title: "Name",
-        value: cachedUserData!.fullName,
+        value: context.read<AuthCubit>().userModel!.fullName,
         onTap: () {},
       ),
       ProfileEntityTileModel(
         title: "Username",
-        value: cachedUserData!.username,
+        value: context.read<AuthCubit>().userModel!.username,
       ),
     ];
     final List<ProfileEntityTileModel> personalInformation = [
       ProfileEntityTileModel(
         trailing: Iconsax.copy,
         title: "User ID",
-        value: cachedUserData!.id.toString(),
+        value: context.read<AuthCubit>().userModel!.id.toString(),
         onTap: () {},
       ),
       ProfileEntityTileModel(
         title: "Email",
-        value: cachedUserData!.email,
+        value: context.read<AuthCubit>().userModel!.email,
       ),
       ProfileEntityTileModel(
         title: "Phone Number",
-        value: cachedUserData!.phoneNumber ?? "None",
+        value: context.read<AuthCubit>().userModel!.phoneNumber ?? "None",
       ),
       ProfileEntityTileModel(
         title: "Gender",
-        value: cachedUserData!.gender ?? "None",
+        value: context.read<AuthCubit>().userModel!.gender ?? "None",
       ),
       ProfileEntityTileModel(
         title: "Date Of Birth",
-        value: TFormatter.formatDate(cachedUserData!.birthDate),
+        value: TFormatter.formatDate(
+            context.read<AuthCubit>().userModel!.birthDate),
       ),
     ];
     return Scaffold(

@@ -112,19 +112,15 @@ class THelperFunctions {
     required BuildContext context,
     AlertType type = AlertType.info,
   }) {
-    Color backgroundColor;
     Color iconColor;
     switch (type) {
       case AlertType.success:
-        backgroundColor = TColors.success.withOpacity(0.1);
         iconColor = TColors.success;
         break;
       case AlertType.error:
-        backgroundColor = TColors.error.withOpacity(0.1);
         iconColor = TColors.error;
         break;
       default:
-        backgroundColor = TColors.info.withOpacity(0.1);
         iconColor = TColors.info;
     }
 

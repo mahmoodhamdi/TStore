@@ -19,6 +19,7 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepo _authRepo;
   bool obscureText = true;
+  UserModel? userModel;
   AuthCubit(this._authRepo) : super(AuthInitial());
 
   Future<bool> checkConnection(BuildContext context) async {
@@ -119,7 +120,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthLoggingInWithEmail());
       await _authRepo.loginWithEmail(
           authLoginWithEmailModel: authLoginWithEmailModel);
-          
+
       await fetchUserData();
 
       emit(AuthLoggedInWithEmail());
@@ -243,14 +244,65 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> fetchUserData() async {
     try {
       emit(AuthFetchingUserData());
-      final UserModel? userModel = await _authRepo.fetchUserData();
+      userModel = await _authRepo.fetchUserData();
       if (userModel != null) {
         emit(AuthFetchedUserData(
-          userModel: userModel,
+          userModel: userModel!,
         ));
       } else {
         emit(const AuthError(message: "User not found"));
       }
+    } on TFirebaseAuthException catch (e) {
+      TLoggerHelper.error("Firebase Auth Exception", e);
+      emit(AuthError(message: e.message));
+    } on TPlatformException catch (e) {
+      TLoggerHelper.error("Platform Exception", e);
+      emit(AuthError(message: e.message));
+    } on TFirebaseException catch (e) {
+      TLoggerHelper.error("Firebase Exception", e);
+      emit(AuthError(message: e.message));
+    } on TExceptions catch (e) {
+      TLoggerHelper.error("General Exception", e);
+      emit(AuthError(message: e.message));
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+      TLoggerHelper.error(stackTrace.toString());
+      emit(AuthError(message: e.toString()));
+    }
+  }
+
+  Future<void> saveUserData(UserModel userModel) async {
+    try {
+      emit(AuthSavingUserData());
+      await _authRepo.saveUserData(userModel);
+      emit(
+          AuthSavedUserData()); // Emit a state to indicate successful user data saving
+    } on TFirebaseAuthException catch (e) {
+      TLoggerHelper.error("Firebase Auth Exception", e);
+      emit(AuthError(message: e.message));
+    } on TPlatformException catch (e) {
+      TLoggerHelper.error("Platform Exception", e);
+      emit(AuthError(message: e.message));
+    } on TFirebaseException catch (e) {
+      TLoggerHelper.error("Firebase Exception", e);
+      emit(AuthError(message: e.message));
+    } on TExceptions catch (e) {
+      TLoggerHelper.error("General Exception", e);
+      emit(AuthError(message: e.message));
+    } catch (e, stackTrace) {
+      TLoggerHelper.error("An error occurred", e);
+      TLoggerHelper.error(stackTrace.toString());
+      emit(AuthError(message: e.toString()));
+    }
+  }
+
+  Future<void> uploadImage() async {
+    try {
+      emit(AuthImageUploading());
+      await _authRepo.uploadImage();
+      await fetchUserData();
+      TLoggerHelper.info("UserModel: $userModel");
+      emit(AuthImageUploaded());
     } on TFirebaseAuthException catch (e) {
       TLoggerHelper.error("Firebase Auth Exception", e);
       emit(AuthError(message: e.message));
