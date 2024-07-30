@@ -7,38 +7,6 @@ class TImages {
       "assets/logos/t-store-splash-logo-black.png";
   static const String lightAppLogo =
       "assets/logos/t-store-splash-logo-white.png";
-// -- Animations
-  static const String securityIconTransparent =
-      "assets/images/animations/67263-security-icon-transparent.json";
-  static const String emptyFile =
-      "assets/images/animations/53207-empty-file.json";
-  static const String checkRegister =
-      "assets/images/animations/72462-check-register.json";
-  static const String searching =
-      "assets/images/animations/72785-searching.json";
-  static const String packagingInProgress =
-      "assets/images/animations/98783-packaging-in-progress.json";
-  static const String thankYou =
-      "assets/images/animations/104368-thank-you.json";
-  static const String paperPlane =
-      "assets/images/animations/110052-paper-plane.json";
-  static const String paymentSuccessful =
-      "assets/images/animations/120978-payment-successful.json";
-  static const String carRides =
-      "assets/images/animations/136491-animation-lottie-car-rides.json";
-  static const String pencilDrawing =
-      "assets/images/animations/140429-pencil-drawing.json";
-  static const String loadingJuggle =
-      "assets/images/animations/141397-loading-juggle.json";
-  static const String docerAnimation =
-      "assets/images/animations/141594-animation-of-docer.json";
-  static const String cloudUploadingAnimation =
-      "assets/images/animations/cloud-uploading-animation.json";
-  static const String ladyAddingProductInCartAnimation =
-      "assets/images/animations/lady-adding-product-in-cart-animation.json";
-  static const String loaderAnimation = "assets/images/loader-animation.json";
-  static const String orderCompleteCarDeliveryAnimation =
-      "assets/images/animations/order-complete-car-delivery-animation.json";
 
   // -- Social Logos
   static const String google = "assets/logos/google-icon.png";

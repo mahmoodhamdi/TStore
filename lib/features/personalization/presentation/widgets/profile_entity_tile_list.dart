@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/features/personalization/presentation/models/profile_entity_tile_model.dart';
+import 'package:t_store/features/personalization/presentation/view_models/profile_entity_tile_model.dart';
 import 'package:t_store/features/personalization/presentation/widgets/profile_entity_tile.dart';
 
 class ProfileEntityTileList extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:t_store/core/common/widgets/primary_header_container.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/features/personalization/presentation/models/settings_menu_tile_model.dart';
+import 'package:t_store/features/personalization/presentation/view_models/settings_menu_tile_model.dart';
 import 'package:t_store/features/personalization/presentation/views/user_addresses_view.dart';
 import 'package:t_store/features/personalization/presentation/widgets/account_settings_section.dart';
 import 'package:t_store/features/personalization/presentation/widgets/app_settings_section.dart';
