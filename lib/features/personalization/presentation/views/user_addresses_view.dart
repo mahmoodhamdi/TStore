@@ -5,7 +5,7 @@ import 'package:t_store/core/common/widgets/app_bar.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/features/personalization/presentation/models/single_address_model.dart';
+import 'package:t_store/features/personalization/presentation/view_models/single_address_model.dart';
 import 'package:t_store/features/personalization/presentation/views/add_new_addresses_view.dart';
 import 'package:t_store/features/personalization/presentation/widgets/single_address.dart';
 
