@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:t_store/core/common/models/rounded_image_model.dart';
 import 'package:t_store/core/common/widgets/rounded_image.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
-import 'package:t_store/features/personalization/presentation/models/user_profile_tile_model.dart';
+import 'package:t_store/features/personalization/presentation/view_models/user_profile_tile_model.dart';
 
 class UserProfileTile extends StatelessWidget {
   const UserProfileTile({
@@ -15,7 +15,6 @@ class UserProfileTile extends StatelessWidget {
     return ListTile(
         leading: RoundedImage(
             roundedImageModel: RoundedImageModel(
-                isNetworkImage: userProfileTileModel.isNetworkImage,
                 image: userProfileTileModel.leading,
                 width: 50,
                 height: 50,

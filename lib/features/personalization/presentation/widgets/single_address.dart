@@ -5,7 +5,7 @@ import 'package:t_store/core/common/widgets/circular_container.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/features/personalization/presentation/models/single_address_model.dart';
+import 'package:t_store/features/personalization/presentation/view_models/single_address_model.dart';
 
 class SingleAddress extends StatelessWidget {
   const SingleAddress({super.key, required this.singleAddressModel});

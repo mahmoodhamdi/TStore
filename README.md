@@ -1,10 +1,10 @@
-# t_store
+# TStore
 
 [![wakatime](https://wakatime.com/badge/user/018c9017-daf8-45c1-be71-8b16fd238022/project/018dce88-f188-421c-bcff-7e46f8f2e7ed.svg)](https://wakatime.com/@mahmoud_hamdy/projects/gcnjzeqylb)
 
 ## Description
 
-A cutting-edge Flutter app with Firebase integration, TStore is designed to deliver a modern design, smooth user experience, and powerful functionality for crafting efficient eCommerce solutions. **(Project in Progress)**
+TStore is a full-functionality eCommerce app built with Flutter and integrated with Firebase. Designed to deliver a modern design and smooth user experience, TStore follows clean architecture principles, SOLID design principles, and clean code practices.
 
 ## 🌟 Features Overview
 
@@ -14,11 +14,20 @@ A cutting-edge Flutter app with Firebase integration, TStore is designed to deli
 - [x] 🎨 **UI DESIGN**  
       Engaging designs with responsive layouts.
 
-- [x] 🔐 **Firebase Auth**  
+- [ ] 🔐 **Firebase Auth**  
       Secure sign-ins with email, Google, and Facebook.
 
 - [ ] 💻 **Backend with Firebase**  
       Uses Firestore for data and Cloud Storage for files.
+
+- [ ] 📦 **Order Management**  
+      Comprehensive order management features.
+
+- [ ] 📊 **Analytics and Reporting**  
+      Tools for tracking and reporting on various metrics.
+
+- [ ] 💬 **Real-time Chat**  
+      Integrated chat feature for customer support.
 
 ## Detailed Features
 
@@ -60,20 +69,13 @@ A cutting-edge Flutter app with Firebase integration, TStore is designed to deli
 
 ### FIREBASE AUTHENTICATION
 
-- [x] Firebase Setup
+- [ ] Firebase Setup
 - [ ] OnBoarding Single Time Appearance (Local Storage)
-- [x] Register using Email & Password
-- [x] Email Verification
-- [x] Login using Email & Password
-- [x] GOOGLE SIGN-IN
+- [ ] Register User & Email Verification
+- [ ] Login using Email & Password
+- [ ] GOOGLE SIGN-IN
 - [ ] FACEBOOK SIGN-IN
-- [x] Forget Password & Reset Password
-- [x] Logout User
-- [x] Delete Account
-- [x] Save User Information to Firestore
-- [x] Fetch User Information from Firestore
-- [x] Upload User Profile Image to Cloud Storage
-- [x] Fetch User Profile Image from Cloud Storage
+- [ ] Forget Password & Reset Password
 
 ### APP BACKEND
 
@@ -85,34 +87,28 @@ A cutting-edge Flutter app with Firebase integration, TStore is designed to deli
 - [ ] Add to Cart
 - [ ] Checkout & Create Orders
 
-## Screenshots
+### ORDER MANAGEMENT
 
-### Onboarding and Authentication
+- [ ] Order History
+- [ ] Track Orders
+- [ ] Order Notifications
+- [ ] Manage Returns & Refunds
 
-- Onboarding ![Onboarding](assets/screenshots/Onboarding.png)
-- Register ![Register](assets/screenshots/Register.png)
-- Login ![Login](assets/screenshots/Login.png)
-- Forget/Reset Password ![Forget-Reset](assets/screenshots/Forget-Reset.png)
-- Email Verification Success ![Verify-Email-Success](assets/screenshots/Verify-Email-Success.png)
+### ANALYTICS AND REPORTING
 
-### App Interface and Navigation
+- [ ] Sales Reports
+- [ ] User Activity Tracking
+- [ ] Product Performance Analytics
+- [ ] Real-time Dashboard
 
-- Splash Screen ![Splash-Screen](assets/screenshots/Splash-Screen.png)
-- Dark Mode ![Dark-mode-all-screens](assets/screenshots/Dark-mode-all-screens.png)
-- Light Mode ![Light-mode-all-screens](assets/screenshots/Light-mode-all-screens-image.png)
+### REAL-TIME CHAT
 
-### Product Showcase and Management
+- [ ] Customer Support Chat
+- [ ] Chat History
+- [ ] Push Notifications for New Messages
 
-- Product Detail ![product-detail](assets/screenshots/product-detail.png)
-- Store ![store](assets/screenshots/store.png)
-- Brands ![Brands](assets/screenshots/Brands.png)
-- Subcategories ![subcategories](assets/screenshots/subcategories.png)
+## Contact
 
-### User and Order Management
+For more details, visit my [LinkedIn](https://www.linkedin.com/in/mahmoud-hamdy-alashwah/).
 
-- User Profile ![Profile](assets/screenshots/Profile.png)
-- Settings ![Settings](assets/screenshots/Settings.png)
-- Orders ![Orders](assets/screenshots/Orders.png)
-- Checkout ![CHECKOUT](assets/screenshots/CHECKOUT.png)
-- Cart ![ Cart](assets/screenshots/Cart.png)
-- Wishlist ![Wishlist](assets/screenshots/Wishlist.png)
+---
