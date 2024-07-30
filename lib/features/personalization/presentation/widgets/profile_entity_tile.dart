@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
-import 'package:t_store/features/personalization/presentation/models/profile_entity_tile_model.dart';
+import 'package:t_store/features/personalization/presentation/view_models/profile_entity_tile_model.dart';
 
 class ProfileEntityTile extends StatelessWidget {
   const ProfileEntityTile({

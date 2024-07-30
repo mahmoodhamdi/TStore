@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
-import 'package:t_store/features/personalization/presentation/models/settings_menu_tile_model.dart';
+import 'package:t_store/features/personalization/presentation/view_models/settings_menu_tile_model.dart';
 
 class SettingsMenuTile extends StatelessWidget {
   const SettingsMenuTile({super.key, required this.settingsMenuTileModel});

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:t_store/core/common/models/app_bar_model.dart';
 import 'package:t_store/core/common/models/cart_counter_icon_model.dart';
 import 'package:t_store/core/common/widgets/app_bar.dart';
@@ -7,7 +6,6 @@ import 'package:t_store/core/common/widgets/cart_counter_icon.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:t_store/features/shop/presentation/views/cart_view.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -29,7 +27,7 @@ class HomeAppBar extends StatelessWidget {
                   ),
             ),
             Text(
-              context.read<AuthCubit>().userModel!.username,
+              TTexts.homeAppbarSubTitle,
               style: Theme.of(context).textTheme.headlineSmall!.apply(
                     color: TColors.white,
                   ),
