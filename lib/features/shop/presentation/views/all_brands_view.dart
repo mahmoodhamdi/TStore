@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/common/models/app_bar_model.dart';
-import 'package:t_store/core/common/models/brand_card_model.dart';
-import 'package:t_store/core/common/models/grid_layout_model.dart';
-import 'package:t_store/core/common/models/section_heading_model.dart';
+import 'package:t_store/core/common/view_models/app_bar_view_model.dart';
+import 'package:t_store/core/common/view_models/brand_card_view_model.dart';
+import 'package:t_store/core/common/view_models/grid_layout_view_model.dart';
+import 'package:t_store/core/common/view_models/section_heading_view_model.dart';
 import 'package:t_store/core/common/widgets/app_bar.dart';
 import 'package:t_store/core/common/widgets/brand_card.dart';
 import 'package:t_store/core/common/widgets/section_heading.dart';

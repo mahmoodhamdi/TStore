@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:t_store/core/common/models/app_bar_model.dart';
+import 'package:t_store/core/common/view_models/app_bar_view_model.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/device/device_utility.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';

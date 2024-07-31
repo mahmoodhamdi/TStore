@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/common/models/product_title_text_model.dart';
+import 'package:t_store/core/common/view_models/product_title_text_view_model.dart';
 
 class ProductTitleText extends StatelessWidget {
   const ProductTitleText({

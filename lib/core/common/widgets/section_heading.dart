@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/common/models/section_heading_model.dart';
+import 'package:t_store/core/common/view_models/section_heading_view_model.dart';
 
 class SectionHeading extends StatelessWidget {
   const SectionHeading({

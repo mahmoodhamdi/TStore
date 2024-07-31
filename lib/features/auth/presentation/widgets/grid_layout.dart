@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/common/models/grid_layout_model.dart';
+import 'package:t_store/core/common/view_models/grid_layout_view_model.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 
 class GridLayout extends StatelessWidget {
