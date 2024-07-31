@@ -8,13 +8,9 @@ class GetProductsByCategoryAndSearchUsecase {
 
   GetProductsByCategoryAndSearchUsecase({required this.shopRepository});
 
-  Future<Either<TExceptions, List<ProductEntity>>> call({
-     int ?categoryId,
-     String ?search,
-  }) async {
+  Future<Either<TExceptions, List<ProductEntity>>> call(
+      {required int categoryId, String? search}) async {
     return await shopRepository.getProductsByCategoryAndSearch(
-      categoryId: categoryId,
-      search: search,
-    );
+        categoryId: categoryId, search: search);
   }
 }

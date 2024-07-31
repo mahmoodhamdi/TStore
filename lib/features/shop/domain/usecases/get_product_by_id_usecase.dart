@@ -8,7 +8,7 @@ class GetProductByIdUsecase {
 
   GetProductByIdUsecase({required this.shopRepository});
 
-  Future<Either<TExceptions, ProductEntity>> call(int id) async {
-    return await shopRepository.getProductById(id: id);
+  Future<Either<TExceptions, ProductEntity>> call({required int productId}) async {
+    return await shopRepository.getProductById(productId: productId);
   }
 }

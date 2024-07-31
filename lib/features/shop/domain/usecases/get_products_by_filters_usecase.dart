@@ -9,10 +9,10 @@ class GetProductsByFiltersUsecase {
   GetProductsByFiltersUsecase({required this.shopRepository});
 
   Future<Either<TExceptions, List<ProductEntity>>> call({
-    int? categoryId,
-    String? search,
-    num? maxPrice,
-    num? minPrice,
+    int? categoryId=0,
+    String? search="",
+    num? maxPrice=1000000,
+    num? minPrice=0,
   }) async {
     return await shopRepository.getProductsByFilters(
       categoryId: categoryId,
