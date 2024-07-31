@@ -1,5 +1,4 @@
-class ProductModel {
-  
+class ProductViewModel {
   final String id;
   final String name;
   final String description;
@@ -8,9 +7,9 @@ class ProductModel {
   final String category;
   final String brand;
   final String rating;
-  final String ?stock;
-  final String ?discount;
-  ProductModel({
+  final String? stock;
+  final String? discount;
+  ProductViewModel({
     required this.id,
     required this.name,
     required this.description,

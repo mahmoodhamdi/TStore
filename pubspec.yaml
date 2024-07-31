@@ -85,7 +85,6 @@ flutter:
     - assets/icons/payment_methods/
     - assets/images/
     - assets/logos/
-    - assets/screenshots/
   fonts:
     - family: Coolvetica
       fonts:

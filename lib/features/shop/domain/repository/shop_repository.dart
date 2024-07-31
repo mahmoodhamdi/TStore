@@ -8,7 +8,7 @@ abstract class ShopRepository {
   Future<Either<TExceptions, CategoryEntity>> getCategoryById(
       {required int categoryId});
   Future<Either<TExceptions, List<ProductEntity>>> getProductsList();
-  Future<Either<TExceptions, ProductEntity>> getProductById({required int id});
+  Future<Either<TExceptions, ProductEntity>> getProductById({required int productId});
 
   Future<Either<TExceptions, List<ProductEntity>>> getProductsByCategory(
       {required int categoryId});
@@ -17,11 +17,11 @@ abstract class ShopRepository {
       {int? categoryId, String? search, num? maxPrice, num? minPrice});
 
   Future<Either<TExceptions, List<ProductEntity>>> getProductsByPriceRange(
-      {num? maxPrice, num? minPrice});
+      {num? maxPrice=1000000, num? minPrice=0});
 
   Future<Either<TExceptions, List<ProductEntity>>> getProductsBySearch(
       {String? search});
 
   Future<Either<TExceptions, List<ProductEntity>>>
-      getProductsByCategoryAndSearch({int? categoryId, String? search});
+      getProductsByCategoryAndSearch({required int categoryId, String ?search});
 }
