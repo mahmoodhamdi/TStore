@@ -1,10 +1,10 @@
 //ProductAttributes
 import 'package:flutter/material.dart';
-import 'package:t_store/core/common/models/choice_chip_model.dart';
-import 'package:t_store/core/common/models/circular_container_model.dart';
-import 'package:t_store/core/common/models/product_price_text_model.dart';
-import 'package:t_store/core/common/models/product_title_text_model.dart';
-import 'package:t_store/core/common/models/section_heading_model.dart';
+import 'package:t_store/core/common/view_models/choice_chip_view_model.dart';
+import 'package:t_store/core/common/view_models/circular_container_view_model.dart';
+import 'package:t_store/core/common/view_models/product_price_text_view_model.dart';
+import 'package:t_store/core/common/view_models/product_title_text_view_model.dart';
+import 'package:t_store/core/common/view_models/section_heading_view_model.dart';
 import 'package:t_store/core/common/widgets/circular_container.dart';
 import 'package:t_store/core/common/widgets/custom_choice_chip.dart';
 import 'package:t_store/core/common/widgets/product_price_text.dart';

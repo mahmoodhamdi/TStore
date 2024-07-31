@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/common/models/brand_title_with_verification_model.dart';
-import 'package:t_store/core/common/models/product_title_text_model.dart';
-import 'package:t_store/core/common/models/rounded_image_model.dart';
+import 'package:t_store/core/common/view_models/brand_title_with_verification_view_model.dart';
+import 'package:t_store/core/common/view_models/product_title_text_view_model.dart';
+import 'package:t_store/core/common/view_models/rounded_image_view_model.dart';
 import 'package:t_store/core/common/widgets/brand_title_with_verification.dart';
 import 'package:t_store/core/common/widgets/product_title_text.dart';
 import 'package:t_store/core/common/widgets/rounded_image.dart';

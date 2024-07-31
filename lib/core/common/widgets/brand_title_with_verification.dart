@@ -1,7 +1,7 @@
 //brand_title_with_verification.dart
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:t_store/core/common/models/brand_title_with_verification_model.dart';
+import 'package:t_store/core/common/view_models/brand_title_with_verification_view_model.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 
 class BrandTitleWithVerification extends StatelessWidget {
