@@ -9,8 +9,8 @@ class GetProductsByPriceRangeUsecase {
   GetProductsByPriceRangeUsecase({required this.shopRepository});
 
   Future<Either<TExceptions, List<ProductEntity>>> call({
-     num maxPrice=1000000,
-     num minPrice=0,
+     num? maxPrice=1000000,
+     num ?minPrice=0,
   }) async {
     return await shopRepository.getProductsByPriceRange(maxPrice: maxPrice, minPrice: minPrice);
   }
