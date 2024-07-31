@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/common/models/circular_container_model.dart';
-import 'package:t_store/core/common/models/section_heading_model.dart';
+import 'package:t_store/core/common/view_models/circular_container_view_model.dart';
+import 'package:t_store/core/common/view_models/section_heading_view_model.dart';
 import 'package:t_store/core/common/widgets/circular_container.dart';
 import 'package:t_store/core/common/widgets/section_heading.dart';
 import 'package:t_store/core/utils/constants/colors.dart';

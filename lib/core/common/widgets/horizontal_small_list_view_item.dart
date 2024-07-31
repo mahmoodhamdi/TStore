@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/common/models/horizontal_small_list_view_item_model.dart';
+import 'package:t_store/core/common/view_models/horizontal_small_list_view_item_view_model.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';

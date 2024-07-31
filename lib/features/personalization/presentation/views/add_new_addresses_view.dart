@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/common/models/app_bar_model.dart';
+import 'package:t_store/core/common/view_models/app_bar_view_model.dart';
 import 'package:t_store/core/common/widgets/app_bar.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/features/personalization/presentation/widgets/new_address_form.dart';

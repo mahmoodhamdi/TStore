@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:t_store/core/common/models/app_bar_model.dart';
-import 'package:t_store/core/common/models/circular_icon_model.dart';
+import 'package:t_store/core/common/view_models/app_bar_view_model.dart';
+import 'package:t_store/core/common/view_models/circular_icon_view_model.dart';
 import 'package:t_store/core/common/widgets/app_bar.dart';
 import 'package:t_store/core/common/widgets/circular_icon.dart';
 import 'package:t_store/core/common/widgets/curved_widget.dart';
