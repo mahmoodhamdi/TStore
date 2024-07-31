@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:t_store/core/common/models/section_heading_model.dart';
+import 'package:t_store/core/common/view_models/section_heading_view_model.dart';
 import 'package:t_store/core/common/widgets/read_more.dart';
 import 'package:t_store/core/common/widgets/section_heading.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
