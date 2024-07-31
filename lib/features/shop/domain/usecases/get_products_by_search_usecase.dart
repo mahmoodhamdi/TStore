@@ -9,7 +9,7 @@ class GetProductsBySearchUsecase {
   GetProductsBySearchUsecase({required this.shopRepository});
 
   Future<Either<TExceptions, List<ProductEntity>>> call(
-      { String ?search}) async {
+      { String ?search=""}) async {
     return await shopRepository.getProductsBySearch(search: search);
   }
 }
