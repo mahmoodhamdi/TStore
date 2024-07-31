@@ -11,6 +11,7 @@ import 'package:t_store/features/shop/domain/usecases/get_products_by_filters_us
 import 'package:t_store/features/shop/domain/usecases/get_products_by_price_range_usecase.dart';
 import 'package:t_store/features/shop/domain/usecases/get_products_by_search_usecase.dart';
 import 'package:t_store/features/shop/domain/usecases/get_products_list_usecase.dart';
+import 'package:t_store/features/shop/presentation/controller/shop_bloc.dart';
 
 final getIt = GetIt.instance;
 
@@ -51,4 +52,18 @@ setupServiceLocator() {
 
   getIt.registerSingleton<GetProductByIdUsecase>(
       GetProductByIdUsecase(shopRepository: getIt.get<ShopRepositoryImpl>()));
+
+// register controllers
+  getIt.registerSingleton<ShopBloc>(ShopBloc(
+    getCategoriesListUsecase: getIt.get<GetCategoriesListUsecase>(),
+    getCategoryByIdUsecase: getIt.get<GetCategoryByIdUsecase>(),
+    getProductsListUsecase: getIt.get<GetProductsListUsecase>(),
+    getProductsBySearchUsecase: getIt.get<GetProductsBySearchUsecase>(),
+    getProductsByCategoryUsecase: getIt.get<GetProductsByCategoryUsecase>(),
+    getProductsByCategoryAndSearchUsecase:
+        getIt.get<GetProductsByCategoryAndSearchUsecase>(),
+    getProductsByFiltersUsecase: getIt.get<GetProductsByFiltersUsecase>(),
+    getProductsByPriceRangeUsecase: getIt.get<GetProductsByPriceRangeUsecase>(),
+    getProductByIdUsecase: getIt.get<GetProductByIdUsecase>(),
+  ));
 }
