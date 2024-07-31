@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:t_store/core/common/models/rounded_image_model.dart';
+import 'package:t_store/core/common/view_models/rounded_image_view_model.dart';
 
 class RoundedImage extends StatelessWidget {
   const RoundedImage({

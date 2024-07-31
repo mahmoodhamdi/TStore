@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/common/models/product_price_text_model.dart';
+import 'package:t_store/core/common/view_models/product_price_text_view_model.dart';
 import 'package:t_store/core/common/widgets/product_price_text.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/features/shop/presentation/widgets/cart_item.dart';
