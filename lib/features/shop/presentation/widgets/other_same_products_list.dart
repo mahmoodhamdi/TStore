@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/common/models/rounded_image_model.dart';
+import 'package:t_store/core/common/view_models/rounded_image_view_model.dart';
 import 'package:t_store/core/common/widgets/rounded_image.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/image_strings.dart';

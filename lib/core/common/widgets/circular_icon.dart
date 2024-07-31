@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/common/models/circular_icon_model.dart';
+import 'package:t_store/core/common/view_models/circular_icon_view_model.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
 

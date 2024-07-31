@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/core/common/models/app_bar_model.dart';
-import 'package:t_store/core/common/models/brand_card_model.dart';
+import 'package:t_store/core/common/view_models/app_bar_view_model.dart';
+import 'package:t_store/core/common/view_models/brand_card_view_model.dart';
 import 'package:t_store/core/common/widgets/app_bar.dart';
 import 'package:t_store/core/common/widgets/brand_card.dart';
 import 'package:t_store/core/utils/constants/image_strings.dart';
