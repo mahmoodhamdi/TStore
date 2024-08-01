@@ -33,13 +33,13 @@ class HorizontalSmallListViewItem extends StatelessWidget {
                   Radius.circular(100),
                 ),
                 color: item.backgroundColor ??
-                    (dark ? TColors.black : TColors.white),
+                    (dark ? TColors.white : TColors.black),
               ),
               child: Center(
                 child: Image(
                     image: AssetImage(item.image),
                     fit: BoxFit.cover,
-                    color: dark ? TColors.white : TColors.black),
+                    color: dark ? TColors.black : TColors.white),
               ),
             ),
             const SizedBox(height: TSizes.spaceBtwItems / 2),
