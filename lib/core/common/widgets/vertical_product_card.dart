@@ -54,7 +54,7 @@ class VerticalProductCard extends StatelessWidget {
                         roundedImageModel: RoundedImageModel(
                             backgroundColor:
                                 dark ? TColors.dark : TColors.light,
-                            image: TImages.productImage1,
+                            image: TImages.productImage13,
                             onTap: () {},
                             applyImageRadius: true),
                       ),
