@@ -12,7 +12,7 @@ class SelectedProductImage extends StatelessWidget {
         height: 400,
         child: Padding(
           padding: EdgeInsets.all(TSizes.productImageRadius * 3),
-          child: Center(child: Image(image: AssetImage(TImages.productImage3))),
+          child: Center(child: Image(image: AssetImage(TImages.productImage13))),
         ));
   }
 }
