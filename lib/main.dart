@@ -8,6 +8,7 @@ import 'package:t_store/features/auth/presentation/views/on_boarding/on_boarding
 
 void main() async {
   await setupServiceLocator();
+
   runApp(const MyApp());
 }
 
