@@ -7,7 +7,8 @@ class GetProductsListUsecase {
   final ShopRepository shopRepository;
 
   GetProductsListUsecase({required this.shopRepository});
-  Future<Either<TExceptions, List<ProductEntity>>> call() async {
-    return await shopRepository.getProductsList();
+  Future<Either<TExceptions, List<ProductEntity>>> call(
+      {int page = 0, int limit = 10}) async {
+    return await shopRepository.getProductsList(page: page, limit: limit);
   }
 }
