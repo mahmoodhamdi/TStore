@@ -7,6 +7,7 @@ import 'package:t_store/features/shop/domain/usecases/get_products_by_category_u
 import 'package:t_store/features/shop/domain/usecases/get_products_by_search_usecase.dart';
 import 'package:t_store/features/shop/domain/usecases/get_products_list_usecase.dart';
 import 'package:t_store/features/shop/domain/usecases/get_sorted_products_usecase.dart';
+import 'package:t_store/features/shop/presentation/controller/shop_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -35,4 +36,13 @@ setupServiceLocator() {
       GetProductByIdUsecase(shopRepository: getIt.get<ShopRepositoryImpl>()));
   getIt.registerSingleton<GetSortedProductsUsecase>(GetSortedProductsUsecase(
       shopRepository: getIt.get<ShopRepositoryImpl>()));
+
+// register controllers
+  getIt.registerSingleton<ShopCubit>(ShopCubit(
+    getProductsListUsecase: getIt.get<GetProductsListUsecase>(),
+    getProductsBySearchUsecase: getIt.get<GetProductsBySearchUsecase>(),
+    getProductsByCategoryUsecase: getIt.get<GetProductsByCategoryUsecase>(),
+    getProductByIdUsecase: getIt.get<GetProductByIdUsecase>(),
+    getSortedProductsUsecase: getIt.get<GetSortedProductsUsecase>(),
+  ));
 }
