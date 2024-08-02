@@ -27,6 +27,19 @@ class ShopProductLoaded extends ShopState {
   List<Object> get props => [product];
 }
 
+class ShopSortedProductsLoaded extends ShopState {
+  final List<ProductEntity> productsList;
+  const ShopSortedProductsLoaded({required this.productsList});
+}
+
+class ShopSearchProductsLoaded extends ShopState {
+  final List<ProductEntity> productsList;
+  const ShopSearchProductsLoaded({required this.productsList});
+}
+class ShopCategoryProductsLoaded extends ShopState {
+  final List<ProductEntity> productsList;
+  const ShopCategoryProductsLoaded({required this.productsList});
+}
 class ShopError extends ShopState {
   final TExceptions error;
   const ShopError({required this.error});
