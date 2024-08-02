@@ -9,7 +9,6 @@ import 'package:t_store/core/common/widgets/product_title_text.dart';
 import 'package:t_store/core/common/widgets/rounded_image.dart';
 import 'package:t_store/core/common/widgets/sale_tag.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
-import 'package:t_store/core/utils/constants/enums.dart';
 import 'package:t_store/core/utils/constants/image_strings.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
@@ -82,8 +81,8 @@ class ProductMetadata extends StatelessWidget {
             ),
           ),
           const BrandTitleWithVerification(
-            brandTitleWithVerificationModel: BrandTitleWithVerificationModel(
-                brandName: "Nike", textSizes: TextSizes.medium),
+            brandTitleWithVerificationModel:
+                BrandTitleWithVerificationModel(brandName: "Nike"),
           ),
         ],
       ),

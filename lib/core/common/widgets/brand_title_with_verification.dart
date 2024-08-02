@@ -19,7 +19,7 @@ class BrandTitleWithVerification extends StatelessWidget {
         Flexible(
           child: Text(
             brandTitleWithVerificationModel.brandName,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.labelLarge,
             maxLines: brandTitleWithVerificationModel.maxLines,
             overflow: TextOverflow.ellipsis,
           ),

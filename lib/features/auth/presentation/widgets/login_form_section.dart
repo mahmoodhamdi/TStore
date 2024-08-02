@@ -6,8 +6,10 @@ import 'package:t_store/core/cubits/navigation_menu_cubit/navigation_menu_cubit.
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/core/utils/service_locator/service_locator.dart';
 import 'package:t_store/features/auth/presentation/views/password_configuration/forget_password_view.dart';
 import 'package:t_store/features/auth/presentation/views/signup/sign_up_view.dart';
+import 'package:t_store/features/shop/presentation/controller/shop_cubit.dart';
 
 class LoginFormSection extends StatelessWidget {
   const LoginFormSection({
@@ -66,10 +68,17 @@ class LoginFormSection extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
-                THelperFunctions.navigateToScreen(
+                THelperFunctions.navigateReplacementToScreen(
                     context,
-                    BlocProvider(
-                      create: (context) => NavigationMenuCubit(),
+                    MultiBlocProvider(
+                      providers: [
+                        BlocProvider(
+                          create: (context) => getIt<NavigationMenuCubit>(),
+                        ),
+                        BlocProvider(
+                          create: (context) => getIt<ShopCubit>()..getSortedProducts(sortBy: 'rating', sortType: "desc"),
+                        ),
+                      ],
                       child: const NavigationMenu(),
                     ));
               },
