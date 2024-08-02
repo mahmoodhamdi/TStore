@@ -12,6 +12,7 @@ import 'package:t_store/core/common/widgets/app_bar.dart';
 import 'package:t_store/core/common/widgets/circular_icon.dart';
 import 'package:t_store/core/common/widgets/vertical_product_card.dart';
 import 'package:t_store/features/auth/presentation/widgets/grid_layout.dart';
+import 'package:t_store/features/shop/domain/entities/product_entity.dart';
 
 class WishlistView extends StatelessWidget {
   const WishlistView({super.key});
@@ -44,7 +45,28 @@ class WishlistView extends StatelessWidget {
                   gridLayoutModel: GridLayoutModel(
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return const VerticalProductCard();
+                      return   VerticalProductCard(
+                           product: ProductEntity(
+                      id: index,
+                      title: "Product $index",
+                      price: 100,
+                      images: const ["https://picsum.photos/200"],
+                      category: "Category $index",
+                      description: "Description $index",
+                      rating: 4.5,
+                      availabilityStatus: "",
+                      brand: "  Brand $index",
+                      createdAt: DateTime.now(),
+                      discountPercentage: 0,
+                      returnPolicy: "Return Policy $index",
+                      reviews: const [],
+                      shippingInformation: "",
+                      stock: 5,
+                      tags: const [],
+                      thumbnail: "",
+                      warrantyInformation: ""),
+                
+                      );
                     },
                    ),
                 ),

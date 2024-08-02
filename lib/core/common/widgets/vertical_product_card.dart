@@ -16,14 +16,15 @@ import 'package:t_store/core/common/widgets/rounded_image.dart';
 import 'package:t_store/core/common/widgets/sale_tag.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/enums.dart';
-import 'package:t_store/core/utils/constants/image_strings.dart';
 import 'package:t_store/core/utils/constants/shadow_styles.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/features/shop/domain/entities/product_entity.dart';
 import 'package:t_store/features/shop/presentation/views/product_details_view.dart';
 
 class VerticalProductCard extends StatelessWidget {
-  const VerticalProductCard({super.key});
+  const VerticalProductCard({super.key, required this.product});
+  final ProductEntity product;
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
@@ -52,16 +53,19 @@ class VerticalProductCard extends StatelessWidget {
                     children: [
                       RoundedImage(
                         roundedImageModel: RoundedImageModel(
+                            isNetworkImage: true,
                             backgroundColor:
                                 dark ? TColors.dark : TColors.light,
-                            image: TImages.productImage1,
+                            image: product.images.first,
                             onTap: () {},
                             applyImageRadius: true),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const SaleTag(),
+                           SaleTag(
+ discountPercentage: product.discountPercentage,
+                          ),
                           CircularIcon(
                             circularIconModel: CircularIconModel(
                               height: TSizes.iconLg * 1.2,
@@ -86,15 +90,15 @@ class VerticalProductCard extends StatelessWidget {
                     children: [
                       ProductTitleText(
                         productTitleTextModel: ProductTitleTextModel(
-                            title: "Product Title", smallSize: true),
+                            title: product.title, smallSize: true),
                       ),
                       const SizedBox(
                         height: TSizes.spaceBtwItems / 2,
                       ),
-                      const BrandTitleWithVerification(
+                      BrandTitleWithVerification(
                           brandTitleWithVerificationModel:
                               BrandTitleWithVerificationModel(
-                                  brandName: "Nike",
+                                  brandName: product.brand,
                                   textSizes: TextSizes.medium)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -102,7 +106,7 @@ class VerticalProductCard extends StatelessWidget {
                           ProductPriceText(
                             productPriceTextModel: ProductPriceTextModel(
                               currencySymbol: "\$",
-                              price: "120",
+                              price: product.price.toString(),
                               maxLines: 1,
                             ),
                           ),
