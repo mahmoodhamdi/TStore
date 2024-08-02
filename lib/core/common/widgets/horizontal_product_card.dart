@@ -61,7 +61,7 @@ class HorizontalProductCard extends StatelessWidget {
                       ),
                       const Positioned(
                         top: 12,
-                        child: SaleTag(),
+                        child: SaleTag(discountPercentage: 20,),
                       ),
                       Positioned(
                         top: 0,

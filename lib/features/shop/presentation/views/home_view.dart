@@ -9,6 +9,7 @@ import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/features/auth/presentation/widgets/grid_layout.dart';
+import 'package:t_store/features/shop/presentation/controller/shop_cubit.dart';
 import 'package:t_store/features/shop/presentation/views/all_products_view.dart';
 import 'package:t_store/features/shop/presentation/widgets/home_header_section.dart';
 import 'package:t_store/features/shop/presentation/widgets/promo_banner_carousel_slider.dart';
@@ -31,7 +32,7 @@ class HomeView extends StatelessWidget {
             const SizedBox(height: TSizes.spaceBtwSections),
             SectionHeading(
               sectionHeadingModel: SectionHeadingModel(
-                title: "Popular Pro",
+                title: "Top Rated Products",
                 showActionButton: true,
                 textColor: TColors.primary,
                 actionButtonOnPressed: () {
@@ -44,14 +45,25 @@ class HomeView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: TSizes.spaceBtwItems),
-            GridLayout(
-                gridLayoutModel: GridLayoutModel(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return const VerticalProductCard();
+            BlocBuilder<ShopCubit, ShopState>(
+              builder: (context, state) {
+                if (state is ShopError) {
+                  return Text(state.error.message);
+                }
+                if (state is ShopSortedProductsLoaded) {
+                  return GridLayout(
+                      gridLayoutModel: GridLayoutModel(
+                    itemCount: state.productsList.length,
+                    itemBuilder: (context, index) {
+                      return VerticalProductCard(
+                          product: state.productsList[index]);
+                    },
+                    mainAxisExtent: 288,
+                  ));
+                }
+                return const CircularProgressIndicator();
               },
-              mainAxisExtent: 288,
-            )),
+            ),
           ],
         ),
       ),

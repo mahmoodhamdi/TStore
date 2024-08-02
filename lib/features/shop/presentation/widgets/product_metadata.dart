@@ -23,7 +23,9 @@ class ProductMetadata extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Row(
         children: [
-          const SaleTag(),
+          const SaleTag(
+            discountPercentage: 44,
+          ),
           const SizedBox(
             width: TSizes.spaceBtwItems,
           ),
