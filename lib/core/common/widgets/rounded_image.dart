@@ -24,15 +24,27 @@ class RoundedImage extends StatelessWidget {
             borderRadius: roundedImageModel.applyImageRadius
                 ? BorderRadius.circular(roundedImageModel.borderRadius)
                 : BorderRadius.zero,
-            child: Image(
-              image: roundedImageModel.isNetworkImage
-                  ? CachedNetworkImageProvider(roundedImageModel.image)
-                  : AssetImage(
+            child: roundedImageModel.isNetworkImage
+                ? CachedNetworkImage(
+                    imageUrl: roundedImageModel.image,
+                    placeholderFadeInDuration: Duration.zero,
+                    placeholder: (context, url) => SizedBox(
+                        width: roundedImageModel.width,
+                        height: roundedImageModel.height
+                        
+                        ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                    color: roundedImageModel.overlayColor,
+                    fit: roundedImageModel.fit,
+                  )
+                : Image(
+                    image: AssetImage(
                       roundedImageModel.image,
-                    ) as ImageProvider,
-              color: roundedImageModel.overlayColor,
-              fit: roundedImageModel.fit,
-            )),
+                    ),
+                    color: roundedImageModel.overlayColor,
+                    fit: roundedImageModel.fit,
+                  )),
       ),
     );
   }

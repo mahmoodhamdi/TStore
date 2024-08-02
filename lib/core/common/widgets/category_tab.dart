@@ -7,6 +7,7 @@ import 'package:t_store/core/common/widgets/brand_showcase.dart';
 import 'package:t_store/core/common/widgets/section_heading.dart';
 import 'package:t_store/core/common/widgets/vertical_product_card.dart';
 import 'package:t_store/features/auth/presentation/widgets/grid_layout.dart';
+import 'package:t_store/features/shop/domain/entities/product_entity.dart';
 
 class CategoryTab extends StatelessWidget {
   const CategoryTab({
@@ -41,7 +42,27 @@ class CategoryTab extends StatelessWidget {
               gridLayoutModel: GridLayoutModel(
                   itemCount: categoryTabModel.products.length - 50,
                   itemBuilder: (context, index) {
-                    return const VerticalProductCard();
+                    return  VerticalProductCard(
+                      product: ProductEntity(
+                          id: index,
+                          title: "Product $index",
+                          price: 100,
+                          images: const ["https://picsum.photos/200"],
+                          category: "Category $index",
+                          description: "Description $index",
+                          rating: 4.5,
+                          availabilityStatus: "",
+                          brand: "  Brand $index",
+                          createdAt: DateTime.now(),
+                          discountPercentage: 0,
+                          returnPolicy: "Return Policy $index",
+                          reviews: const [],
+                          shippingInformation: "",
+                          stock: 5,
+                          tags: const [],
+                          thumbnail: "",
+                          warrantyInformation: ""),
+                    );
                   },
                   mainAxisExtent: 280),
             ),

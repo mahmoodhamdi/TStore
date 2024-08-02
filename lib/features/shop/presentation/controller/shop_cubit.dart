@@ -40,7 +40,7 @@ class ShopCubit extends Cubit<ShopState> {
     final products =
         await getSortedProductsUsecase.call(sortBy: sortBy, sortType: sortType);
     products.fold((error) => emit(ShopError(error: error)),
-        (productsList) => emit(ShopProductsLoaded(productsList: productsList)));
+        (productsList) => emit(ShopSortedProductsLoaded(productsList: productsList)));
   }
 
   void getProductById({required int productId}) async {
@@ -55,13 +55,13 @@ class ShopCubit extends Cubit<ShopState> {
     final products =
         await getProductsByCategoryUsecase.call(categoryName: categoryName);
     products.fold((error) => emit(ShopError(error: error)),
-        (productsList) => emit(ShopProductsLoaded(productsList: productsList)));
+        (productsList) => emit(ShopCategoryProductsLoaded(productsList: productsList)));
   }
 
   void getProductsBySearch({String? search}) async {
     emit(ShopLoading());
     final products = await getProductsBySearchUsecase.call(search: search);
     products.fold((error) => emit(ShopError(error: error)),
-        (productsList) => emit(ShopProductsLoaded(productsList: productsList)));
+        (productsList) => emit(ShopSearchProductsLoaded(productsList: productsList)));
   }
 }
