@@ -15,7 +15,6 @@ import 'package:t_store/core/common/widgets/product_title_text.dart';
 import 'package:t_store/core/common/widgets/rounded_image.dart';
 import 'package:t_store/core/common/widgets/sale_tag.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
-import 'package:t_store/core/utils/constants/enums.dart';
 import 'package:t_store/core/utils/constants/shadow_styles.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
@@ -63,8 +62,8 @@ class VerticalProductCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                           SaleTag(
- discountPercentage: product.discountPercentage,
+                          SaleTag(
+                            discountPercentage: product.discountPercentage,
                           ),
                           CircularIcon(
                             circularIconModel: CircularIconModel(
@@ -90,7 +89,7 @@ class VerticalProductCard extends StatelessWidget {
                     children: [
                       ProductTitleText(
                         productTitleTextModel: ProductTitleTextModel(
-                            title: product.title, smallSize: true),
+                            title: product.title,),
                       ),
                       const SizedBox(
                         height: TSizes.spaceBtwItems / 2,
@@ -98,16 +97,19 @@ class VerticalProductCard extends StatelessWidget {
                       BrandTitleWithVerification(
                           brandTitleWithVerificationModel:
                               BrandTitleWithVerificationModel(
-                                  brandName: product.brand,
-                                  textSizes: TextSizes.medium)),
+                        brandName: product.brand,
+                      )),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          ProductPriceText(
-                            productPriceTextModel: ProductPriceTextModel(
-                              currencySymbol: "\$",
-                              price: product.price.toString(),
-                              maxLines: 1,
+                          Expanded(
+                            child: ProductPriceText(
+                              productPriceTextModel: ProductPriceTextModel(
+                                currencySymbol: "\$",
+                                price: product.price.toString(),
+                                maxLines: 1,
+                                smallSize: true,
+                              ),
                             ),
                           ),
                           const AddToCartContainer()
