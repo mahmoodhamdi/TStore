@@ -79,23 +79,37 @@ class TTexts {
   static const String shoes = "Shoes";
   static const String cosmetics = "Sweatshirts";
   static const String animal = "Animal";
-  static const String toy ="Toy";
+  static const String toy = "Toy";
   static const String furniture = "Furniture";
   static const String accessories = "Accessories";
   static const String electronics = "Electronics";
   static const String jewellers = "Jewellers";
 //list of categories
- static const List<String> categories = [
-    electronics,
-    cloth,
-    shoes,
-    cosmetics,
-    sport,
-    accessories,
-    furniture,
-    jewellers,
-    animal,
-    toy,
+  static const List<String> categories = [
+    "beauty",
+    "fragrances",
+    "furniture",
+    "groceries",
+    "home-decoration",
+    "kitchen-accessories",
+    "laptops",
+    "mens-shirts",
+    "mens-shoes",
+    "mens-watches",
+    "mobile-accessories",
+    "motorcycle",
+    "skin-care",
+    "smartphones",
+    "sports-accessories",
+    "sunglasses",
+    "tablets",
+    "tops",
+    "vehicle",
+    "womens-bags",
+    "womens-dresses",
+    "womens-jewellery",
+    "womens-shoes",
+    "womens-watches"
   ];
   static const String applePay = 'Apple Pay';
   static const String googlePay = 'Google Pay';
@@ -116,7 +130,7 @@ class TTexts {
     paystack,
     paytm,
   ];
-static const String nikeTitle = 'Nike';
+  static const String nikeTitle = 'Nike';
   static const String adidasTitle = 'Adidas';
   static const String appleTitle = 'Apple';
   static const String jordanTitle = 'Jordan';
@@ -139,5 +153,4 @@ static const String nikeTitle = 'Nike';
     ikeaTitle,
     acerTitle,
   ];
-
 }

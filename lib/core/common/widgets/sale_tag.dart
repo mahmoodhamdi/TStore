@@ -6,9 +6,9 @@ import 'package:t_store/core/utils/constants/sizes.dart';
 
 class SaleTag extends StatelessWidget {
   const SaleTag({
-    super.key,
+    super.key, required this.discountPercentage,
   });
-
+final double discountPercentage;
   @override
   Widget build(BuildContext context) {
     return CircularContainer(
@@ -18,7 +18,7 @@ class SaleTag extends StatelessWidget {
       borderRadius: TSizes.sm,
       color: TColors.secondary.withOpacity(.8),
       child: Text(
-        "25%",
+        '$discountPercentage%',
         style:
             Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black),
       ),

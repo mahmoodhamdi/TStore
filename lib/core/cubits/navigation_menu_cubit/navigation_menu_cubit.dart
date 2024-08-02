@@ -1,9 +1,11 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:t_store/core/utils/service_locator/service_locator.dart';
 import 'package:t_store/features/personalization/presentation/views/settings_view.dart';
+import 'package:t_store/features/shop/presentation/controller/shop_cubit.dart';
 import 'package:t_store/features/shop/presentation/views/home_view.dart';
 import 'package:t_store/features/shop/presentation/views/store_view.dart';
 import 'package:t_store/features/shop/presentation/views/wishlist_view.dart';
@@ -15,7 +17,11 @@ class NavigationMenuCubit extends Cubit<NavigationMenuState> {
   int selectedIndex = 0;
 
   final screensList = [
-    const HomeView(),
+    BlocProvider(
+      create: (context) => getIt<ShopCubit>()
+        ..getSortedProducts(sortBy: "rating", sortType: "desc"),
+      child: const HomeView(),
+    ),
     const StoreView(),
     const WishlistView(),
     const SettingsView(),

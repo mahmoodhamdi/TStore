@@ -15,7 +15,7 @@ class HomeCategories extends StatelessWidget {
     const List<String> categoriesImages = TImages.categoryIcons;
 
     final List<HorizontalSmallListViewItemModel> items = List.generate(
-        categoriesTitles.length,
+        categoriesImages.length,
         (index) => HorizontalSmallListViewItemModel(
               title: categoriesTitles[index],
               image: categoriesImages[index],

@@ -55,13 +55,13 @@ class HorizontalProductCard extends StatelessWidget {
                             applyImageRadius: true,
                             backgroundColor:
                                 dark ? TColors.dark : TColors.light,
-                            image: TImages.productImage1,
+                            image: TImages.productImage11,
                           ),
                         ),
                       ),
                       const Positioned(
                         top: 12,
-                        child: SaleTag(),
+                        child: SaleTag(discountPercentage: 20,),
                       ),
                       Positioned(
                         top: 0,
