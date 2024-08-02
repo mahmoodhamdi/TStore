@@ -16,6 +16,6 @@ class ProductTitleText extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
         style: productTitleTextModel.smallSize
             ? Theme.of(context).textTheme.labelLarge
-            : Theme.of(context).textTheme.titleSmall);
+            : Theme.of(context).textTheme.bodyLarge);
   }
 }

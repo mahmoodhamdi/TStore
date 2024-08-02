@@ -14,7 +14,7 @@ class ProductPriceText extends StatelessWidget {
         maxLines: productPriceTextModel.maxLines,
         overflow: TextOverflow.ellipsis,
         style: productPriceTextModel.smallSize
-            ? Theme.of(context).textTheme.titleLarge!.apply(
+            ? Theme.of(context).textTheme.bodyLarge!.apply(
                   decoration: productPriceTextModel.lineThrough
                       ? TextDecoration.lineThrough
                       : null,

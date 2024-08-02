@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:t_store/core/cubits/navigation_menu_cubit/navigation_menu_cubit.dart';
 import 'package:t_store/features/shop/data/data_sources/shop_remote_data_source.dart';
 import 'package:t_store/features/shop/data/repository_impl/shop_repository_impl.dart';
 import 'package:t_store/features/shop/domain/usecases/get_product_by_id_usecase.dart';
@@ -38,6 +39,8 @@ setupServiceLocator() {
       shopRepository: getIt.get<ShopRepositoryImpl>()));
 
 // register controllers
+ // NavigationMenuCubit
+ getIt.registerSingleton<NavigationMenuCubit>(NavigationMenuCubit());
   getIt.registerSingleton<ShopCubit>(ShopCubit(
     getProductsListUsecase: getIt.get<GetProductsListUsecase>(),
     getProductsBySearchUsecase: getIt.get<GetProductsBySearchUsecase>(),
