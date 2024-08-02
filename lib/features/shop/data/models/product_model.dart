@@ -1,5 +1,4 @@
 import 'package:t_store/features/shop/domain/entities/product_entity.dart';
-import 'package:t_store/features/shop/domain/entities/product_entity.dart';
 
 class ProductModel extends ProductEntity {
   const ProductModel({
@@ -68,10 +67,10 @@ class Review extends ReviewEntity {
     return Review(
       rating: (json['rating'] ?? 0),
       comment: json['comment'] ?? 'No Comment',
-      date: json['date'] != null ? DateTime.parse(json['date']) : DateTime.now(),
+      date:
+          json['date'] != null ? DateTime.parse(json['date']) : DateTime.now(),
       reviewerName: json['reviewerName'] ?? 'Anonymous',
       reviewerEmail: json['reviewerEmail'] ?? 'No Email',
     );
   }
 }
-

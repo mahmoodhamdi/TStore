@@ -8,6 +8,7 @@ import 'package:t_store/core/cubits/banner_carousel_slider_cubit_cubit/banner_ca
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
+import 'package:t_store/core/utils/service_locator/service_locator.dart';
 import 'package:t_store/features/auth/presentation/widgets/grid_layout.dart';
 import 'package:t_store/features/shop/presentation/controller/shop_cubit.dart';
 import 'package:t_store/features/shop/presentation/views/all_products_view.dart';
@@ -38,7 +39,9 @@ class HomeView extends StatelessWidget {
                 actionButtonOnPressed: () {
                   THelperFunctions.navigateToScreen(
                     context,
-                    const AllProductsView(),
+                    BlocProvider(
+                        create: (context) => getIt<ShopCubit>()..getSortedProducts(sortBy: 'rating', sortType: "desc"),
+                        child: const AllProductsView()),
                   );
                 },
                 actionButtonTitle: "View All",
