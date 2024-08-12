@@ -29,6 +29,18 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
+    flavorDimensions "default"
+productFlavors {
+    production {
+        dimension "default"
+        resValue "string", "app_name", "T-Store"
+    }
+    development {
+        dimension "default"
+        applicationIdSuffix ".dev"
+        resValue "string", "app_name", "T-Store Dev"
+    }
+}
 
     buildTypes {
         release {
@@ -42,3 +54,4 @@ android {
 flutter {
     source = "../.."
 }
+
