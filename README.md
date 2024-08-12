@@ -1,6 +1,7 @@
 # TStore
 
 [![wakatime](https://wakatime.com/badge/user/018c9017-daf8-45c1-be71-8b16fd238022/project/018e3724-1bcf-41fe-86c2-770c411d1f5f.svg)](https://wakatime.com/badge/user/018c9017-daf8-45c1-be71-8b16fd238022/project/018e3724-1bcf-41fe-86c2-770c411d1f5f)
+
 ## Description
 
 TStore is a full-functionality eCommerce app built with Flutter and integrated with Firebase. Designed to deliver a modern design and smooth user experience, TStore follows clean architecture principles, SOLID design principles, and clean code practices.

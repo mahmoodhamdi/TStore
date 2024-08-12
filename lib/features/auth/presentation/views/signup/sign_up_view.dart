@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
@@ -45,8 +44,8 @@ class SignUpView extends StatelessWidget {
                 const SizedBox(
                   height: TSizes.spaceBtwSections,
                 ),
-                DividerWidget(
-                  text: TTexts.orSignUpWith.capitalize!,
+                const DividerWidget(
+                  text: TTexts.orSignUpWith,
                 ),
                 const SizedBox(
                   height: TSizes.spaceBtwSections,
