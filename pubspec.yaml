@@ -18,7 +18,6 @@ dependencies:
   cached_network_image: ^3.4.0
   capped_progress_indicator: ^0.0.2
   carousel_slider: ^5.0.0
-  connectivity_plus: ^6.0.5
   dartz: ^0.10.1
   dio: ^5.5.0+1
   equatable: ^2.0.5
