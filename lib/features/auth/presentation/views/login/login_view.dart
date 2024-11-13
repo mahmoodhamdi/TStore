@@ -12,24 +12,26 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Padding(
-        padding: TSizes.paddingWithAppBarHeight,
-        child: Column(
-          children: [
-            LoginHeaderSection(),
-            LoginFormSection(),
-            DividerWidget(
-              text: TTexts.orSignInWith,
-            ),
-            SizedBox(
-              height: TSizes.spaceBtwSections,
-            ),
-            SignInMethodsSection(),
-          ],
-        ),
-      )),
+      body: SafeArea(
+        child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Padding(
+          padding: TSizes.paddingWithAppBarHeight,
+          child: Column(
+            children: [
+              LoginHeaderSection(),
+              LoginFormSection(),
+              DividerWidget(
+                text: TTexts.orSignInWith,
+              ),
+              SizedBox(
+                height: TSizes.spaceBtwSections,
+              ),
+              SignInMethodsSection(),
+            ],
+          ),
+        )),
+      ),
     );
   }
 }

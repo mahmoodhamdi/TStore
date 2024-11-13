@@ -19,30 +19,32 @@ class ProductReviewsView extends StatelessWidget {
           "Reviews & Ratings",
         ),
       )),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(TSizes.defaultSpace),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Ratings and Reviews are verified and from people who have purchased this product.",
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwItems,
-              ),
-              const ProductOverallRating(),
-              const CustomRatingBarIndicator(
-                rating: 4.5,
-              ),
-              Text("12,611", style: Theme.of(context).textTheme.bodySmall),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              const UserReviewCard(),
-              const UserReviewCard(),
-              const UserReviewCard(),
-            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(TSizes.defaultSpace),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Ratings and Reviews are verified and from people who have purchased this product.",
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwItems,
+                ),
+                const ProductOverallRating(),
+                const CustomRatingBarIndicator(
+                  rating: 4.5,
+                ),
+                Text("12,611", style: Theme.of(context).textTheme.bodySmall),
+                const SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                const UserReviewCard(),
+                const UserReviewCard(),
+                const UserReviewCard(),
+              ],
+            ),
           ),
         ),
       ),

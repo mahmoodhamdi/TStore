@@ -1,4 +1,3 @@
-/// This class contains all the App Text in String formats.
 class TTexts {
   // -- GLOBAL Texts
   static const String and = "and";
@@ -9,6 +8,15 @@ class TTexts {
   static const String tContinue = "Continue";
   static const String viewAll = "View All";
   static const String account = "Account";
+
+  // views
+  static const String homeView = "Home";
+  static const String cartView = "Cart";
+  static const String profileView = "Profile";
+  static const String wishlistView = "Wishlist";
+  static const String ordersView = "Orders";
+  static const String settingsView = "Settings";
+  static const String storeView = "Store";
 
   // -- OnBoarding Texts
   static const String onBoardingTitle1 = "Choose your product";
@@ -70,7 +78,7 @@ class TTexts {
 
   // -- Home
   static const String homeAppbarTitle = "Good day for shopping";
-  static const String homeAppbarSubTitle = "Taimoor Sikander";
+  static const String homeAppbarSubTitle = "Mahmoud Hamdy";
   static const String searchContainer = "Search in Store";
   static const String popularCategories = "Popular Categories";
 // -- Categories

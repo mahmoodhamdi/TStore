@@ -62,6 +62,7 @@ class StoreView extends StatelessWidget {
             headerSliverBuilder: (context, innerBoxIsScrolled) {
               return [
                 SliverAppBar(
+                    elevation: 0,
                     pinned: true,
                     floating: true,
                     expandedHeight: 440,
