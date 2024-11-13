@@ -30,26 +30,28 @@ class UserAddressesView extends StatelessWidget {
                 "Addresses",
                 style: Theme.of(context).textTheme.headlineSmall,
               ))),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(TSizes.defaultSpace),
-          child: Column(
-            children: [
-              SingleAddress(
-                singleAddressModel: SingleAddressModel(
-                    name: "Mahmoud Hamdy",
-                    phoneNumber: "0123456789",
-                    address: "8th of October,Cairo,Egypt",
-                    isSelected: true),
-              ),
-              SingleAddress(
-                singleAddressModel: SingleAddressModel(
-                    name: "Mahmoud Hamdy",
-                    phoneNumber: "0123456789",
-                    address: "8th of October,Cairo,Egypt",
-                    isSelected: false),
-              ),
-            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(TSizes.defaultSpace),
+            child: Column(
+              children: [
+                SingleAddress(
+                  singleAddressModel: SingleAddressModel(
+                      name: "Mahmoud Hamdy",
+                      phoneNumber: "0123456789",
+                      address: "8th of October,Cairo,Egypt",
+                      isSelected: true),
+                ),
+                SingleAddress(
+                  singleAddressModel: SingleAddressModel(
+                      name: "Mahmoud Hamdy",
+                      phoneNumber: "0123456789",
+                      address: "8th of October,Cairo,Egypt",
+                      isSelected: false),
+                ),
+              ],
+            ),
           ),
         ),
       ),

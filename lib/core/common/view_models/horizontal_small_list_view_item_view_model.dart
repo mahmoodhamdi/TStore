@@ -17,4 +17,3 @@ class HorizontalSmallListViewItemModel {
   });
 }
 
-//horizontal small list view item model>> horizontal_small_list_view_item_model.dart

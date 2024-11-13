@@ -19,45 +19,47 @@ class SubCategoryView extends StatelessWidget {
         appBarModel:
             AppBarModel(hasArrowBack: true, title: const Text("Sports Shirts")),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(TSizes.defaultSpace),
-          child: Column(
-            children: [
-              RoundedImage(
-                roundedImageModel: RoundedImageModel(
-                  image: TImages.promoBanner2,
-                  applyImageRadius: true,
-                  width: double.infinity,
-                ),
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              Column(
-                children: [
-                  SectionHeading(
-                      sectionHeadingModel: SectionHeadingModel(
-                    title: "Sports Shirts",
-                  )),
-                  const SizedBox(
-                    height: TSizes.spaceBtwItems / 2,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(TSizes.defaultSpace),
+            child: Column(
+              children: [
+                RoundedImage(
+                  roundedImageModel: RoundedImageModel(
+                    image: TImages.promoBanner2,
+                    applyImageRadius: true,
+                    width: double.infinity,
                   ),
-                  SizedBox(
-                    height: 128,
-                    child: ListView.separated(
-                        itemCount: 5,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) =>
-                            const HorizontalProductCard(),
-                        separatorBuilder: (context, index) => const SizedBox(
-                              width: TSizes.spaceBtwItems,
-                            )),
-                  )
-                ],
-              )
-            ],
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                Column(
+                  children: [
+                    SectionHeading(
+                        sectionHeadingModel: SectionHeadingModel(
+                      title: "Sports Shirts",
+                    )),
+                    const SizedBox(
+                      height: TSizes.spaceBtwItems / 2,
+                    ),
+                    SizedBox(
+                      height: 128,
+                      child: ListView.separated(
+                          itemCount: 5,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) =>
+                              const HorizontalProductCard(),
+                          separatorBuilder: (context, index) => const SizedBox(
+                                width: TSizes.spaceBtwItems,
+                              )),
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

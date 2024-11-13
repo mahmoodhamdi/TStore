@@ -53,28 +53,30 @@ class ProfileView extends StatelessWidget {
         appBarModel:
             AppBarModel(title: const Text("Profile"), hasArrowBack: true),
       ),
-      body: SingleChildScrollView(
-          child: Padding(
-        padding: const EdgeInsets.all(TSizes.defaultSpace),
-        child: Column(
-          children: [
-            ProfileInformationSection(profileInformation: profileInformation),
-            const SpaceBetweenSectionsWithDivider(),
-            PersonalInformationSection(
-                personalInformation: personalInformation),
-            const SpaceBetweenSectionsWithDivider(),
-            TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "Delete Account",
-                  style: TextStyle(color: TColors.error),
-                )),
-            const SizedBox(
-              height: TSizes.spaceBtwItems / 1.5,
-            ),
-          ],
-        ),
-      )),
+      body: SafeArea(
+        child: SingleChildScrollView(
+            child: Padding(
+          padding: const EdgeInsets.all(TSizes.defaultSpace),
+          child: Column(
+            children: [
+              ProfileInformationSection(profileInformation: profileInformation),
+              const SpaceBetweenSectionsWithDivider(),
+              PersonalInformationSection(
+                  personalInformation: personalInformation),
+              const SpaceBetweenSectionsWithDivider(),
+              TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    "Delete Account",
+                    style: TextStyle(color: TColors.error),
+                  )),
+              const SizedBox(
+                height: TSizes.spaceBtwItems / 1.5,
+              ),
+            ],
+          ),
+        )),
+      ),
     );
   }
 }

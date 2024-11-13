@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/core/cubits/navigation_menu_cubit/navigation_menu_cubit.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
+import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
 
 // lib/features/home/presentation/views/navigation_menu.dart
@@ -31,19 +32,19 @@ class NavigationMenu extends StatelessWidget {
                 //home store wishlist profile
                 NavigationDestination(
                   icon: Icon(Iconsax.home),
-                  label: 'Home',
+                  label: TTexts.homeView,
                 ),
                 NavigationDestination(
                   icon: Icon(Iconsax.shop),
-                  label: 'Store',
+                  label: TTexts.storeView,
                 ),
                 NavigationDestination(
                   icon: Icon(Iconsax.heart),
-                  label: 'Wishlist',
+                  label: TTexts.wishlistView,
                 ),
                 NavigationDestination(
                   icon: Icon(Iconsax.user),
-                  label: 'Profile',
+                  label: TTexts.profileView,
                 ),
               ],
             ),

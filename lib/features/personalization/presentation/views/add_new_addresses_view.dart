@@ -14,10 +14,12 @@ class AddNewAddressesView extends StatelessWidget {
         appBarModel: AppBarModel(
             title: const Text("Add New Address"), hasArrowBack: true),
       ),
-      body: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(TSizes.defaultSpace),
-          child: NewAddressForm(),
+      body: const SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(TSizes.defaultSpace),
+            child: NewAddressForm(),
+          ),
         ),
       ),
     );

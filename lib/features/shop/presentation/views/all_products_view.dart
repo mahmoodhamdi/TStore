@@ -14,11 +14,13 @@ class AllProductsView extends StatelessWidget {
         appBarModel:
             AppBarModel(title: const Text("All Products"), hasArrowBack: true),
       ),
-      body: const SingleChildScrollView(
-          child: Padding(
-        padding: EdgeInsets.all(TSizes.defaultSpace),
-        child: SortableProducts(),
-      )),
+      body: const SafeArea(
+        child: SingleChildScrollView(
+            child: Padding(
+          padding: EdgeInsets.all(TSizes.defaultSpace),
+          child: SortableProducts(),
+        )),
+      ),
     );
   }
 }
