@@ -52,48 +52,50 @@ class CheckoutView extends StatelessWidget {
                 "Order Review",
                 style: Theme.of(context).textTheme.headlineSmall,
               ))),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(TSizes.defaultSpace),
-          child: Column(
-            children: [
-              const CartItemsList(
-                showAddRemoveButtons: false,
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              const CouponCode(),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              CircularContainer(
-                  circularContainerModel: CircularContainerModel(
-                      showBorder: true,
-                      padding: const EdgeInsets.all(TSizes.md),
-                      color: dark ? TColors.black : TColors.white,
-                      child: const Column(
-                        children: [
-                          BillingAmountSection(),
-                          SizedBox(
-                            height: TSizes.spaceBtwItems,
-                          ),
-                          Divider(),
-                          SizedBox(
-                            height: TSizes.spaceBtwItems,
-                          ),
-                          BillingPaymentSection(),
-                          SizedBox(
-                            height: TSizes.spaceBtwItems,
-                          ),
-                          Divider(),
-                          SizedBox(
-                            height: TSizes.spaceBtwItems,
-                          ),
-                          BillingAddressSection()
-                        ],
-                      ))),
-            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(TSizes.defaultSpace),
+            child: Column(
+              children: [
+                const CartItemsList(
+                  showAddRemoveButtons: false,
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                const CouponCode(),
+                const SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                CircularContainer(
+                    circularContainerModel: CircularContainerModel(
+                        showBorder: true,
+                        padding: const EdgeInsets.all(TSizes.md),
+                        color: dark ? TColors.black : TColors.white,
+                        child: const Column(
+                          children: [
+                            BillingAmountSection(),
+                            SizedBox(
+                              height: TSizes.spaceBtwItems,
+                            ),
+                            Divider(),
+                            SizedBox(
+                              height: TSizes.spaceBtwItems,
+                            ),
+                            BillingPaymentSection(),
+                            SizedBox(
+                              height: TSizes.spaceBtwItems,
+                            ),
+                            Divider(),
+                            SizedBox(
+                              height: TSizes.spaceBtwItems,
+                            ),
+                            BillingAddressSection()
+                          ],
+                        ))),
+              ],
+            ),
           ),
         ),
       ),

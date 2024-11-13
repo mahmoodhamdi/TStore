@@ -12,37 +12,37 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.8
-  flutter_bloc: ^8.1.6
-  iconsax: ^0.0.8
-  cached_network_image: ^3.4.0
-  capped_progress_indicator: ^0.0.2
-  carousel_slider: ^5.0.0
-  dartz: ^0.10.1
-  dio: ^5.5.0+1
-  equatable: ^2.0.5
-  firebase_auth: ^4.16.0
-  firebase_core: ^2.24.2
-  flutter_native_splash: ^2.4.1
-  flutter_rating_bar: ^4.0.1
-  get_it: ^7.7.0
-  google_sign_in: ^6.2.1
-  http: ^1.2.2
-  image_picker: ^1.1.2
-  intl: ^0.19.0
-  logger: ^2.4.0
-  lottie: ^3.1.2
-  readmore: ^3.0.0
-  shared_preferences: ^2.3.1
-  smooth_page_indicator: ^1.2.0+3
-  url_launcher: ^6.3.0
-  flutter_launcher_icons: ^0.13.1
+  cupertino_icons: 
+  flutter_bloc: 
+  iconsax: 
+  cached_network_image: 
+  capped_progress_indicator: 
+  carousel_slider: 
+  dartz: 
+  dio: 
+  equatable: 
+  firebase_auth: 
+  firebase_core: 
+  flutter_native_splash: 
+  flutter_rating_bar: 
+  get_it: 
+  google_sign_in: 
+  http:  
+  image_picker: 
+  intl: 
+  logger:  
+  lottie:  
+  readmore:  
+  shared_preferences: 
+  smooth_page_indicator: 
+  url_launcher: 
+  flutter_launcher_icons: 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^4.0.0
+  flutter_lints:  
 
 
 flutter:

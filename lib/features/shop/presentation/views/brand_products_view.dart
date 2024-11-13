@@ -16,24 +16,26 @@ class BrandProductsView extends StatelessWidget {
       appBar: CustomAppBar(
         appBarModel: AppBarModel(title: const Text("Nike"), hasArrowBack: true),
       ),
-      body: SingleChildScrollView(
-          child: Padding(
-        padding: const EdgeInsets.all(TSizes.defaultSpace),
-        child: Column(
-          children: [
-            BrandCard(
-                brandCardModel: BrandCardModel(
-                    productCount: 5,
-                    showBorder: true,
-                    brandName: "Nike",
-                    image: TImages.nikeLogo)),
-            const SizedBox(
-              height: TSizes.spaceBtwSections,
-            ),
-            const SortableProducts(),
-          ],
-        ),
-      )),
+      body: SafeArea(
+        child: SingleChildScrollView(
+            child: Padding(
+          padding: const EdgeInsets.all(TSizes.defaultSpace),
+          child: Column(
+            children: [
+              BrandCard(
+                  brandCardModel: BrandCardModel(
+                      productCount: 5,
+                      showBorder: true,
+                      brandName: "Nike",
+                      image: TImages.nikeLogo)),
+              const SizedBox(
+                height: TSizes.spaceBtwSections,
+              ),
+              const SortableProducts(),
+            ],
+          ),
+        )),
+      ),
     );
   }
 }

@@ -15,31 +15,33 @@ class ProductDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
         bottomNavigationBar: BottomAddToCart(),
-        body: SingleChildScrollView(
-            child: Column(
-          children: [
-            ProductImageSlider(),
-            Padding(
-              padding: EdgeInsets.fromLTRB(TSizes.defaultSpace, 0,
-                  TSizes.defaultSpace, TSizes.defaultSpace),
+        body: SafeArea(
+          child: SingleChildScrollView(
               child: Column(
-                children: [
-                  RatingAndShare(),
-                  ProductMetadata(),
-                  ProductAttributes(),
-                  SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
-                  CheckoutButton(),
-                  SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
-                  ProductDescriptionAndReviewsSection(),
-                  SizedBox(height: TSizes.spaceBtwSections),
-                ],
-              ),
-            )
-          ],
-        )));
+            children: [
+              ProductImageSlider(),
+              Padding(
+                padding: EdgeInsets.fromLTRB(TSizes.defaultSpace, 0,
+                    TSizes.defaultSpace, TSizes.defaultSpace),
+                child: Column(
+                  children: [
+                    RatingAndShare(),
+                    ProductMetadata(),
+                    ProductAttributes(),
+                    SizedBox(
+                      height: TSizes.spaceBtwSections,
+                    ),
+                    CheckoutButton(),
+                    SizedBox(
+                      height: TSizes.spaceBtwSections,
+                    ),
+                    ProductDescriptionAndReviewsSection(),
+                    SizedBox(height: TSizes.spaceBtwSections),
+                  ],
+                ),
+              )
+            ],
+          )),
+        ));
   }
 }
