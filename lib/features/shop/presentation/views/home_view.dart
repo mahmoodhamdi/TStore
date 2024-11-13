@@ -21,53 +21,55 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const HomeHeaderSection(),
-            const SizedBox(height: TSizes.spaceBtwSections),
-            BlocProvider(
-              create: (context) => BannerCarouselSliderCubit(),
-              child: const PromoBannerCarouselSlider(),
-            ),
-            const SizedBox(height: TSizes.spaceBtwSections),
-            SectionHeading(
-              sectionHeadingModel: SectionHeadingModel(
-                title: "Top Rated Products",
-                showActionButton: true,
-                textColor: TColors.primary,
-                actionButtonOnPressed: () {
-                  THelperFunctions.navigateToScreen(
-                    context,
-                    BlocProvider(
-                        create: (context) => getIt<ShopCubit>()..getSortedProducts(sortBy: 'rating', sortType: "desc"),
-                        child: const AllProductsView()),
-                  );
-                },
-                actionButtonTitle: "View All",
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const HomeHeaderSection(),
+              const SizedBox(height: TSizes.spaceBtwSections),
+              BlocProvider(
+                create: (context) => BannerCarouselSliderCubit(),
+                child: const PromoBannerCarouselSlider(),
               ),
-            ),
-            const SizedBox(height: TSizes.spaceBtwItems),
-            BlocBuilder<ShopCubit, ShopState>(
-              builder: (context, state) {
-                if (state is ShopError) {
-                  return Text(state.error.message);
-                }
-                if (state is ShopSortedProductsLoaded) {
-                  return GridLayout(
-                      gridLayoutModel: GridLayoutModel(
-                    itemCount: state.productsList.length,
-                    itemBuilder: (context, index) {
-                      return VerticalProductCard(
-                          product: state.productsList[index]);
-                    },
-                    mainAxisExtent: 288,
-                  ));
-                }
-                return const CircularProgressIndicator();
-              },
-            ),
-          ],
+              const SizedBox(height: TSizes.spaceBtwSections),
+              SectionHeading(
+                sectionHeadingModel: SectionHeadingModel(
+                  title: "Top Rated Products",
+                  showActionButton: true,
+                  textColor: TColors.primary,
+                  actionButtonOnPressed: () {
+                    THelperFunctions.navigateToScreen(
+                      context,
+                      BlocProvider(
+                          create: (context) => getIt<ShopCubit>()..getSortedProducts(sortBy: 'rating', sortType: "desc"),
+                          child: const AllProductsView()),
+                    );
+                  },
+                  actionButtonTitle: "View All",
+                ),
+              ),
+              const SizedBox(height: TSizes.spaceBtwItems),
+              BlocBuilder<ShopCubit, ShopState>(
+                builder: (context, state) {
+                  if (state is ShopError) {
+                    return Text(state.error.message);
+                  }
+                  if (state is ShopSortedProductsLoaded) {
+                    return GridLayout(
+                        gridLayoutModel: GridLayoutModel(
+                      itemCount: state.productsList.length,
+                      itemBuilder: (context, index) {
+                        return VerticalProductCard(
+                            product: state.productsList[index]);
+                      },
+                      mainAxisExtent: 288,
+                    ));
+                  }
+                  return const CircularProgressIndicator();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

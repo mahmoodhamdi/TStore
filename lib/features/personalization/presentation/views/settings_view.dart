@@ -103,27 +103,29 @@ class SettingsView extends StatelessWidget {
         leading: Iconsax.security_card,
       ),
     ];
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          const PrimaryHeaderContainer(child: SettingsViewHeaderSection()),
-          Padding(
-            padding: const EdgeInsets.all(TSizes.defaultSpace),
-            child: Column(
-              children: [
-                AccountSettingsSection(
-                    accountSettingsTiles: accountSettingsTiles),
-                const SizedBox(
-                  height: TSizes.spaceBtwSections,
-                ),
-                AppSettingsSection(appSettingsTiles: appSettingsTiles),
-                const SizedBox(
-                  height: TSizes.spaceBtwItems,
-                ),
-              ],
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const PrimaryHeaderContainer(child: SettingsViewHeaderSection()),
+            Padding(
+              padding: const EdgeInsets.all(TSizes.defaultSpace),
+              child: Column(
+                children: [
+                  AccountSettingsSection(
+                      accountSettingsTiles: accountSettingsTiles),
+                  const SizedBox(
+                    height: TSizes.spaceBtwSections,
+                  ),
+                  AppSettingsSection(appSettingsTiles: appSettingsTiles),
+                  const SizedBox(
+                    height: TSizes.spaceBtwItems,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

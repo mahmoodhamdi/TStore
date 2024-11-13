@@ -25,48 +25,50 @@ class ResetPasswordView extends StatelessWidget {
         ],
         automaticallyImplyLeading: false,
       ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Padding(
-          padding: TSizes.paddingWithAppBarHeight,
-          child: Column(
-            children: [
-              Image(
-                  width: TDeviceUtils.getScreenWidth(context) * .6,
-                  image: const AssetImage(TImages.deliveredEmailIllustration)),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              Text(
-                TTexts.changeYourPasswordTitle,
-                style: Theme.of(context).textTheme.headlineMedium,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwItems,
-              ),
-              Text(
-                TTexts.changeYourPasswordSubTitle,
-                style: Theme.of(context).textTheme.labelMedium,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: () {}, child: const Text(TTexts.done)),
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwItems,
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: TextButton(
-                    onPressed: () {}, child: const Text(TTexts.resendEmail)),
-              )
-            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Padding(
+            padding: TSizes.paddingWithAppBarHeight,
+            child: Column(
+              children: [
+                Image(
+                    width: TDeviceUtils.getScreenWidth(context) * .6,
+                    image: const AssetImage(TImages.deliveredEmailIllustration)),
+                const SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                Text(
+                  TTexts.changeYourPasswordTitle,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwItems,
+                ),
+                Text(
+                  TTexts.changeYourPasswordSubTitle,
+                  style: Theme.of(context).textTheme.labelMedium,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwSections,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      onPressed: () {}, child: const Text(TTexts.done)),
+                ),
+                const SizedBox(
+                  height: TSizes.spaceBtwItems,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                      onPressed: () {}, child: const Text(TTexts.resendEmail)),
+                )
+              ],
+            ),
           ),
         ),
       ),
