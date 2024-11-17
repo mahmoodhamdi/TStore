@@ -79,9 +79,9 @@ TStore is a full-functionality eCommerce app built with Flutter and integrated w
 
 ### APP BACKEND
 
-- [ ] Fetch Categories
+- [x] Fetch Categories
 - [ ] Fetch Brands
-- [ ] Fetch Products
+- [x] Fetch Products
 - [ ] Add, Remove Wishlist Items of each user
 - [ ] Add, Update or Remove User Addresses
 - [ ] Add to Cart
