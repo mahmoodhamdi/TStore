@@ -61,7 +61,7 @@ class BrandCard extends StatelessWidget {
                                 ?.copyWith(overflow: TextOverflow.ellipsis),
                           ),
                         ),
-                        if (brandCardModel.isVerified ?? false) ...[
+                        if (brandCardModel.isVerified) ...[
                           const SizedBox(width: TSizes.xs),
                           const Icon(
                             Iconsax.verify5,

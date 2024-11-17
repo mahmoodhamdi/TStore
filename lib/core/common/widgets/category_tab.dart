@@ -44,9 +44,9 @@ class CategoryTab extends StatelessWidget {
             GridLayout(
               gridLayoutModel: GridLayoutModel(
                 // Ensure products list is not null and handle bounds
-                itemCount: (categoryTabModel.products.length ?? 0) > 50
+                itemCount: (categoryTabModel.products.length) > 50
                     ? categoryTabModel.products.length - 50
-                    : categoryTabModel.products.length ?? 0,
+                    : categoryTabModel.products.length,
                 itemBuilder: (context, index) {
                   // Ensure index is within bounds
                   if (index >= 0 && index < categoryTabModel.products.length) {
