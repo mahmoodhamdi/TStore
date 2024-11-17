@@ -12,10 +12,10 @@
        - name: Checkout my repo code
          uses: actions/checkout@v2
  
-       - name: Set up JDK 11
+       - name: Set up JDK 17
          uses: actions/setup-java@v2
          with:
-           java-version: "11"
+           java-version: "17"
            distribution: "temurin"
  
        - name: Install Flutter
@@ -27,13 +27,12 @@
        - name: Setup Ruby
          uses: ruby/setup-ruby@v1
          with:
-           ruby-version: "3.3.4"
+           ruby-version: "3.3.5"
            bundler-cache: true
            working-directory: android
  
        - name: Build and Distribute App
          env:
-           APP_ID: ${{ secrets.APP_ID }}
            FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
          run: |
            bundle exec fastlane android firebase_distribution
