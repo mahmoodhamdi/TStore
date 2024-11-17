@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/core/common/view_models/grid_layout_view_model.dart';
+import 'package:t_store/core/common/widgets/product_shimmer.dart';
 import 'package:t_store/core/common/widgets/vertical_product_card.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/features/auth/presentation/widgets/grid_layout.dart';
@@ -21,7 +22,9 @@ class SortableProducts extends StatelessWidget {
             prefixIcon: Icon(Iconsax.sort),
           ),
           value: context.read<ShopCubit>().sortBy,
-          items:context.read<ShopCubit>().sortByList
+          items: context
+              .read<ShopCubit>()
+              .sortByList
               .map((e) => DropdownMenuItem(
                     value: e,
                     child: Text(e),
@@ -32,7 +35,6 @@ class SortableProducts extends StatelessWidget {
             BlocProvider.of<ShopCubit>(context).getSortedProducts(
               sortBy: value.toString(),
               sortType: "desc",
-
             )
           },
         ),
@@ -40,7 +42,6 @@ class SortableProducts extends StatelessWidget {
           height: TSizes.spaceBtwSections,
         ),
         BlocBuilder<ShopCubit, ShopState>(builder: (context, state) {
-        
           if (state is ShopSortedProductsLoaded) {
             return GridLayout(
                 gridLayoutModel: GridLayoutModel(
@@ -55,7 +56,7 @@ class SortableProducts extends StatelessWidget {
             return Text(state.error.message);
           }
 
-          return const CircularProgressIndicator();
+          return const ProductShimmer();
         }),
       ],
     );
