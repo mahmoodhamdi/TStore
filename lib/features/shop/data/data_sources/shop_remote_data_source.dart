@@ -29,7 +29,7 @@ class ShopRemoteDataSourceImpl implements ShopRemoteDataSource {
   Future<Either<TExceptions, ProductModel>> getProductById(
       {required int productId}) async {
     try {
-      var response = await dio.get(ApiConstants.getProductById(productId));
+      var response = await dio.get(ApiConstants.getDummyProductById(productId));
       if (response.statusCode == 200) {
         var product = ProductModel.fromJson(response.data);
         return Right(product);
@@ -47,8 +47,8 @@ class ShopRemoteDataSourceImpl implements ShopRemoteDataSource {
   Future<Either<TExceptions, List<ProductModel>>> getProductsList(
       {int page = 0, int limit = 10}) async {
     try {
-      var response =
-          await dio.get(ApiConstants.getProducts(page: page, limit: limit));
+      var response = await dio
+          .get(ApiConstants.getDummyProducts(page: page, limit: limit));
       if (response.statusCode == 200) {
         var products = (response.data['products'] as List)
             .map((e) => ProductModel.fromJson(e))
@@ -68,8 +68,8 @@ class ShopRemoteDataSourceImpl implements ShopRemoteDataSource {
   Future<Either<TExceptions, List<ProductModel>>> getProductsByCategory(
       {required String categoryName}) async {
     try {
-      var response = await dio
-          .get(ApiConstants.getProductsByCategory(categoryName: categoryName));
+      var response = await dio.get(
+          ApiConstants.getDummyProductsByCategory(categoryName: categoryName));
       if (response.statusCode == 200) {
         var products = (response.data['products'] as List)
             .map((e) => ProductModel.fromJson(e))
@@ -90,7 +90,7 @@ class ShopRemoteDataSourceImpl implements ShopRemoteDataSource {
       {String? search}) async {
     try {
       var response =
-          await dio.get(ApiConstants.getProductsBySearch(search: search));
+          await dio.get(ApiConstants.getDummyProductsBySearch(search: search));
       if (response.statusCode == 200) {
         var products = (response.data['products'] as List)
             .map((e) => ProductModel.fromJson(e))
@@ -110,8 +110,8 @@ class ShopRemoteDataSourceImpl implements ShopRemoteDataSource {
   Future<Either<TExceptions, List<ProductModel>>> getSortedProducts(
       {required String sortBy, required String sortType}) async {
     try {
-      var response = await dio.get(
-          ApiConstants.getSortedProducts(sortBy: sortBy, sortType: sortType));
+      var response = await dio.get(ApiConstants.getDummySortedProducts(
+          sortBy: sortBy, sortType: sortType));
       if (response.statusCode == 200) {
         var products = (response.data['products'] as List)
             .map((e) => ProductModel.fromJson(e))

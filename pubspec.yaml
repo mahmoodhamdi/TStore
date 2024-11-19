@@ -37,7 +37,12 @@ dependencies:
   smooth_page_indicator: 
   url_launcher: 
   flutter_launcher_icons: 
-  shimmer: ^3.0.0
+  shimmer: 
+  mailer: 
+  geolocator: 
+  flutter_dotenv: 
+  geocoding: 
+  permission_handler:
 
 dev_dependencies:
   flutter_test:

@@ -1,13 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:t_store/core/cubits/banner_carousel_slider_cubit_cubit/banner_carousel_slider_cubit.dart';
+import 'package:t_store/core/common/view_models/circular_container_view_model.dart';
 import 'package:t_store/core/common/view_models/rounded_image_view_model.dart';
-import 'package:t_store/core/utils/constants/colors.dart';
-import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/common/widgets/circular_container.dart';
 import 'package:t_store/core/common/widgets/rounded_image.dart';
-import 'package:t_store/core/common/view_models/circular_container_view_model.dart';
+import 'package:t_store/core/cubits/banner_carousel_slider_cubit_cubit/banner_carousel_slider_cubit.dart';
+import 'package:t_store/core/utils/constants/colors.dart';
+import 'package:t_store/core/utils/constants/sizes.dart';
 
 class BannerCarouselSlider extends StatelessWidget {
   const BannerCarouselSlider({
@@ -45,8 +45,8 @@ class BannerCarouselSlider extends StatelessWidget {
                   (index) => CircularContainer(
                         circularContainerModel: CircularContainerModel(
                           margin: const EdgeInsets.only(right: TSizes.sm),
-                          width: 20,
-                          height: 4,
+                          width: 40,
+                          height: 5,
                           color: index ==
                                   context
                                       .read<BannerCarouselSliderCubit>()
