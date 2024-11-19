@@ -171,23 +171,26 @@ class HomeView extends StatelessWidget {
                 child: const PromoBannerCarouselSlider(),
               ),
               const SizedBox(height: TSizes.spaceBtwSections),
-              SectionHeading(
-                sectionHeadingModel: SectionHeadingModel(
-                  title: "Top Rated Products",
-                  showActionButton: true,
-                  textColor: TColors.primary,
-                  actionButtonOnPressed: () {
-                    THelperFunctions.navigateToScreen(
-                      context,
-                      BlocProvider(
-                        create: (context) => getIt<ShopCubit>()
-                          ..getSortedProducts(
-                              sortBy: 'rating', sortType: "desc"),
-                        child: const AllProductsView(),
-                      ),
-                    );
-                  },
-                  actionButtonTitle: "View All",
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: SectionHeading(
+                  sectionHeadingModel: SectionHeadingModel(
+                    title: "Top Rated Products",
+                    showActionButton: true,
+                    textColor: TColors.primary,
+                    actionButtonOnPressed: () {
+                      THelperFunctions.navigateToScreen(
+                        context,
+                        BlocProvider(
+                          create: (context) => getIt<ShopCubit>()
+                            ..getSortedProducts(
+                                sortBy: 'rating', sortType: "desc"),
+                          child: const AllProductsView(),
+                        ),
+                      );
+                    },
+                    actionButtonTitle: "View All",
+                  ),
                 ),
               ),
               const SizedBox(height: TSizes.spaceBtwItems),
@@ -197,15 +200,18 @@ class HomeView extends StatelessWidget {
                     return Text(state.error.message);
                   }
                   if (state is ShopSortedProductsLoaded) {
-                    return GridLayout(
-                      gridLayoutModel: GridLayoutModel(
-                        itemCount: state.productsList.length,
-                        itemBuilder: (context, index) {
-                          return VerticalProductCard(
-                            product: state.productsList[index],
-                          );
-                        },
-                        mainAxisExtent: 288,
+                    return Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: GridLayout(
+                        gridLayoutModel: GridLayoutModel(
+                          itemCount: state.productsList.length,
+                          itemBuilder: (context, index) {
+                            return VerticalProductCard(
+                              product: state.productsList[index],
+                            );
+                          },
+                          mainAxisExtent: 288,
+                        ),
                       ),
                     );
                   }

@@ -5,7 +5,7 @@ import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/device/device_utility.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/features/auth/presentation/cubit/on_boarding_cubit.dart';
+import 'package:t_store/features/auth/presentation/logic/on_boarding/on_boarding_cubit.dart';
 
 class OnBoardingDotNavigation extends StatelessWidget {
   const OnBoardingDotNavigation({
