@@ -12,7 +12,7 @@ import 'package:t_store/features/shop/presentation/controller/shop_cubit.dart';
 
 final getIt = GetIt.instance;
 
-setupServiceLocator() {
+setupOldServiceLocator() {
   getIt.registerSingleton<Dio>(Dio());
 // register data sources
   getIt.registerSingleton<ShopRemoteDataSourceImpl>(ShopRemoteDataSourceImpl(
@@ -39,8 +39,8 @@ setupServiceLocator() {
       shopRepository: getIt.get<ShopRepositoryImpl>()));
 
 // register controllers
- // NavigationMenuCubit
- getIt.registerSingleton<NavigationMenuCubit>(NavigationMenuCubit());
+  // NavigationMenuCubit
+  getIt.registerFactory<NavigationMenuCubit>(() => NavigationMenuCubit());
   getIt.registerSingleton<ShopCubit>(ShopCubit(
     getProductsListUsecase: getIt.get<GetProductsListUsecase>(),
     getProductsBySearchUsecase: getIt.get<GetProductsBySearchUsecase>(),
