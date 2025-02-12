@@ -19,7 +19,7 @@ class SingleAddress extends StatelessWidget {
           width: double.infinity,
           showBorder: true,
           color: singleAddressModel.isSelected
-              ? TColors.primary.withOpacity(.5)
+              ? TColors.primary.withValues(alpha: .5)
               : Colors.transparent,
           borderColor: singleAddressModel.isSelected
               ? Colors.transparent
@@ -37,7 +37,7 @@ class SingleAddress extends StatelessWidget {
                   color: singleAddressModel.isSelected
                       ? dark
                           ? TColors.light
-                          : TColors.dark //.withOpacity(.6)
+                          : TColors.dark //.withValues(alpha:.6)
                       : null,
                 ),
               ),

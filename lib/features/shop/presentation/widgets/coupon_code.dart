@@ -37,10 +37,11 @@ class CouponCode extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.all(TSizes.md),
                       foregroundColor: dark
-                          ? TColors.white.withOpacity(.5)
-                          : TColors.dark.withOpacity(.5),
-                      backgroundColor: Colors.grey.withOpacity(.2),
-                      side: BorderSide(color: Colors.grey.withOpacity(.1)),
+                          ? TColors.white.withValues(alpha: .5)
+                          : TColors.dark.withValues(alpha: .5),
+                      backgroundColor: Colors.grey.withValues(alpha: .2),
+                      side:
+                          BorderSide(color: Colors.grey.withValues(alpha: .1)),
                     ),
                     onPressed: () {},
                     child: const Text("Apply")),
