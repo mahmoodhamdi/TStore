@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/core/common/view_models/circular_container_view_model.dart';
-import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/common/widgets/circular_container.dart';
 import 'package:t_store/core/common/widgets/curved_widget.dart';
+import 'package:t_store/core/utils/constants/colors.dart';
 
 class PrimaryHeaderContainer extends StatelessWidget {
   const PrimaryHeaderContainer({
@@ -17,7 +17,7 @@ class PrimaryHeaderContainer extends StatelessWidget {
         color: TColors.primary,
         padding: EdgeInsets.zero,
         child: SizedBox(
-           child: Stack(
+          child: Stack(
             children: [
               Positioned(
                 top: -150,
@@ -27,7 +27,7 @@ class PrimaryHeaderContainer extends StatelessWidget {
                     height: 400,
                     width: 400,
                     borderRadius: 400,
-                    color: TColors.textWhite.withOpacity(0.1),
+                    color: TColors.textWhite.withValues(alpha: 0.1),
                   ),
                 ),
               ),
@@ -39,7 +39,7 @@ class PrimaryHeaderContainer extends StatelessWidget {
                     height: 400,
                     width: 400,
                     borderRadius: 400,
-                    color: TColors.textWhite.withOpacity(0.1),
+                    color: TColors.textWhite.withValues(alpha: 0.1),
                   ))),
               child
             ],

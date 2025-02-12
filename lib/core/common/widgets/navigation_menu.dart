@@ -22,8 +22,8 @@ class NavigationMenu extends StatelessWidget {
               height: 80,
               backgroundColor: dark ? TColors.black : Colors.white,
               indicatorColor: dark
-                  ? TColors.white.withOpacity(0.1)
-                  : TColors.black.withOpacity(0.1),
+                  ? TColors.white.withValues(alpha: 0.1)
+                  : TColors.black.withValues(alpha: 0.1),
               selectedIndex: selectedIndex,
               onDestinationSelected: (int index) {
                 context.read<NavigationMenuCubit>().changeIndex(index);

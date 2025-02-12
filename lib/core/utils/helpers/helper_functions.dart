@@ -111,7 +111,7 @@ class THelperFunctions {
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Colors.orange.withOpacity(0.1),
+                        color: Colors.orange.withValues(alpha: 0.1),
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(
@@ -303,8 +303,7 @@ class THelperFunctions {
         case SnackBarType.warning:
           return warning;
         case SnackBarType.info:
-        default:
-          return info;
+        return info;
       }
     }
 
@@ -317,8 +316,7 @@ class THelperFunctions {
         case SnackBarType.warning:
           return Icons.warning_amber_rounded;
         case SnackBarType.info:
-        default:
-          return Icons.info_outline;
+        return Icons.info_outline;
       }
     }
 
@@ -495,5 +493,5 @@ class THelperFunctions {
   static void hideKeyboard() {
     LoggerHelper.info("Hiding keyboard");
     FocusManager.instance.primaryFocus?.unfocus();
-      }
+  }
 }

@@ -18,8 +18,8 @@ class CircularIcon extends StatelessWidget {
         decoration: BoxDecoration(
           color: circularIconModel.backgroundColor ??
               (dark
-                  ? TColors.black.withOpacity(.9)
-                  : TColors.white.withOpacity(.9)),
+                  ? TColors.black.withValues(alpha: .9)
+                  : TColors.white.withValues(alpha: .9)),
           borderRadius: const BorderRadius.all(
             Radius.circular(100),
           ),
