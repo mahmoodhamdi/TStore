@@ -250,8 +250,16 @@ test/
 │   │   └── cart_cubit_test.dart        # 23 tests
 │   ├── wishlist/
 │   │   └── wishlist_cubit_test.dart    # 20 tests
-│   └── orders/
-│       └── orders_cubit_test.dart      # 16 tests
+│   ├── orders/
+│   │   └── orders_cubit_test.dart      # 16 tests
+│   ├── reviews/
+│   │   └── reviews_cubit_test.dart     # 16 tests
+│   ├── chat/
+│   │   └── chat_cubit_test.dart        # 17 tests
+│   ├── notifications/
+│   │   └── notifications_cubit_test.dart # 17 tests
+│   └── personalization/
+│       └── personalization_cubit_test.dart # 22 tests
 │
 ├── integration/
 │   └── auth_flow_test.dart             # 11 tests
@@ -268,8 +276,12 @@ test/
 | Cart Unit Tests | 23 | Cubit, Entity calculations |
 | Wishlist Unit Tests | 20 | Cubit, State management |
 | Orders Unit Tests | 16 | Cubit, Entity helpers |
+| Reviews Unit Tests | 16 | Cubit, Entity helpers, Stats |
+| Chat Unit Tests | 17 | Cubit, Entity, Message types |
+| Notifications Unit Tests | 17 | Cubit, Entity, Actions |
+| Personalization Unit Tests | 22 | Profile, Addresses Cubits |
 | Integration Tests | 11 | Complete auth flow |
-| **Total** | **147** | - |
+| **Total** | **219** | - |
 
 ### Running Tests
 
@@ -357,7 +369,7 @@ Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTIN
 
 ### v1.1.0 (Current)
 - [x] Supabase migration (completed)
-- [x] Unit tests coverage (147 tests)
+- [x] Unit tests coverage (219 tests)
 - [x] Integration tests (auth flow)
 - [ ] Performance optimizations
 
