@@ -17,9 +17,9 @@ class TPlatformException implements Exception {
       case 'invalid-phone-number':
         return 'The provided phone number is invalid.';
       case 'operation-not-allowed':
-        return 'The sign-in provider is disabled for your Firebase project.';
-      case 'session-cookie-expired':
-        return 'The Firebase session cookie has expired. Please sign in again.';
+        return 'This operation is not allowed. Contact support for assistance.';
+      case 'session-expired':
+        return 'Your session has expired. Please sign in again.';
       case 'uid-already-exists':
         return 'The provided user ID is already in use by another user.';
       case 'sign_in_failed':
@@ -34,7 +34,6 @@ class TPlatformException implements Exception {
         return 'Invalid verification ID. Please request a new verification code.';
       case 'quota-exceeded':
         return 'Quota exceeded. Please try again later.';
-    // Add more cases as needed...
       default:
         return 'An unexpected platform error occurred. Please try again.';
     }

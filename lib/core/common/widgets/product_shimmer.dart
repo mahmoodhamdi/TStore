@@ -21,7 +21,7 @@ class ProductShimmer extends StatelessWidget {
         mainAxisExtent: 288,
       ),
       itemCount: 4, // Show 4 shimmer items while loading
-      itemBuilder: (_, __) => Container(
+      itemBuilder: (_, _) => Container(
         width: 180,
         padding: const EdgeInsets.all(1),
         decoration: BoxDecoration(

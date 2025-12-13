@@ -89,7 +89,7 @@ class VerticalProductCard extends StatelessWidget {
                     children: [
                       ProductTitleText(
                         productTitleTextModel: ProductTitleTextModel(
-                            title: product.title,),
+                            title: product.name,),
                       ),
                       const SizedBox(
                         height: TSizes.spaceBtwItems / 2,
@@ -97,7 +97,7 @@ class VerticalProductCard extends StatelessWidget {
                       BrandTitleWithVerification(
                           brandTitleWithVerificationModel:
                               BrandTitleWithVerificationModel(
-                        brandName: product.brand,
+                        brandName: product.brandName ?? '',
                       )),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

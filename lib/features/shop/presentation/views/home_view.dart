@@ -5,13 +5,12 @@ import 'package:t_store/core/common/view_models/grid_layout_view_model.dart';
 import 'package:t_store/core/common/view_models/section_heading_view_model.dart';
 import 'package:t_store/core/common/widgets/section_heading.dart';
 import 'package:t_store/core/common/widgets/vertical_product_card.dart';
-import 'package:t_store/core/cubits/banner_carousel_slider_cubit_cubit/banner_carousel_slider_cubit.dart';
 import 'package:t_store/core/utils/constants/colors.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/core/utils/service_locator/service_locator.dart';
 import 'package:t_store/features/auth/presentation/widgets/grid_layout.dart';
-import 'package:t_store/features/shop/presentation/controller/shop_cubit.dart';
+import 'package:t_store/features/shop/presentation/cubit/products_cubit.dart';
+import 'package:t_store/features/shop/presentation/cubit/products_state.dart';
 import 'package:t_store/features/shop/presentation/views/all_products_view.dart';
 import 'package:t_store/features/shop/presentation/widgets/home_header_section.dart';
 import 'package:t_store/features/shop/presentation/widgets/promo_banner_carousel_slider.dart';
@@ -84,7 +83,7 @@ class HomeViewShimmer extends StatelessWidget {
               mainAxisExtent: 288,
             ),
             itemCount: 4,
-            itemBuilder: (_, __) => Container(
+            itemBuilder: (_, _) => Container(
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(TSizes.productImageRadius),
@@ -154,8 +153,25 @@ class HomeViewShimmer extends StatelessWidget {
   }
 }
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  @override
+  void initState() {
+    super.initState();
+    // Load featured products on init
+    context.read<ProductsCubit>().getProducts(
+          isFeatured: true,
+          sortBy: 'rating',
+          ascending: false,
+          refresh: true,
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -166,10 +182,7 @@ class HomeView extends StatelessWidget {
             children: [
               const HomeHeaderSection(),
               const SizedBox(height: TSizes.spaceBtwSections),
-              BlocProvider(
-                create: (context) => BannerCarouselSliderCubit(),
-                child: const PromoBannerCarouselSlider(),
-              ),
+              const PromoBannerCarouselSlider(),
               const SizedBox(height: TSizes.spaceBtwSections),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -181,12 +194,7 @@ class HomeView extends StatelessWidget {
                     actionButtonOnPressed: () {
                       THelperFunctions.navigateToScreen(
                         context,
-                        BlocProvider(
-                          create: (context) => getIt<ShopCubit>()
-                            ..getSortedProducts(
-                                sortBy: 'rating', sortType: "desc"),
-                          child: const AllProductsView(),
-                        ),
+                        const AllProductsView(),
                       );
                     },
                     actionButtonTitle: "View All",
@@ -194,20 +202,55 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: TSizes.spaceBtwItems),
-              BlocBuilder<ShopCubit, ShopState>(
+              BlocBuilder<ProductsCubit, ProductsState>(
                 builder: (context, state) {
-                  if (state is ShopError) {
-                    return Text(state.error.message);
+                  if (state is ProductsError) {
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(TSizes.defaultSpace),
+                        child: Column(
+                          children: [
+                            Text(
+                              state.message,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: TSizes.spaceBtwItems),
+                            ElevatedButton(
+                              onPressed: () {
+                                context.read<ProductsCubit>().getProducts(
+                                      isFeatured: true,
+                                      sortBy: 'rating',
+                                      ascending: false,
+                                      refresh: true,
+                                    );
+                              },
+                              child: const Text('Retry'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
                   }
-                  if (state is ShopSortedProductsLoaded) {
+                  if (state is ProductsLoaded) {
+                    if (state.products.isEmpty) {
+                      return const Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(TSizes.defaultSpace),
+                          child: Text('No products found'),
+                        ),
+                      );
+                    }
                     return Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: GridLayout(
                         gridLayoutModel: GridLayoutModel(
-                          itemCount: state.productsList.length,
+                          itemCount: state.products.length > 4
+                              ? 4
+                              : state.products.length,
                           itemBuilder: (context, index) {
                             return VerticalProductCard(
-                              product: state.productsList[index],
+                              product: state.products[index],
                             );
                           },
                           mainAxisExtent: 288,

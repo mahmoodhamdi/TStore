@@ -1,25 +1,21 @@
 default_platform(:android)
 
 platform :android do
-  desc "Lane for Android Firebase App Distribution"
-  lane :firebase_distribution do
+  desc "Build Android APK"
+  lane :build_apk do
     # Clean Flutter build directory
     sh "flutter clean || echo 'Flutter clean failed'"
 
     # Build Flutter APK with production flavor
     sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons || echo 'Build failed'"
+  end
 
-    # Generate release notes from the last Git commit
-    release_notes = `git log -1 --pretty=%B`
+  desc "Build Android App Bundle"
+  lane :build_aab do
+    # Clean Flutter build directory
+    sh "flutter clean || echo 'Flutter clean failed'"
 
-    # Distribute APK to Firebase App Distribution
-    firebase_app_distribution(
-      app: "1:636552914502:android:911ed43349808e438a8c47",
-      firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
-      android_artifact_type: "APK",
-      android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
-      testers: "hmdy7486@gmail.com",
-      release_notes: release_notes
-    )
+    # Build Flutter AAB with production flavor
+    sh "flutter build appbundle --release --flavor production --target lib/main_production.dart --no-tree-shake-icons || echo 'Build failed'"
   end
 end

@@ -1,86 +1,129 @@
 import 'package:equatable/equatable.dart';
 
-// Product entity extending ProductEntity
 class ProductEntity extends Equatable {
-  final int id;
-  final String title;
-  final String description;
-  final String category;
+  final String id;
+  final String name;
+  final String? description;
   final double price;
-  final double discountPercentage;
-  final num rating;
+  final double? salePrice;
+  final String categoryId;
+  final String? brandId;
   final int stock;
-  final List<String> tags;
-  final String brand;
-  final String warrantyInformation;
-  final String shippingInformation;
-  final String availabilityStatus;
-  final List<ReviewEntity> reviews;
-  final String returnPolicy;
-  final DateTime createdAt;
   final List<String> images;
-  final String thumbnail;
+  final String? thumbnail;
+  final double rating;
+  final int reviewsCount;
+  final bool isFeatured;
+  final bool isActive;
+  final Map<String, dynamic>? attributes;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+
+  // Joined data
+  final String? categoryName;
+  final String? brandName;
+
   const ProductEntity({
     required this.id,
-    required this.title,
-    required this.description,
-    required this.category,
+    required this.name,
+    this.description,
     required this.price,
-    required this.discountPercentage,
-    required this.rating,
+    this.salePrice,
+    required this.categoryId,
+    this.brandId,
     required this.stock,
-    required this.tags,
-    required this.brand,
-    required this.warrantyInformation,
-    required this.shippingInformation,
-    required this.availabilityStatus,
-    required this.reviews,
-    required this.returnPolicy,
-    required this.createdAt,
     required this.images,
-    required this.thumbnail,
+    this.thumbnail,
+    this.rating = 0.0,
+    this.reviewsCount = 0,
+    this.isFeatured = false,
+    this.isActive = true,
+    this.attributes,
+    this.createdAt,
+    this.updatedAt,
+    this.categoryName,
+    this.brandName,
   });
+
+  double get discountPercentage {
+    if (salePrice == null || salePrice! >= price) return 0;
+    return ((price - salePrice!) / price) * 100;
+  }
+
+  bool get hasDiscount => salePrice != null && salePrice! < price;
+
+  double get effectivePrice => salePrice ?? price;
+
+  bool get isInStock => stock > 0;
+
+  String get availabilityStatus {
+    if (stock <= 0) return 'غير متوفر';
+    if (stock <= 5) return 'كمية محدودة';
+    return 'متوفر';
+  }
 
   @override
   List<Object?> get props => [
         id,
-        title,
+        name,
         description,
-        category,
         price,
-        discountPercentage,
-        rating,
+        salePrice,
+        categoryId,
+        brandId,
         stock,
-        tags,
-        brand,
-        warrantyInformation,
-        shippingInformation,
-        availabilityStatus,
-        reviews,
-        returnPolicy,
-        createdAt,
         images,
-        thumbnail
+        thumbnail,
+        rating,
+        reviewsCount,
+        isFeatured,
+        isActive,
+        attributes,
+        createdAt,
+        updatedAt,
       ];
-}
 
-// Review entity
-class ReviewEntity extends Equatable {
-  final int rating;
-  final String comment;
-  final DateTime date;
-  final String reviewerName;
-  final String reviewerEmail;
-
-  const ReviewEntity({
-    required this.rating,
-    required this.comment,
-    required this.date,
-    required this.reviewerName,
-    required this.reviewerEmail,
-  });
-
-  @override
-  List<Object?> get props =>
-      [rating, comment, date, reviewerName, reviewerEmail];
+  ProductEntity copyWith({
+    String? id,
+    String? name,
+    String? description,
+    double? price,
+    double? salePrice,
+    String? categoryId,
+    String? brandId,
+    int? stock,
+    List<String>? images,
+    String? thumbnail,
+    double? rating,
+    int? reviewsCount,
+    bool? isFeatured,
+    bool? isActive,
+    Map<String, dynamic>? attributes,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? categoryName,
+    String? brandName,
+  }) {
+    return ProductEntity(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      price: price ?? this.price,
+      salePrice: salePrice ?? this.salePrice,
+      categoryId: categoryId ?? this.categoryId,
+      brandId: brandId ?? this.brandId,
+      stock: stock ?? this.stock,
+      images: images ?? this.images,
+      thumbnail: thumbnail ?? this.thumbnail,
+      rating: rating ?? this.rating,
+      reviewsCount: reviewsCount ?? this.reviewsCount,
+      isFeatured: isFeatured ?? this.isFeatured,
+      isActive: isActive ?? this.isActive,
+      attributes: attributes ?? this.attributes,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      categoryName: categoryName ?? this.categoryName,
+      brandName: brandName ?? this.brandName,
+    );
+  }
 }

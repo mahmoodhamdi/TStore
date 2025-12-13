@@ -18,7 +18,7 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
     emit(OnBoardingUpdateIndicator());
   }
 
-  goToNextPage(BuildContext context) {
+  void goToNextPage(BuildContext context) {
     if (currentIndex != 2) {
       currentIndex++;
 

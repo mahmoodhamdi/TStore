@@ -1,14 +1,15 @@
 import 'package:dartz/dartz.dart';
-import 'package:t_store/core/utils/exceptions/exceptions.dart';
+import 'package:t_store/core/usecases/usecase.dart';
 import 'package:t_store/features/shop/domain/entities/product_entity.dart';
-import 'package:t_store/features/shop/domain/repository/shop_repository.dart';
+import 'package:t_store/features/shop/domain/repositories/product_repository.dart';
 
-class GetProductByIdUsecase {
-  final ShopRepository shopRepository;
+class GetProductByIdUsecase implements UseCase<ProductEntity, String> {
+  final ProductRepository repository;
 
-  GetProductByIdUsecase({required this.shopRepository});
+  GetProductByIdUsecase(this.repository);
 
-  Future<Either<TExceptions, ProductEntity>> call({required int productId}) async {
-    return await shopRepository.getProductById(productId: productId);
+  @override
+  Future<Either<String, ProductEntity>> call(String id) async {
+    return await repository.getProductById(id);
   }
 }

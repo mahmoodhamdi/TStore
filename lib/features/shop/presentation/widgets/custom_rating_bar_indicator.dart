@@ -14,7 +14,7 @@ final double rating;
       rating: rating,
       itemSize: 20,
       unratedColor: TColors.grey,
-      itemBuilder: (_, __) => const Icon(
+      itemBuilder: (_, _) => const Icon(
         Iconsax.star1,
         color: TColors.primary,
       ),

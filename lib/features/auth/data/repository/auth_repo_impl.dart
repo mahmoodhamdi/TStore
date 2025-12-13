@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:t_store/core/depandancy_injection/service_locator.dart';
-import 'package:t_store/core/utils/helpers/send_mail_helper.dart';
- import 'package:t_store/features/auth/data/data_sources/auth_local_data_source.dart';
+import 'package:t_store/features/auth/data/data_sources/auth_local_data_source.dart';
 import 'package:t_store/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:t_store/features/auth/data/models/change_password_req_body.dart';
 import 'package:t_store/features/auth/data/models/change_password_response.dart';
@@ -67,14 +65,7 @@ class AuthRepoImpl implements AuthRepo {
     return result.fold(
       (error) => Left(error),
       (success) async {
-        String username = 'hmdy7486@gmail.com';
-        String password = dotenv.env['APP_PASSWORD'] ?? '';
-
-        final sendMailHelper =
-            SendMailHelper(username: username, password: password);
-        await sendMailHelper.sendOtpEmail(
-            success.email, success.newPassword.toString());
-
+        // OTP email is sent by the backend server
         return Right(success);
       },
     );

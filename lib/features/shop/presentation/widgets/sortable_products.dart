@@ -21,7 +21,7 @@ class SortableProducts extends StatelessWidget {
           decoration: const InputDecoration(
             prefixIcon: Icon(Iconsax.sort),
           ),
-          value: context.read<ShopCubit>().sortBy,
+          initialValue: context.read<ShopCubit>().sortBy,
           items: context
               .read<ShopCubit>()
               .sortByList

@@ -51,10 +51,10 @@ class ShopCubit extends Cubit<ShopState> {
             emit(ShopSortedProductsLoaded(productsList: productsList)));
   }
 
-  void getProductById({required int productId}) async {
+  void getProductById({required String productId}) async {
     emit(ShopLoading());
-    final product = await getProductByIdUsecase.call(productId: productId);
-    product.fold((error) => emit(ShopError(error: error)),
+    final product = await getProductByIdUsecase.call(productId);
+    product.fold((error) => emit(ShopError(error: TExceptions(error))),
         (product) => emit(ShopProductLoaded(product: product)));
   }
 
