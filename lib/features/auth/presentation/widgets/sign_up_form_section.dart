@@ -6,10 +6,8 @@ import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
 import 'package:t_store/core/utils/validators/validation.dart';
-import 'package:t_store/features/auth/data/models/register_req_body.dart';
-import 'package:t_store/features/auth/domain/usecases/register_usecase.dart';
-import 'package:t_store/features/auth/presentation/logic/register/register_cubit.dart';
-import 'package:t_store/features/auth/presentation/logic/register/register_state.dart';
+import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:t_store/features/auth/presentation/cubit/auth_state.dart';
 import 'package:t_store/features/auth/presentation/views/login/login_view.dart';
 
 import 'terms_and_privacy_agreement.dart';
@@ -48,34 +46,29 @@ class _SignUpFormSectionState extends State<SignUpFormSection> {
 
   void _handleRegistration() {
     if (_formKey.currentState!.validate()) {
-      final registerReqBody = RegisterReqBody(
-        name:
-            '${_firstNameController.text.trim()} ${_lastNameController.text.trim()}',
-        email: _emailController.text.trim()..toLowerCase(),
-        password: _passwordController.text.trim(),
-        confirmPassword: _confirmPasswordController.text.trim(),
-        address: _addressController.text.trim(),
-        mobile: _phoneController.text.trim(),
-      );
-
-      context.read<RegisterCubit>().register(
-            RegisterParams(registerReqBody: registerReqBody),
+      context.read<AuthCubit>().signUp(
+            email: _emailController.text.trim().toLowerCase(),
+            password: _passwordController.text.trim(),
+            fullName:
+                '${_firstNameController.text.trim()} ${_lastNameController.text.trim()}',
+            phone: _phoneController.text.trim(),
           );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RegisterCubit, RegisterState>(
+    return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state.status == RegisterStatus.success) {
+        if (state is AuthEmailConfirmationRequired) {
           THelperFunctions.showSnackBar(
               context: context,
-              message: state.message,
+              message: 'تم إرسال رابط التأكيد إلى ${state.email}',
               type: SnackBarType.success);
 
-          THelperFunctions.navigateReplacementToScreen(context, LoginView());
-         } else if (state.status == RegisterStatus.failure) {
+          THelperFunctions.navigateReplacementToScreen(
+              context, const LoginView());
+        } else if (state is AuthError) {
           THelperFunctions.showSnackBar(
               context: context,
               message: state.message,
@@ -185,16 +178,16 @@ class _SignUpFormSectionState extends State<SignUpFormSection> {
             const SizedBox(height: TSizes.spaceBtwSections),
             SizedBox(
               width: double.infinity,
-              child: BlocBuilder<RegisterCubit, RegisterState>(
+              child: BlocBuilder<AuthCubit, AuthState>(
                 builder: (context, state) {
                   return ElevatedButton(
-                    onPressed: state.status == RegisterStatus.loading
+                    onPressed: state is AuthLoading
                         ? null
                         : () {
-                          THelperFunctions.hideKeyboard();
-                          _handleRegistration();
-                        },
-                    child: state.status == RegisterStatus.loading
+                            THelperFunctions.hideKeyboard();
+                            _handleRegistration();
+                          },
+                    child: state is AuthLoading
                         ? const Text(TTexts.loading)
                         : const Text(TTexts.createAccount),
                   );

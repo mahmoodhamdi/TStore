@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:t_store/core/dependency_injection/service_locator.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
-import 'package:t_store/features/auth/presentation/logic/register/register_cubit.dart';
+import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:t_store/features/auth/presentation/widgets/divider_widget.dart';
 import 'package:t_store/features/auth/presentation/widgets/sign_in_methods_section.dart';
 import 'package:t_store/features/auth/presentation/widgets/sign_up_form_section.dart';
@@ -13,7 +14,7 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RegisterCubit(),
+      create: (context) => sl<AuthCubit>(),
       child: Scaffold(
         appBar: AppBar(),
         body: SafeArea(
