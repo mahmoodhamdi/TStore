@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:pub.dev)",
+      "Bash(flutter pub get:*)",
+      "Bash(flutter pub upgrade:*)",
+      "Bash(flutter analyze:*)",
+      "Bash(flutter test:*)",
+      "Bash(dir:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(find:*)",
+      "Bash(flutter clean:*)",
+      "Bash(./gradlew clean:*)",
+      "Bash(java -version:*)",
+      "Bash(flutter doctor:*)",
+      "Bash(findstr:*)",
+      "Bash(del /f \"D:\\TStore\\lib\\firebase_options.dart\")",
+      "Bash(del /f \"D:\\TStore\\firebase.json\")",
+      "Bash(del /f \"D:\\TStore\\android\\app\\google-services.json\")",
+      "Bash(del /f \"D:\\TStore\\lib\\core\\utils\\exceptions\\firebase_exceptions.dart\")",
+      "Bash(del /f \"D:\\TStore\\lib\\core\\utils\\exceptions\\firebase_auth_exceptions.dart\")",
+      "Bash(del /f \"D:\\TStore\\.github\\workflows\\android_fastlane_firebase_app_distribution_workflow.yml\")",
+      "WebFetch(domain:unsplash.com)",
+      "WebFetch(domain:picsum.photos)",
+      "WebFetch(domain:fakestoreapi.com)",
+      "WebFetch(domain:api.escuelajs.co)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat(core): Add Supabase core infrastructure\n\n- Add SupabaseService for database operations\n- Add SupabaseConfig for credentials management\n- Add SupabaseTables constants for table names\n- Add SupabaseException for error handling\n- Add service_locator.dart with GetIt DI setup\n- Add UseCase base class with Either return type\n- Add .env.example for environment template\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit:*)"
+    ]
+  }
+}
