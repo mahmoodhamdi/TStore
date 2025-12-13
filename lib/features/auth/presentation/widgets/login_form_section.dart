@@ -7,11 +7,9 @@ import 'package:t_store/core/enums/status.dart';
 import 'package:t_store/core/utils/constants/sizes.dart';
 import 'package:t_store/core/utils/constants/text_strings.dart';
 import 'package:t_store/core/utils/helpers/helper_functions.dart';
-import 'package:t_store/core/utils/service_locator/service_locator.dart';
-import 'package:t_store/features/auth/data/models/login_req_body.dart';
-import 'package:t_store/features/auth/domain/usecases/login_usecase.dart';
-import 'package:t_store/features/auth/presentation/logic/login/login_cubit.dart';
-import 'package:t_store/features/auth/presentation/logic/login/login_state.dart';
+import 'package:t_store/core/dependency_injection/service_locator.dart';
+import 'package:t_store/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:t_store/features/auth/presentation/cubit/auth_state.dart';
 import 'package:t_store/features/auth/presentation/views/password_configuration/forget_password_view.dart';
 import 'package:t_store/features/auth/presentation/views/signup/sign_up_view.dart';
 import 'package:t_store/features/shop/presentation/controller/shop_cubit.dart';
@@ -39,23 +37,21 @@ class _LoginFormSectionState extends State<LoginFormSection> {
 
   void _handleLogin() {
     if (_formKey.currentState!.validate()) {
-      final loginReqBody = LoginReqBody(
-        phoneEmail: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
-
-      context.read<LoginCubit>().login(LoginParms(loginReqBody: loginReqBody));
+      context.read<AuthCubit>().signIn(
+            email: _emailController.text.trim(),
+            password: _passwordController.text.trim(),
+          );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginCubit, LoginState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state.status == LoginStatus.success) {
+        if (state is AuthAuthenticated) {
           THelperFunctions.showSnackBar(
             context: context,
-            message: state.message,
+            message: 'مرحباً بعودتك',
             type: SnackBarType.success,
           );
 
@@ -64,21 +60,27 @@ class _LoginFormSectionState extends State<LoginFormSection> {
             MultiBlocProvider(
               providers: [
                 BlocProvider(
-                  create: (context) => getIt<NavigationMenuCubit>(),
+                  create: (context) => sl<NavigationMenuCubit>(),
                 ),
                 BlocProvider(
-                  create: (context) => getIt<ShopCubit>()
+                  create: (context) => sl<ShopCubit>()
                     ..getSortedProducts(sortBy: 'rating', sortType: "desc"),
                 ),
               ],
               child: const NavigationMenu(),
             ),
           );
-        } else if (state.status == LoginStatus.failure) {
+        } else if (state is AuthError) {
           THelperFunctions.showSnackBar(
             context: context,
             message: state.message,
             type: SnackBarType.error,
+          );
+        } else if (state is AuthEmailConfirmationRequired) {
+          THelperFunctions.showSnackBar(
+            context: context,
+            message: 'يرجى تأكيد بريدك الإلكتروني: ${state.email}',
+            type: SnackBarType.warning,
           );
         }
       },
@@ -161,13 +163,13 @@ class _LoginFormSectionState extends State<LoginFormSection> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: state.status == LoginStatus.loading
+                    onPressed: state is AuthLoading
                         ? null
                         : () {
                             THelperFunctions.hideKeyboard();
                             _handleLogin();
                           },
-                    child: state.status == LoginStatus.loading
+                    child: state is AuthLoading
                         ? const Text(TTexts.loading)
                         : const Text(TTexts.signIn),
                   ),
